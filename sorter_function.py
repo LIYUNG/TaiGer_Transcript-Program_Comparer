@@ -1,10 +1,12 @@
 from numpy import nan
 import sys
+import os
 import pandas as pd
 from cell_formatter import red_out_failed_subject
 
 import xlsxwriter
-
+KEY_WORDS = 0
+ANTI_KEY_WORDS = 1
 CALCULUS_KEY_WORDS = ['微積分']
 CALCULUS_ANTI_KEY_WORDS = ['asdgladfj;l']
 MATH_KEY_WORDS = ['數學', '代數', '微分', '函數', '機率', '離散', '複變']
@@ -38,6 +40,13 @@ USELESS_COURSES_ANTI_KEY_WORDS = ['asdgladfj;l']
 column_len_array = []
 
 
+def isfloat(value):
+  try:
+    float(value)
+    return True
+  except ValueError:
+    return False
+
 def TUM_EI(transcript_sorted_group_map, df_transcript_array, writer):
     print("Create TUM EI sheet")
     # TODO: implement the mapping from the existing courses to program's requirement
@@ -52,6 +61,10 @@ def TUM_EI(transcript_sorted_group_map, df_transcript_array, writer):
 def RWTH_EI(transcript_sorted_group_map, df_transcript_array, writer):
     print("Create RWTH_Aacen_EI sheet")
     df_transcript_array_temp = df_transcript_array
+    
+    #####################################################################
+    ############## Program Specific Parameters ##########################
+    #####################################################################
 
     # Create transcript_sorted_group to program_category mapping
     PROG_SPEC_MATH_PARAM = {
@@ -71,7 +84,19 @@ def RWTH_EI(transcript_sorted_group_map, df_transcript_array, writer):
     PROG_SPEC_OTHERS = {
         'Program_Category': 'Others', 'Required_CP': 0}
 
-    # Mapping table: same dimension as transcript_sorted_group
+    # This fixed to program course category.
+    program_category = [
+        PROG_SPEC_MATH_PARAM,  # 數學
+        PROG_SPEC_PHYSIK_PARAM,  # 物理
+        PROG_SPEC_PROGRAMMIERUNG_PARAM,  # 資訊
+        PROG_SPEC_SYSTEM_THEORIE_PARAM,  # 控制系統
+        PROG_SPEC_ELEKTROTECHNIK_SCHALTUNGSTECHNIK_PARAM,  # 電子電路電磁
+        PROG_SPEC_VERTIEFUNG_EI_PARAM,  # 電機專業選修
+        PROG_SPEC_ANWENDUNG_MODULE_PARAM,  # 應用科技
+        PROG_SPEC_OTHERS  # 其他
+    ]
+
+    # Mapping table: same dimension as transcript_sorted_group/ The length depends on how fine the transcript is classified
     program_category_map = [
         PROG_SPEC_MATH_PARAM,  # 微積分
         PROG_SPEC_MATH_PARAM,  # 數學
@@ -86,16 +111,16 @@ def RWTH_EI(transcript_sorted_group_map, df_transcript_array, writer):
         PROG_SPEC_OTHERS  # 其他
     ]
 
-    program_category = [
-        PROG_SPEC_MATH_PARAM,  # 數學
-        PROG_SPEC_PHYSIK_PARAM,  # 物理
-        PROG_SPEC_PROGRAMMIERUNG_PARAM,  # 資訊
-        PROG_SPEC_SYSTEM_THEORIE_PARAM,  # 控制系統
-        PROG_SPEC_ELEKTROTECHNIK_SCHALTUNGSTECHNIK_PARAM,  # 電子電路電磁
-        PROG_SPEC_VERTIEFUNG_EI_PARAM,  # 電機專業選修
-        PROG_SPEC_ANWENDUNG_MODULE_PARAM,  # 應用科技
-        PROG_SPEC_OTHERS  # 其他
-    ]
+    # Development check
+    if len(program_category_map) != len(df_transcript_array):
+        print("program_category_map size: " + str(len(program_category_map)))
+        print("df_transcript_array size:  " + str(len(df_transcript_array)))
+        print("Please check the number of program_category_map again!")
+        sys.exit()
+
+    #####################################################################
+    ####################### End #########################################
+    #####################################################################
 
     df_PROG_SPEC_CATES = []
     for idx, cat in enumerate(program_category):
@@ -165,8 +190,10 @@ program_sort_function = [TUM_EI, RWTH_EI, STUTTGART_EI]
 
 
 def func(program_idx):
-    Input_Path = 'C:/Users/steve/Downloads/Course_Sorting_Test/train_data/'
-    Output_Path = 'C:/Users/steve/Downloads/Course_Sorting_Test/output/'
+
+    Input_Path = os.getcwd() + '\\train_data\\'
+    Output_Path = os.getcwd() + '\\output\\'
+
     input_file_name = 'template.xlsx'
     # input_file_name = 'testdata1.xlsx'
     # input_file_name = 'testdata2.xlsx'
@@ -210,8 +237,11 @@ def func(program_idx):
                 df_category_data[idx2] = df_category_data[idx2].append(
                     temp, ignore_index=True)
                 continue
-            # filter subject by keywords. TODO: exclude subject by anti_keywords
-            if any(keywords in subj for keywords in transcript_sorted_group_map[cat][0] if not any(anti_keywords in subj for anti_keywords in transcript_sorted_group_map[cat][1])):
+            # filter subject by keywords. and exclude subject by anti_keywords
+            if any(keywords in subj for keywords in transcript_sorted_group_map[cat][KEY_WORDS] if not any(anti_keywords in subj for anti_keywords in transcript_sorted_group_map[cat][ANTI_KEY_WORDS])):
+                temp_string = str(df_transcript['成績'][idx])
+                if((isfloat(temp_string) and float(temp_string) < 60)): # failed subject not count
+                    continue
                 temp = {cat: subj, '學分': df_transcript['學分'][idx],
                         '成績': df_transcript['成績'][idx]}
                 df_category_data[idx2] = df_category_data[idx2].append(
