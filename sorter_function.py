@@ -9,27 +9,31 @@ KEY_WORDS = 0
 ANTI_KEY_WORDS = 1
 CALCULUS_KEY_WORDS = ['微積分']
 CALCULUS_ANTI_KEY_WORDS = ['asdgladfj;l']
-MATH_KEY_WORDS = ['數學', '代數', '微分', '函數', '機率', '離散', '複變']
+MATH_KEY_WORDS = ['數學', '代數', '微分', '函數', '機率', '離散', '複變', '數值', '向量']
 MATH_ANTI_KEY_WORDS = ['asdgladfj;l']
-PROGRAMMING_KEY_WORDS = ['計算機', '演算', '資料', '物件',
-                         '資電', '作業系統', '資料結構', '軟體', '編譯器', '程式設計']
+PROGRAMMING_KEY_WORDS = ['計算機', '演算', '資料', '物件', '運算',
+                         '資電', '作業系統', '資料結構', '軟體', '編譯器', '程式設計', '程式語言', 'Python', 'C++', 'C語言']
 PROGRAMMING_ANTI_KEY_WORDS = ['asdgladfj;l']
 PHYSICS_KEY_WORDS = ['物理']
-PHYSICS_ANTI_KEY_WORDS = ['半導體']
+PHYSICS_ANTI_KEY_WORDS = ['半導體', '元件']
 CHEMISTRY_KEY_WORDS = ['化學']
 CHEMISTRY_ANTI_KEY_WORDS = ['asdgladfj;l']
 ELECTRONICS_KEY_WORDS = ['電子']
-ELECTRONICS_ANTI_KEY_WORDS = ['asdgladfj;l', '電力', '固態', '自動化']
+ELECTRONICS_ANTI_KEY_WORDS = ['專題', '電力', '固態', '自動化']
 ELECTRO_CIRCUIT_KEY_WORDS = ['電路', '訊號', '數位邏輯', '邏輯設計', '信號與系統']
 ELECTRO_CIRCUIT_ANTI_KEY_WORDS = ['超大型', '專題']
 ELECTRO_MAGNET_KEY_WORDS = ['電磁']
-ELECTRO_MAGNET_ANTI_KEY_WORDS = ['asdgladfj;l']
-ADVANCED_ELECTRO_KEY_WORDS = ['微波', '積體電路',
-                              '類比', '數位訊號', '半導體', '元件', '通訊', '微算機', '微處理', '電波', 'VLSI', '固態', '嵌入式', '人工智慧', '無線網路', '機器學習', '消息', '通信']
+ELECTRO_MAGNET_ANTI_KEY_WORDS = ['asdgladfj;l', '專題']
+ADVANCED_ELECTRO_KEY_WORDS = ['微波', '積體電路', '自動化', '天線', '網路', '高頻', '無線', '藍芽', '晶片',
+                              '類比', '數位訊號', '通信',  '通訊', '微算機', '微處理', '電波', 'VLSI', '固態', '嵌入式', '人工智慧', '無線網路', '機器學習', '消息']
 ADVANCED_ELECTRO_ANTI_KEY_WORDS = ['asdgladfj;l']
-APPLICATION_ORIENTED_KEY_WORDS = ['電力', '生醫', '能源', '光機電', '電動機']
+SEMICONDUCTOR_KEY_WORDS = ['半導體', '元件']
+SEMICONDUCTOR_ANTI_KEY_WORDS = ['專題']
+APPLICATION_ORIENTED_KEY_WORDS = ['電力', '生醫', '能源', '光機電', '電動機',
+                                  '電機', '影像', '深度學習', '光電', '應用', '綠能', '雲端運算', '醫學工程', '再生能源']
 APPLICATION_ORIENTED_ANTI_KEY_WORDS = ['asdgladfj;l']
-MECHANICS_KEY_WORDS = ['熱力學', '動力', '靜力', '材料力', '摩擦']
+
+MECHANICS_KEY_WORDS = ['熱力學', '動力', '靜力', '材料力', '摩擦', '流體']
 MECHANICS_ANTI_KEY_WORDS = ['asdgladfj;l']
 CONTROL_THEORY_KEY_WORDS = ['控制']
 CONTROL_THEORY_ANTI_KEY_WORDS = ['asdgladfj;l']
@@ -41,11 +45,12 @@ column_len_array = []
 
 
 def isfloat(value):
-  try:
-    float(value)
-    return True
-  except ValueError:
-    return False
+    try:
+        float(value)
+        return True
+    except ValueError:
+        return False
+
 
 def TUM_EI(transcript_sorted_group_map, df_transcript_array, writer):
     print("Create TUM EI sheet")
@@ -59,9 +64,9 @@ def TUM_EI(transcript_sorted_group_map, df_transcript_array, writer):
 
 
 def RWTH_EI(transcript_sorted_group_map, df_transcript_array, writer):
-    print("Create RWTH_Aacen_EI sheet")
+    print("Create RWTH_Aachen_EI sheet")
     df_transcript_array_temp = df_transcript_array
-    
+
     #####################################################################
     ############## Program Specific Parameters ##########################
     #####################################################################
@@ -106,6 +111,7 @@ def RWTH_EI(transcript_sorted_group_map, df_transcript_array, writer):
         PROG_SPEC_ELEKTROTECHNIK_SCHALTUNGSTECHNIK_PARAM,  # 電子
         PROG_SPEC_ELEKTROTECHNIK_SCHALTUNGSTECHNIK_PARAM,  # 電路
         PROG_SPEC_ELEKTROTECHNIK_SCHALTUNGSTECHNIK_PARAM,  # 電磁
+        PROG_SPEC_VERTIEFUNG_EI_PARAM,  # 半導體
         PROG_SPEC_VERTIEFUNG_EI_PARAM,  # 電機專業選修
         PROG_SPEC_ANWENDUNG_MODULE_PARAM,  # 應用科技
         PROG_SPEC_OTHERS  # 其他
@@ -158,18 +164,18 @@ def RWTH_EI(transcript_sorted_group_map, df_transcript_array, writer):
     start_row = 0
     for idx, sortedcourses in enumerate(df_PROG_SPEC_CATES):
         sortedcourses.to_excel(
-            writer, sheet_name='RWTH_Aacen_EI', startrow=start_row, header=True, index=False)
+            writer, sheet_name='RWTH_Aachen_EI', startrow=start_row, header=True, index=False)
         start_row += len(sortedcourses.index) + 2
 
     # Formatting
     workbook = writer.book
-    worksheet = writer.sheets['RWTH_Aacen_EI']
+    worksheet = writer.sheets['RWTH_Aachen_EI']
     red_out_failed_subject(workbook, worksheet, 1, start_row)
     for df in df_PROG_SPEC_CATES:
         for i, col in enumerate(df.columns):
             # set the column length
             worksheet.set_column(i, i, column_len_array[i] * 2)
-    print("Save to RWTH_Aacen_EI")
+    print("Save to RWTH_Aachen_EI")
 
 
 def STUTTGART_EI(df_transcript_array, writer):
@@ -191,10 +197,12 @@ program_sort_function = [TUM_EI, RWTH_EI, STUTTGART_EI]
 
 def func(program_idx):
 
-    Input_Path = os.getcwd() + '\\train_data\\'
+    # Input_Path = os.getcwd() + '\\train_data\\'
+    Input_Path = os.getcwd() + '\\database\\'
     Output_Path = os.getcwd() + '\\output\\'
 
-    input_file_name = 'template.xlsx'
+    input_file_name = 'EE_Course_database.xlsx'
+    # input_file_name = 'template.xlsx'
     # input_file_name = 'testdata1.xlsx'
     # input_file_name = 'testdata2.xlsx'
     # input_file_name = 'testdata3.xlsx'
@@ -206,6 +214,7 @@ def func(program_idx):
         print("Error: Please check the student's transcript xlsx file.")
         sys.exit()
 
+    df_transcript['所修科目'] = df_transcript['所修科目'].fillna('-')
     sorted_courses = []
 
     transcript_sorted_group_map = {
@@ -217,6 +226,7 @@ def func(program_idx):
         '電子': [ELECTRONICS_KEY_WORDS, ELECTRONICS_ANTI_KEY_WORDS],
         '電路': [ELECTRO_CIRCUIT_KEY_WORDS, ELECTRO_CIRCUIT_ANTI_KEY_WORDS],
         '電磁': [ELECTRO_MAGNET_KEY_WORDS, ELECTRO_MAGNET_ANTI_KEY_WORDS],
+        '半導體': [SEMICONDUCTOR_KEY_WORDS, SEMICONDUCTOR_ANTI_KEY_WORDS],
         '電機專業選修': [ADVANCED_ELECTRO_KEY_WORDS, ADVANCED_ELECTRO_ANTI_KEY_WORDS],
         '專業應用課程': [APPLICATION_ORIENTED_KEY_WORDS, APPLICATION_ORIENTED_ANTI_KEY_WORDS],
         '其他': [USELESS_COURSES_KEY_WORDS, USELESS_COURSES_ANTI_KEY_WORDS], }
@@ -228,8 +238,8 @@ def func(program_idx):
         df_category_data.append(pd.DataFrame(data=category_data))
 
     for idx, subj in enumerate(df_transcript['所修科目']):
-        if subj is nan:
-            break
+        if subj == '-':
+            continue
         for idx2, cat in enumerate(transcript_sorted_group_map):
             if(idx2 == len(transcript_sorted_group_map) - 1):
                 temp = {cat: subj, '學分': df_transcript['學分'][idx],
@@ -240,7 +250,7 @@ def func(program_idx):
             # filter subject by keywords. and exclude subject by anti_keywords
             if any(keywords in subj for keywords in transcript_sorted_group_map[cat][KEY_WORDS] if not any(anti_keywords in subj for anti_keywords in transcript_sorted_group_map[cat][ANTI_KEY_WORDS])):
                 temp_string = str(df_transcript['成績'][idx])
-                if((isfloat(temp_string) and float(temp_string) < 60)): # failed subject not count
+                if((isfloat(temp_string) and float(temp_string) < 60)):  # failed subject not count
                     continue
                 temp = {cat: subj, '學分': df_transcript['學分'][idx],
                         '成績': df_transcript['成績'][idx]}
