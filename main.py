@@ -5,7 +5,12 @@ from sorter_function import *
 
 if __name__ == "__main__":
 
-    print("arg: " + sys.argv[1])  # TODO use sys.argv[1] as filename.xlsx
+    if(len(sys.argv) == 2):
+        print("arg: " + sys.argv[1])  # TODO use sys.argv[1] as filename.xlsx
+    else:
+        print("Error: Please select the transcript excel as argument")
+        sys.exit()
+
     program_idx = []
 
     program_selection_path = os.getcwd() + '\Programs.xlsx'

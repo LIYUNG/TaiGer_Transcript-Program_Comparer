@@ -197,12 +197,12 @@ program_sort_function = [TUM_EI, RWTH_EI, STUTTGART_EI]
 
 def func(program_idx):
 
-    # Input_Path = os.getcwd() + '\\train_data\\'
-    Input_Path = os.getcwd() + '\\database\\'
+    Input_Path = os.getcwd() + '\\train_data\\'
+    Database_Path = os.getcwd() + '\\database\\'
     Output_Path = os.getcwd() + '\\output\\'
 
-    input_file_name = 'EE_Course_database.xlsx'
-    # input_file_name = 'template.xlsx'
+    Database_file_name = 'EE_Course_database.xlsx'
+    input_file_name = 'template.xlsx'
     # input_file_name = 'testdata1.xlsx'
     # input_file_name = 'testdata2.xlsx'
     # input_file_name = 'testdata3.xlsx'
@@ -213,6 +213,14 @@ def func(program_idx):
     if df_transcript.columns[0] != '所修科目' or df_transcript.columns[1] != '學分' or df_transcript.columns[2] != '成績':
         print("Error: Please check the student's transcript xlsx file.")
         sys.exit()
+
+    df_database = pd.read_excel(Database_Path+Database_file_name,
+                                sheet_name='All_EE_Courses')
+    # Verify the format of EE_Course_database.xlsx
+    if df_database.columns[0] != '所有電機科目':
+        print("Error: Please check the EE database xlsx file.")
+        sys.exit()
+    
 
     df_transcript['所修科目'] = df_transcript['所修科目'].fillna('-')
     sorted_courses = []
