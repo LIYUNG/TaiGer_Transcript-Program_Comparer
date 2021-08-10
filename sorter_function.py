@@ -3,42 +3,9 @@ import sys
 import os
 import pandas as pd
 from cell_formatter import red_out_failed_subject
+from EE_KEYWORDS import *
 
 import xlsxwriter
-KEY_WORDS = 0
-ANTI_KEY_WORDS = 1
-CALCULUS_KEY_WORDS = ['微積分']
-CALCULUS_ANTI_KEY_WORDS = ['asdgladfj;l']
-MATH_KEY_WORDS = ['數學', '代數', '微分', '函數', '機率', '離散', '複變', '數值', '向量']
-MATH_ANTI_KEY_WORDS = ['asdgladfj;l']
-PROGRAMMING_KEY_WORDS = ['計算機', '演算', '資料', '物件', '運算',
-                         '資電', '作業系統', '資料結構', '軟體', '編譯器', '程式設計', '程式語言', 'Python', 'C++', 'C語言']
-PROGRAMMING_ANTI_KEY_WORDS = ['asdgladfj;l']
-PHYSICS_KEY_WORDS = ['物理']
-PHYSICS_ANTI_KEY_WORDS = ['半導體', '元件']
-CHEMISTRY_KEY_WORDS = ['化學']
-CHEMISTRY_ANTI_KEY_WORDS = ['asdgladfj;l']
-ELECTRONICS_KEY_WORDS = ['電子']
-ELECTRONICS_ANTI_KEY_WORDS = ['專題', '電力', '固態', '自動化']
-ELECTRO_CIRCUIT_KEY_WORDS = ['電路', '訊號', '數位邏輯', '邏輯設計', '信號與系統']
-ELECTRO_CIRCUIT_ANTI_KEY_WORDS = ['超大型', '專題']
-ELECTRO_MAGNET_KEY_WORDS = ['電磁']
-ELECTRO_MAGNET_ANTI_KEY_WORDS = ['asdgladfj;l', '專題']
-ADVANCED_ELECTRO_KEY_WORDS = ['微波', '積體電路', '自動化', '天線', '網路', '高頻', '無線', '藍芽', '晶片',
-                              '類比', '數位訊號', '通信',  '通訊', '微算機', '微處理', '電波', 'VLSI', '固態', '嵌入式', '人工智慧', '無線網路', '機器學習', '消息']
-ADVANCED_ELECTRO_ANTI_KEY_WORDS = ['asdgladfj;l']
-SEMICONDUCTOR_KEY_WORDS = ['半導體', '元件']
-SEMICONDUCTOR_ANTI_KEY_WORDS = ['專題']
-APPLICATION_ORIENTED_KEY_WORDS = ['電力', '生醫', '能源', '光機電', '電動機',
-                                  '電機', '影像', '深度學習', '光電', '應用', '綠能', '雲端運算', '醫學工程', '再生能源']
-APPLICATION_ORIENTED_ANTI_KEY_WORDS = ['asdgladfj;l']
-
-MECHANICS_KEY_WORDS = ['熱力學', '動力', '靜力', '材料力', '摩擦', '流體']
-MECHANICS_ANTI_KEY_WORDS = ['asdgladfj;l']
-CONTROL_THEORY_KEY_WORDS = ['控制']
-CONTROL_THEORY_ANTI_KEY_WORDS = ['asdgladfj;l']
-USELESS_COURSES_KEY_WORDS = ['asdgladfj;l']
-USELESS_COURSES_ANTI_KEY_WORDS = ['asdgladfj;l']
 
 # Global variable:
 column_len_array = []
@@ -249,14 +216,18 @@ def func(program_idx):
         if subj == '-':
             continue
         for idx2, cat in enumerate(transcript_sorted_group_map):
+            # Put the rest of courses to Others
             if(idx2 == len(transcript_sorted_group_map) - 1):
                 temp = {cat: subj, '學分': df_transcript['學分'][idx],
                         '成績': df_transcript['成績'][idx]}
                 df_category_data[idx2] = df_category_data[idx2].append(
                     temp, ignore_index=True)
                 continue
+            
             # filter subject by keywords. and exclude subject by anti_keywords
             if any(keywords in subj for keywords in transcript_sorted_group_map[cat][KEY_WORDS] if not any(anti_keywords in subj for anti_keywords in transcript_sorted_group_map[cat][ANTI_KEY_WORDS])):
+                # TODO: find the matching keyword and remove keyword (for later course suggestion from database)
+
                 temp_string = str(df_transcript['成績'][idx])
                 if((isfloat(temp_string) and float(temp_string) < 60)):  # failed subject not count
                     continue
