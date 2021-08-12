@@ -220,17 +220,29 @@ def func(program_idx, file_path):
 
     df_transcript['所修科目'] = df_transcript['所修科目'].fillna('-')
     df_database['所有電機科目'] = df_database['所有電機科目'].fillna('-')
+
+    df_transcript['所修科目'] = df_transcript['所修科目'].str.replace(
+        '(', '', regex=False)
+    df_transcript['所修科目'] = df_transcript['所修科目'].str.replace(
+        '（', '', regex=False)
+    df_transcript['所修科目'] = df_transcript['所修科目'].str.replace(
+        ')', '', regex=False)
+    df_transcript['所修科目'] = df_transcript['所修科目'].str.replace(
+        '）', '', regex=False)
+    df_transcript['所修科目'] = df_transcript['所修科目'].str.replace(
+        ' ', '', regex=False)
+
     sorted_courses = []
 
     transcript_sorted_group_map = {
-        '微積分': [CALCULUS_KEY_WORDS, CALCULUS_ANTI_KEY_WORDS],
+        '微積分': [CALCULUS_KEY_WORDS, CALCULUS_ANTI_KEY_WORDS, ['一', '二']],
         '數學': [MATH_KEY_WORDS, MATH_ANTI_KEY_WORDS],
-        '物理': [PHYSICS_KEY_WORDS, PHYSICS_ANTI_KEY_WORDS],
+        '物理': [PHYSICS_KEY_WORDS, PHYSICS_ANTI_KEY_WORDS, ['一', '二']],
         '資訊': [PROGRAMMING_KEY_WORDS, PROGRAMMING_ANTI_KEY_WORDS],
         '控制系統': [CONTROL_THEORY_KEY_WORDS, CONTROL_THEORY_ANTI_KEY_WORDS],
-        '電子': [ELECTRONICS_KEY_WORDS, ELECTRONICS_ANTI_KEY_WORDS],
-        '電路': [ELECTRO_CIRCUIT_KEY_WORDS, ELECTRO_CIRCUIT_ANTI_KEY_WORDS],
-        '電磁': [ELECTRO_MAGNET_KEY_WORDS, ELECTRO_MAGNET_ANTI_KEY_WORDS],
+        '電子': [ELECTRONICS_KEY_WORDS, ELECTRONICS_ANTI_KEY_WORDS, ['一', '二']],
+        '電路': [ELECTRO_CIRCUIT_KEY_WORDS, ELECTRO_CIRCUIT_ANTI_KEY_WORDS, ['一', '二']],
+        '電磁': [ELECTRO_MAGNET_KEY_WORDS, ELECTRO_MAGNET_ANTI_KEY_WORDS, ['一', '二']],
         '半導體': [SEMICONDUCTOR_KEY_WORDS, SEMICONDUCTOR_ANTI_KEY_WORDS],
         '電機專業選修': [ADVANCED_ELECTRO_KEY_WORDS, ADVANCED_ELECTRO_ANTI_KEY_WORDS],
         '專業應用課程': [APPLICATION_ORIENTED_KEY_WORDS, APPLICATION_ORIENTED_ANTI_KEY_WORDS],
@@ -260,6 +272,7 @@ def func(program_idx, file_path):
         df_category_courses_sugesstion_data.append(
             pd.DataFrame(data=category_courses_sugesstion_data, columns=['建議修課']))
 
+    # 基本分類課程 (與學程無關)
     for idx, subj in enumerate(df_transcript['所修科目']):
         if subj == '-':
             continue
@@ -271,7 +284,6 @@ def func(program_idx, file_path):
                 df_category_data[idx2] = df_category_data[idx2].append(
                     temp, ignore_index=True)
                 continue
-
             # filter subject by keywords. and exclude subject by anti_keywords
             if any(keywords in subj for keywords in transcript_sorted_group_map[cat][KEY_WORDS] if not any(anti_keywords in subj for anti_keywords in transcript_sorted_group_map[cat][ANTI_KEY_WORDS])):
                 temp_string = str(df_transcript['成績'][idx])
@@ -283,6 +295,7 @@ def func(program_idx, file_path):
                     temp, ignore_index=True)
                 break
 
+    # 基本分類電機課程資料庫
     for idx, subj in enumerate(df_database['所有電機科目']):
         if subj == '-':
             continue
@@ -300,29 +313,72 @@ def func(program_idx, file_path):
                 df_category_courses_sugesstion_data[idx2] = df_category_courses_sugesstion_data[idx2].append(
                     temp, ignore_index=True)
                 break
-
+    print(df_category_courses_sugesstion_data)
     # TODO: screening used matched keywords and keep not-yet matched keyword to screenning the suggestion courses
-            # TODO: suggestion courses not work exactly
-    # for idx, cat in enumerate(df_category_data):
-    #     temp_array = cat[cat.columns[0]].tolist()
-    #     df_category_data[idx]['建議修課'] = df_category_data[idx]['建議修課'].str.replace(
-    #         '(', '', regex=False)
-    #     df_category_data[idx]['建議修課'] = df_category_data[idx]['建議修課'].str.replace(
-    #         ')', '', regex=False)
+    # TODO: suggestion courses not work exactly
+    # TODO: 樹狀篩選? 微積分:[一,二] 同時有含 微積分、一  的，就從recommendation拿掉
 
     for idx, cat in enumerate(df_category_data):
-        temp_array = cat[cat.columns[0]].tolist()
         df_category_courses_sugesstion_data[idx]['建議修課'] = df_category_courses_sugesstion_data[idx]['建議修課'].str.replace(
             '(', '', regex=False)
         df_category_courses_sugesstion_data[idx]['建議修課'] = df_category_courses_sugesstion_data[idx]['建議修課'].str.replace(
             ')', '', regex=False)
 
+    # TODO: replace the following algorithm 1
+    # for idx, cat in enumerate(df_category_data):
+    #     temp_array = cat[cat.columns[0]].tolist()
+    #     # print(temp_array)
+    #     df_category_courses_sugesstion_data[idx] = df_category_courses_sugesstion_data[idx][
+    #         ~df_category_courses_sugesstion_data[idx]['建議修課'].str.contains('|'.join(temp_array))]
+
+    # Pseudo code for new algorithm 2 :
     for idx, cat in enumerate(df_category_data):
         temp_array = cat[cat.columns[0]].tolist()
-        # print(temp_array)
-        df_category_courses_sugesstion_data[idx] = df_category_courses_sugesstion_data[idx][
-            ~df_category_courses_sugesstion_data[idx]['建議修課'].str.contains('|'.join(temp_array))]
-    print(df_category_courses_sugesstion_data)
+        # if 3, check 一 or 二
+        if len(transcript_sorted_group_map[cat.columns[0]]) == 3:
+            for course_name in temp_array:
+                # print(course_name)
+                # Find_the the keywords idx in keywords array
+                keyword = '-'
+                for keywords in transcript_sorted_group_map[cat.columns[0]][KEY_WORDS]:
+                    # print(keywords)
+                    if keywords in course_name:
+                        keyword = keywords
+                        break
+                # Find_the the idx in differentiation array (一 or 二) DIFFERENTIATE_KEY_WORDS
+                dif = '-'
+                for diff in transcript_sorted_group_map[cat.columns[0]][DIFFERENTIATE_KEY_WORDS]:
+                    # print(diff)
+                    if diff in course_name:
+                        dif = diff
+                        break
+
+                # remove the course in recommendation course in the category based on both keyword and differentiation
+                if keyword != '-' and dif != '-':
+                    df_category_courses_sugesstion_data[idx] = df_category_courses_sugesstion_data[idx][
+                        ~(df_category_courses_sugesstion_data[idx]['建議修課'].str.contains(keyword) & df_category_courses_sugesstion_data[idx]['建議修課'].str.contains(dif))]
+                else:
+                    df_category_courses_sugesstion_data[idx] = df_category_courses_sugesstion_data[idx][
+                        ~(df_category_courses_sugesstion_data[idx]['建議修課'].str.contains(course_name))]  # also remove the same course name from database
+        else:
+            for course_name in temp_array:
+                df_category_courses_sugesstion_data[idx] = df_category_courses_sugesstion_data[idx][
+                    ~(df_category_courses_sugesstion_data[idx]['建議修課'].str.contains(course_name))]  # also remove the same course name from database
+
+    # Pseudo code for new algorithm 2:
+    # for each category
+    # {
+    #   if(check if differentiation needed)
+    #   {
+    #      Find_the the keywords idx in keywords array
+    #      Find_the the idx in differentiation array (一 or 二) DIFFERENTIATE_KEY_WORDS
+    #      remove the course in recommendation course in the category based on both keyword and differentiation
+    #   }
+    #   else
+    #   {
+    #       TODO: remove the course by keyword? bad idea: first screeing by exact matching
+    #       remove the course in recommendation course in the category based on keyword?
+    #   }
 
     output_file_name = 'generated_' + input_file_name
     writer = pd.ExcelWriter(
