@@ -22,7 +22,7 @@ ADVANCED_ELECTRO_KEY_WORDS = ['微波', '積體電路', '自動化', '天線', '
 ADVANCED_ELECTRO_ANTI_KEY_WORDS = ['asdgladfj;l']
 SEMICONDUCTOR_KEY_WORDS = ['半導體', '元件']
 SEMICONDUCTOR_ANTI_KEY_WORDS = ['專題']
-APPLICATION_ORIENTED_KEY_WORDS = ['電力', '生醫', '能源', '光機電', '電動機',
+APPLICATION_ORIENTED_KEY_WORDS = ['電力', '生醫', '能源', '光機電', '電動機', '電腦', '微系統',
                                   '電機', '影像', '深度學習', '光電', '應用', '綠能', '雲端運算', '醫學工程', '再生能源']
 APPLICATION_ORIENTED_ANTI_KEY_WORDS = ['asdgladfj;l']
 
