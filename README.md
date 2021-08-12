@@ -7,7 +7,7 @@ sorter_function.py:
 implementation for each program.
 
 
-Some basic Git commands are:
+How to use?
 ```
 python main.py <transcript_course.xlsx>
 ```

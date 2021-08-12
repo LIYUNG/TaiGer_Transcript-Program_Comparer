@@ -193,19 +193,18 @@ def STUTTGART_EI(df_transcript_array, writer):
 program_sort_function = [TUM_EI, RWTH_EI, STUTTGART_EI]
 
 
-def func(program_idx):
+def func(program_idx, file_path):
 
     Input_Path = os.getcwd() + '\\train_data\\'
     Database_Path = os.getcwd() + '\\database\\'
     Output_Path = os.getcwd() + '\\output\\'
 
     Database_file_name = 'EE_Course_database.xlsx'
-    input_file_name = 'template.xlsx'
-    # input_file_name = 'testdata1.xlsx'
-    # input_file_name = 'testdata2.xlsx'
-    # input_file_name = 'testdata3.xlsx'
+    input_file_name = os.path.split(file_path)
+    input_file_name = input_file_name[1]
+    print("input file name " + input_file_name)
 
-    df_transcript = pd.read_excel(Input_Path+input_file_name,
+    df_transcript = pd.read_excel(file_path,
                                   sheet_name='Transcript_Sorting')
     # Verify the format of transcript_course_list.xlsx
     if df_transcript.columns[0] != '所修科目' or df_transcript.columns[1] != '學分' or df_transcript.columns[2] != '成績':
@@ -317,7 +316,6 @@ def func(program_idx):
             '(', '', regex=False)
         df_category_courses_sugesstion_data[idx]['建議修課'] = df_category_courses_sugesstion_data[idx]['建議修課'].str.replace(
             ')', '', regex=False)
-   
 
     for idx, cat in enumerate(df_category_data):
         temp_array = cat[cat.columns[0]].tolist()

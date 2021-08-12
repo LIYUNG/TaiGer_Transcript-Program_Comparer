@@ -5,11 +5,13 @@ from sorter_function import *
 
 if __name__ == "__main__":
 
-    # if(len(sys.argv) == 2):
-    #     print("arg: " + sys.argv[1])  # TODO use sys.argv[1] as filename.xlsx
-    # else:
-    #     print("Error: Please select the transcript excel as argument")
-    #     sys.exit()
+    if(len(sys.argv) == 2):
+        print("arg: " + sys.argv[1])  # TODO use sys.argv[1] as filename.xlsx
+    else:
+        print("Error: Please select the transcript excel as argument")
+        print("Please type: ")
+        print("python main.py <path_to_courses>.xlsx ")
+        sys.exit()
 
     program_idx = []
 
@@ -26,4 +28,4 @@ if __name__ == "__main__":
     for idx, choose in enumerate(df_programs_selection['Choose']):
         if(choose == 'Yes'):
             program_idx.append(idx)
-    func(program_idx)
+    func(program_idx, sys.argv[1])
