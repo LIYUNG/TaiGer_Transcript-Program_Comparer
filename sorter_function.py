@@ -364,6 +364,12 @@ def func(program_idx, file_path):
             for course_name in temp_array:
                 df_category_courses_sugesstion_data[idx] = df_category_courses_sugesstion_data[idx][
                     ~(df_category_courses_sugesstion_data[idx]['建議修課'].str.contains(course_name))]  # also remove the same course name from database
+                # also: name contains keyword from suggestion course, delete them in suggestion course
+                for suggestion_course in df_category_courses_sugesstion_data[idx]['建議修課']:
+                    if suggestion_course in course_name:
+                        df_category_courses_sugesstion_data[idx] = df_category_courses_sugesstion_data[idx][
+                            ~(df_category_courses_sugesstion_data[idx]['建議修課'].str.contains(suggestion_course))]  # also remove the same course name from database
+
 
     # Pseudo code for new algorithm 2:
     # for each category
