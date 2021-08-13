@@ -2,6 +2,10 @@ KEY_WORDS = 0
 ANTI_KEY_WORDS = 1
 DIFFERENTIATE_KEY_WORDS = 2
 
+#################################################################################################################
+########################################## Electrical Engineering ###############################################
+#################################################################################################################
+
 # TODO: defining the keywords in proper way (iterative steps: generating, and see result, if mssing, then add keywords/anti_keywords)
 CALCULUS_KEY_WORDS = ['微積分']
 CALCULUS_ANTI_KEY_WORDS = ['asdgladfj;l']
@@ -11,7 +15,9 @@ PROGRAMMING_KEY_WORDS = ['計算機', '演算', '資料', '物件', '運算',
                          '資電', '作業系統', '資料結構', '軟體', '編譯器', '程式設計', '程式語言', 'Python', 'C++', 'C語言']
 PROGRAMMING_ANTI_KEY_WORDS = ['倫理']
 PHYSICS_KEY_WORDS = ['物理']
-PHYSICS_ANTI_KEY_WORDS = ['半導體', '元件']
+PHYSICS_ANTI_KEY_WORDS = ['半導體', '元件', '實驗']
+PHYSICS_EXP_KEY_WORDS = ['物理']
+PHYSICS_EXP_ANTI_KEY_WORDS = ['半導體', '元件']
 ELECTRONICS_KEY_WORDS = ['電子']
 ELECTRONICS_ANTI_KEY_WORDS = ['專題', '電力', '固態', '自動化', '倫理', '素養','進階']
 ELECTRO_CIRCUIT_KEY_WORDS = ['電路', '訊號', '數位邏輯', '邏輯設計', '信號與系統']
@@ -29,8 +35,14 @@ APPLICATION_ORIENTED_ANTI_KEY_WORDS = ['倫理','素養']
 
 CONTROL_THEORY_KEY_WORDS = ['控制']
 CONTROL_THEORY_ANTI_KEY_WORDS = ['asdgladfj;l']
+
 USELESS_COURSES_KEY_WORDS = ['asdgladfj;l']
 USELESS_COURSES_ANTI_KEY_WORDS = ['asdgladfj;l']
+#################################################################################################################
+#################################################################################################################
+#################################################################################################################
+
+
 
 # Other keywords not relevant to EE major
 CHEMISTRY_KEY_WORDS = ['化學']

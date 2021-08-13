@@ -9,5 +9,5 @@ implementation for each program.
 
 How to use?
 ```
-python main.py <transcript_course.xlsx>
+python main.py <transcript_course.xlsx> <ee/cs>
 ```

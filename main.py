@@ -2,10 +2,11 @@
 import sys, os
 import pandas as pd
 from sorter_function import *
+from CS_sorter import *
 
 if __name__ == "__main__":
 
-    if(len(sys.argv) == 2):
+    if(len(sys.argv) == 3):
         print("arg: " + sys.argv[1])  # TODO use sys.argv[1] as filename.xlsx
     else:
         print("Error: Please select the transcript excel as argument")
@@ -14,9 +15,16 @@ if __name__ == "__main__":
         sys.exit()
 
     program_idx = []
-
-    program_selection_path = os.getcwd() + '\Programs.xlsx'
-    print(os.getcwd())
+    program_selection_path = ''
+    if sys.argv[2] == 'cs':
+        program_selection_path = os.getcwd() + '\CS_Programs.xlsx'
+        print(os.getcwd())
+    elif sys.argv[2] == 'ee':
+        program_selection_path = os.getcwd() + '\EE_Programs.xlsx'
+        print(os.getcwd())
+    else:
+        print("Please specify program group: cs ee")
+        sys.exit()
 
     df_programs_selection = pd.read_excel(
         program_selection_path)
@@ -28,4 +36,7 @@ if __name__ == "__main__":
     for idx, choose in enumerate(df_programs_selection['Choose']):
         if(choose == 'Yes'):
             program_idx.append(idx)
-    func(program_idx, sys.argv[1])
+    if sys.argv[2] == 'cs':
+        CS_sorter(program_idx, sys.argv[1])
+    elif sys.argv[2] == 'ee':
+        EE_sorter(program_idx, sys.argv[1])
