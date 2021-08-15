@@ -16,8 +16,12 @@ def TUM_CS(transcript_sorted_group_map, df_transcript_array, df_category_courses
     # TODO: modify the course name
     program_name = 'TUM_CS'
     print("Create " + program_name + " sheet")
-    df_transcript_array_temp = df_transcript_array
-    df_category_courses_sugesstion_data_temp = df_category_courses_sugesstion_data
+    df_transcript_array_temp = []
+    df_category_courses_sugesstion_data_temp = []
+    for idx, df in enumerate(df_transcript_array):
+        df_transcript_array_temp.append(df.copy())
+    for idx, df in enumerate(df_category_courses_sugesstion_data):
+        df_category_courses_sugesstion_data_temp.append(df.copy())
     #####################################################################
     ############## Program Specific Parameters ##########################
     #####################################################################
@@ -58,9 +62,9 @@ def TUM_CS(transcript_sorted_group_map, df_transcript_array, df_category_courses
         PROG_SPEC_COMP_ARCH_PARAM,  # computer architecture
         PROG_SPEC_SWE_PARAM,  # software engineering
         PROG_SPEC_DB_PARAM,  # database
-        PROG_SPEC_OS_PARAM,  #
-        PROG_SPEC_COMP_NETW_MODULE_PARAM,  #
-        PROG_SPEC_FUNC_PROG_MODULE_PARAM,  #
+        PROG_SPEC_OS_PARAM,  # OS
+        PROG_SPEC_COMP_NETW_MODULE_PARAM,  # 電腦網路
+        PROG_SPEC_FUNC_PROG_MODULE_PARAM,  # 函數程式
         PROG_SPEC_ALGOR_DATA_STRUC_MODULE_PARAM,  # 演算法 資料結構
         PROG_SPEC_THEORY_COMP_MODULE_PARAM,  # 運算
         PROG_SPEC_DISCRETE_STRUCTURE_MODULE_PARAM,  # 離散
@@ -114,11 +118,8 @@ def TUM_CS(transcript_sorted_group_map, df_transcript_array, df_category_courses
         df_PROG_SPEC_CATES_COURSES_SUGGESTION, program_category_map, transcript_sorted_group_list, df_category_courses_sugesstion_data_temp)
 
     # append 總學分 for each program category
-    for idx, trans_cat in enumerate(df_PROG_SPEC_CATES):
-        category_credits_sum = {'學分': df_PROG_SPEC_CATES[idx]['學分'].sum(
-        ), 'Required_CP': program_category[idx]['Required_CP']}
-        df_PROG_SPEC_CATES[idx] = df_PROG_SPEC_CATES[idx].append(
-            category_credits_sum, ignore_index=True)
+    df_PROG_SPEC_CATES = AppendCreditsCount(
+        df_PROG_SPEC_CATES, program_category)
 
     # Write to Excel
     start_row = 0
@@ -219,70 +220,20 @@ def CS_sorter(program_idx, file_path):
 
     df_category_data = CourseSorting(
         df_transcript, df_category_data, transcript_sorted_group_map)
-    # 基本分類課程 (與學程無關)
-    # for idx, subj in enumerate(df_transcript['所修科目']):
-    #     if subj == '-':
-    #         continue
-    #     for idx2, cat in enumerate(transcript_sorted_group_map):
-    #         # Put the rest of courses to Others
-    #         if(idx2 == len(transcript_sorted_group_map) - 1):
-    #             temp = {cat: subj, '學分': df_transcript['學分'][idx],
-    #                     '成績': df_transcript['成績'][idx]}
-    #             df_category_data[idx2] = df_category_data[idx2].append(
-    #                 temp, ignore_index=True)
-    #             continue
-    #         # filter subject by keywords. and exclude subject by anti_keywords
-    #         if any(keywords in subj for keywords in transcript_sorted_group_map[cat][KEY_WORDS] if not any(anti_keywords in subj for anti_keywords in transcript_sorted_group_map[cat][ANTI_KEY_WORDS])):
-    #             temp_string = str(df_transcript['成績'][idx])
-    #             if((isfloat(temp_string) and float(temp_string) < 60)):  # failed subject not count
-    #                 continue
-    #             temp = {cat: subj, '學分': df_transcript['學分'][idx],
-    #                     '成績': df_transcript['成績'][idx]}
-    #             df_category_data[idx2] = df_category_data[idx2].append(
-    #                 temp, ignore_index=True)
-    #             break
 
     # 基本分類資工課程資料庫
     df_category_courses_sugesstion_data = DatabaseCourseSorting(
         df_database, df_category_courses_sugesstion_data, transcript_sorted_group_map)
-    # for idx, subj in enumerate(df_database['所有資工科目']):
-    #     if subj == '-':
-    #         continue
-    #     for idx2, cat in enumerate(transcript_sorted_group_map):
-    #         # Put the rest of courses to Others
-    #         if(idx2 == len(transcript_sorted_group_map) - 1):
-    #             temp = {'建議修課': subj}
-    #             df_category_courses_sugesstion_data[idx2] = df_category_courses_sugesstion_data[idx2].append(
-    #                 temp, ignore_index=True)
-    #             continue
-
-    #         # filter database by keywords. and exclude subject by anti_keywords
-    #         if any(keywords in subj for keywords in transcript_sorted_group_map[cat][KEY_WORDS] if not any(anti_keywords in subj for anti_keywords in transcript_sorted_group_map[cat][ANTI_KEY_WORDS])):
-    #             temp = {'建議修課': subj}
-    #             df_category_courses_sugesstion_data[idx2] = df_category_courses_sugesstion_data[idx2].append(
-    #                 temp, ignore_index=True)
-    #             break
-
     
     print(df_category_courses_sugesstion_data)
-    # TODO: screening used matched keywords and keep not-yet matched keyword to screenning the suggestion courses
-    # TODO: suggestion courses not work exactly
-    # 樹狀篩選 >> 微積分:[一,二] 同時有含 微積分、一  的，就從recommendation拿掉
 
     for idx, cat in enumerate(df_category_data):
         df_category_courses_sugesstion_data[idx]['建議修課'] = df_category_courses_sugesstion_data[idx]['建議修課'].str.replace(
             '(', '', regex=False)
         df_category_courses_sugesstion_data[idx]['建議修課'] = df_category_courses_sugesstion_data[idx]['建議修課'].str.replace(
             ')', '', regex=False)
-
-    # TODO: replace the following algorithm 1
-    # for idx, cat in enumerate(df_category_data):
-    #     temp_array = cat[cat.columns[0]].tolist()
-    #     # print(temp_array)
-    #     df_category_courses_sugesstion_data[idx] = df_category_courses_sugesstion_data[idx][
-    #         ~df_category_courses_sugesstion_data[idx]['建議修課'].str.contains('|'.join(temp_array))]
-
-    # Pseudo code for new algorithm 2 :
+    # 樹狀篩選 >> 微積分:[一,二] 同時有含 微積分、一  的，就從recommendation拿掉
+    # algorithm :
     df_category_courses_sugesstion_data = SuggestionCourseAlgorithm(
         df_category_data, transcript_sorted_group_map, df_category_courses_sugesstion_data)
 
@@ -290,8 +241,6 @@ def CS_sorter(program_idx, file_path):
     writer = pd.ExcelWriter(
         Output_Path+output_file_name, engine='xlsxwriter')
 
-    # for each_cat in df_category_data:
-    #     sorted_courses.append(each_cat)
     sorted_courses = df_category_data
 
     start_row = 0
@@ -325,3 +274,4 @@ def CS_sorter(program_idx, file_path):
             writer)
 
     writer.save()
+    print("Students' courses analysis and courses suggestion in CS area finished! ")

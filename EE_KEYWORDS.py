@@ -14,6 +14,8 @@ MATH_ANTI_KEY_WORDS = ['asdgladfj;l']
 PROGRAMMING_KEY_WORDS = ['計算機', '演算', '資料', '物件', '運算',
                          '資電', '作業系統', '資料結構', '軟體', '編譯器', '程式設計', '程式語言', 'Python', 'C++', 'C語言']
 PROGRAMMING_ANTI_KEY_WORDS = ['倫理']
+CONTROL_THEORY_KEY_WORDS = ['控制']
+CONTROL_THEORY_ANTI_KEY_WORDS = ['asdgladfj;l']
 PHYSICS_KEY_WORDS = ['物理']
 PHYSICS_ANTI_KEY_WORDS = ['半導體', '元件', '實驗']
 PHYSICS_EXP_KEY_WORDS = ['物理']
@@ -32,20 +34,8 @@ SEMICONDUCTOR_ANTI_KEY_WORDS = ['專題', '倫理', '素養']
 APPLICATION_ORIENTED_KEY_WORDS = ['電力', '生醫', '能源', '光機電', '電動機', '電腦', '微系統', '物聯網','密碼學','聲學',
                                   '電機', '影像', '深度學習', '光電', '應用', '綠能', '雲端運算', '醫學工程', '再生能源']
 APPLICATION_ORIENTED_ANTI_KEY_WORDS = ['倫理','素養']
-
-CONTROL_THEORY_KEY_WORDS = ['控制']
-CONTROL_THEORY_ANTI_KEY_WORDS = ['asdgladfj;l']
-
 USELESS_COURSES_KEY_WORDS = ['asdgladfj;l']
 USELESS_COURSES_ANTI_KEY_WORDS = ['asdgladfj;l']
 #################################################################################################################
 #################################################################################################################
 #################################################################################################################
-
-
-
-# Other keywords not relevant to EE major
-CHEMISTRY_KEY_WORDS = ['化學']
-CHEMISTRY_ANTI_KEY_WORDS = ['asdgladfj;l']
-MECHANICS_KEY_WORDS = ['熱力學', '動力', '靜力', '材料力', '摩擦', '流體']
-MECHANICS_ANTI_KEY_WORDS = ['asdgladfj;l']

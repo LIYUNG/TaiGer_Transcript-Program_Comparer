@@ -5,6 +5,8 @@ ANTI_KEY_WORDS = 1
 DIFFERENTIATE_KEY_WORDS = 2
 
 # naming convention
+
+
 def isfloat(value):
     try:
         float(value)
@@ -25,6 +27,7 @@ def ProgramCategoryInit(program_category):
         df_PROG_SPEC_CATES_COURSES_SUGGESTION.append(
             pd.DataFrame(data=PROG_SPEC_CATES_COURSES_SUGGESTION))
     return df_PROG_SPEC_CATES, df_PROG_SPEC_CATES_COURSES_SUGGESTION
+
 
 def Naming_Convention(df_course):
     # modify data in the same
@@ -50,14 +53,12 @@ def Naming_Convention(df_course):
 
 
 # mapping courses to target programs category
-
 def CoursesToProgramCategoryMapping(df_PROG_SPEC_CATES, program_category_map, transcript_sorted_group_list, df_transcript_array_temp):
     for idx, trans_cat in enumerate(df_transcript_array_temp):
         # append sorted courses to program's category
         categ = program_category_map[idx]['Program_Category']
         trans_cat.rename(
             columns={transcript_sorted_group_list[idx]: categ}, inplace=True)
-
         # find the idx corresponding to program's category
         idx_temp = -1
         for idx2, cat in enumerate(df_PROG_SPEC_CATES):
@@ -68,8 +69,6 @@ def CoursesToProgramCategoryMapping(df_PROG_SPEC_CATES, program_category_map, tr
         df_PROG_SPEC_CATES[idx_temp] = df_PROG_SPEC_CATES[idx_temp].append(
             trans_cat, ignore_index=True)
     return df_PROG_SPEC_CATES
-
-
 
 
 # course sorting
@@ -117,3 +116,12 @@ def DatabaseCourseSorting(df_database, df_category_courses_sugesstion_data, tran
                     temp, ignore_index=True)
                 break
     return df_category_courses_sugesstion_data
+
+
+def AppendCreditsCount(df_PROG_SPEC_CATES, program_category):
+    for idx, trans_cat in enumerate(df_PROG_SPEC_CATES):
+        category_credits_sum = {'學分': df_PROG_SPEC_CATES[idx]['學分'].sum(
+        ), 'Required_CP': program_category[idx]['Required_CP']}
+        df_PROG_SPEC_CATES[idx] = df_PROG_SPEC_CATES[idx].append(
+            category_credits_sum, ignore_index=True)
+    return df_PROG_SPEC_CATES
