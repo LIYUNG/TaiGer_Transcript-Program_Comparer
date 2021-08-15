@@ -1,7 +1,7 @@
 # import numpy as np
 import sys, os
 import pandas as pd
-from sorter_function import *
+from EE_sorter import *
 from CS_sorter import *
 
 if __name__ == "__main__":
@@ -11,7 +11,7 @@ if __name__ == "__main__":
     else:
         print("Error: Please select the transcript excel as argument")
         print("Please type: ")
-        print("python main.py <path_to_courses>.xlsx ")
+        print("python main.py <path_to_courses>.xlsx <cs/ee>")
         sys.exit()
 
     program_idx = []

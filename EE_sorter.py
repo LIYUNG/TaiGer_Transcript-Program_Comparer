@@ -4,20 +4,13 @@ import os
 import pandas as pd
 from cell_formatter import red_out_failed_subject
 from EE_KEYWORDS import *
+from util import *
+from alogrithms import *
 
 import xlsxwriter
 
 # Global variable:
 column_len_array = []
-
-
-def isfloat(value):
-    try:
-        float(value)
-        return True
-    except ValueError:
-        return False
-
 
 def TUM_EI(transcript_sorted_group_map, df_transcript_array, writer):
     print("Create TUM EI sheet")
@@ -31,9 +24,9 @@ def TUM_EI(transcript_sorted_group_map, df_transcript_array, writer):
 
 
 def RWTH_EI(transcript_sorted_group_map, df_transcript_array, df_category_courses_sugesstion_data, writer):
-    print("Create RWTH_Aachen_EI sheet")
+    program_name = 'RWTH_Aachen_EI'
+    print("Create " + program_name + " sheet")
     df_transcript_array_temp = df_transcript_array
-    # TODO: write the suggestion courses in excel
     df_category_courses_sugesstion_data_temp = df_category_courses_sugesstion_data
     #####################################################################
     ############## Program Specific Parameters ##########################
@@ -97,52 +90,18 @@ def RWTH_EI(transcript_sorted_group_map, df_transcript_array, df_category_course
     ####################### End #########################################
     #####################################################################
 
-    df_PROG_SPEC_CATES = []
-    df_PROG_SPEC_CATES_COURSES_SUGGESTION = []
-    for idx, cat in enumerate(program_category):
-        PROG_SPEC_CAT = {cat['Program_Category']: [],
-                         '學分': [], '成績': [], 'Required_CP': cat['Required_CP']}
-        PROG_SPEC_CATES_COURSES_SUGGESTION = {cat['Program_Category']: [],
-                                              }
-        df_PROG_SPEC_CATES.append(pd.DataFrame(data=PROG_SPEC_CAT))
-        df_PROG_SPEC_CATES_COURSES_SUGGESTION.append(
-            pd.DataFrame(data=PROG_SPEC_CATES_COURSES_SUGGESTION))
+    df_PROG_SPEC_CATES, df_PROG_SPEC_CATES_COURSES_SUGGESTION = ProgramCategoryInit(
+        program_category)
 
     transcript_sorted_group_list = list(transcript_sorted_group_map)
 
-    # N to 1 mapping
-    for idx, trans_cat in enumerate(df_transcript_array_temp):
-        # append sorted courses to program's category
-        categ = program_category_map[idx]['Program_Category']
-        trans_cat.rename(
-            columns={transcript_sorted_group_list[idx]: categ}, inplace=True)
+    # Courses: mapping the students' courses to program-specific category
+    df_PROG_SPEC_CATES = CoursesToProgramCategoryMapping(
+        df_PROG_SPEC_CATES, program_category_map, transcript_sorted_group_list, df_transcript_array_temp)
 
-        # find the idx corresponding to program's category
-        idx_temp = -1
-        for idx2, cat in enumerate(df_PROG_SPEC_CATES):
-            if categ == cat.columns[0]:
-                print(cat.columns[0])
-                idx_temp = idx2
-                break
-        df_PROG_SPEC_CATES[idx_temp] = df_PROG_SPEC_CATES[idx_temp].append(
-            trans_cat, ignore_index=True)
-
-    # N to 1 mapping
-    for idx, trans_cat in enumerate(df_category_courses_sugesstion_data_temp):
-        # append sorted courses to program's category
-        categ = program_category_map[idx]['Program_Category']
-        trans_cat.rename(
-            columns={transcript_sorted_group_list[idx]: categ}, inplace=True)
-
-        # find the idx corresponding to program's category
-        idx_temp = -1
-        for idx2, cat in enumerate(df_PROG_SPEC_CATES):
-            if categ == cat.columns[0]:
-                print(cat.columns[0])
-                idx_temp = idx2
-                break
-        df_PROG_SPEC_CATES_COURSES_SUGGESTION[idx_temp] = df_PROG_SPEC_CATES_COURSES_SUGGESTION[idx_temp].append(
-            trans_cat, ignore_index=True)
+    # Suggestion courses: mapping the sugesstion courses to program-specific category
+    df_PROG_SPEC_CATES_COURSES_SUGGESTION = CoursesToProgramCategoryMapping(
+        df_PROG_SPEC_CATES_COURSES_SUGGESTION, program_category_map, transcript_sorted_group_list, df_category_courses_sugesstion_data_temp)
 
     # append 總學分 for each program category
     for idx, trans_cat in enumerate(df_PROG_SPEC_CATES):
@@ -155,22 +114,22 @@ def RWTH_EI(transcript_sorted_group_map, df_transcript_array, df_category_course
     start_row = 0
     for idx, sortedcourses in enumerate(df_PROG_SPEC_CATES):
         sortedcourses.to_excel(
-            writer, sheet_name='RWTH_Aachen_EI', startrow=start_row, header=True, index=False)
+            writer, sheet_name=program_name, startrow=start_row, header=True, index=False)
         df_PROG_SPEC_CATES_COURSES_SUGGESTION[idx].to_excel(
-            writer, sheet_name='RWTH_Aachen_EI', startrow=start_row, startcol=5, header=True, index=False)
+            writer, sheet_name=program_name, startrow=start_row, startcol=5, header=True, index=False)
         start_row += max(len(sortedcourses.index),
                          len(df_PROG_SPEC_CATES_COURSES_SUGGESTION[idx].index)) + 2
 
     # Formatting
     workbook = writer.book
-    worksheet = writer.sheets['RWTH_Aachen_EI']
+    worksheet = writer.sheets[program_name]
     red_out_failed_subject(workbook, worksheet, 1, start_row)
 
     for df in df_PROG_SPEC_CATES:
         for i, col in enumerate(df.columns):
             # set the column length
             worksheet.set_column(i, i, column_len_array[i] * 2)
-    print("Save to RWTH_Aachen_EI")
+    print("Save to " + program_name)
 
 
 def STUTTGART_EI(df_transcript_array, writer):
@@ -192,7 +151,6 @@ program_sort_function = [TUM_EI, RWTH_EI, STUTTGART_EI]
 
 def EE_sorter(program_idx, file_path):
 
-    Input_Path = os.getcwd() + '\\train_data\\'
     Database_Path = os.getcwd() + '\\database\\'
     Output_Path = os.getcwd() + '\\output\\'
 
@@ -206,34 +164,19 @@ def EE_sorter(program_idx, file_path):
     # Verify the format of transcript_course_list.xlsx
     if df_transcript.columns[0] != '所修科目' or df_transcript.columns[1] != '學分' or df_transcript.columns[2] != '成績':
         print("Error: Please check the student's transcript xlsx file.")
+        print("Header: column_1 = 所修科目, column_2 = 學分, column_3 = 成績")
         sys.exit()
 
     df_database = pd.read_excel(Database_Path+Database_file_name,
                                 sheet_name='All_EE_Courses')
     # Verify the format of EE_Course_database.xlsx
-    if df_database.columns[0] != '所有電機科目':
+    if df_database.columns[0] != '所有科目':
         print("Error: Please check the EE database xlsx file.")
         sys.exit()
-    df_database['所有電機科目'] = df_database['所有電機科目'].fillna('-')
+    df_database['所有科目'] = df_database['所有科目'].fillna('-')
 
-
-    df_transcript['所修科目'] = df_transcript['所修科目'].fillna('-')
-
-    # modify data in the same
-    df_transcript['所修科目'] = df_transcript['所修科目'].str.replace(
-        '1', '一', regex=False)
-    df_transcript['所修科目'] = df_transcript['所修科目'].str.replace(
-        '2', '二', regex=False)
-    df_transcript['所修科目'] = df_transcript['所修科目'].str.replace(
-        '(', '', regex=False)
-    df_transcript['所修科目'] = df_transcript['所修科目'].str.replace(
-        '（', '', regex=False)
-    df_transcript['所修科目'] = df_transcript['所修科目'].str.replace(
-        ')', '', regex=False)
-    df_transcript['所修科目'] = df_transcript['所修科目'].str.replace(
-        '）', '', regex=False)
-    df_transcript['所修科目'] = df_transcript['所修科目'].str.replace(
-        ' ', '', regex=False)
+    # unify course naming convention
+    Naming_Convention(df_transcript)
 
     sorted_courses = []
     # EE
@@ -277,46 +220,13 @@ def EE_sorter(program_idx, file_path):
             pd.DataFrame(data=category_courses_sugesstion_data, columns=['建議修課']))
 
     # 基本分類課程 (與學程無關)
-    for idx, subj in enumerate(df_transcript['所修科目']):
-        if subj == '-':
-            continue
-        for idx2, cat in enumerate(transcript_sorted_group_map):
-            # Put the rest of courses to Others
-            if(idx2 == len(transcript_sorted_group_map) - 1):
-                temp = {cat: subj, '學分': df_transcript['學分'][idx],
-                        '成績': df_transcript['成績'][idx]}
-                df_category_data[idx2] = df_category_data[idx2].append(
-                    temp, ignore_index=True)
-                continue
-            # filter subject by keywords. and exclude subject by anti_keywords
-            if any(keywords in subj for keywords in transcript_sorted_group_map[cat][KEY_WORDS] if not any(anti_keywords in subj for anti_keywords in transcript_sorted_group_map[cat][ANTI_KEY_WORDS])):
-                temp_string = str(df_transcript['成績'][idx])
-                if((isfloat(temp_string) and float(temp_string) < 60)):  # failed subject not count
-                    continue
-                temp = {cat: subj, '學分': df_transcript['學分'][idx],
-                        '成績': df_transcript['成績'][idx]}
-                df_category_data[idx2] = df_category_data[idx2].append(
-                    temp, ignore_index=True)
-                break
+    df_category_data = CourseSorting(
+        df_transcript, df_category_data, transcript_sorted_group_map)
 
     # 基本分類電機課程資料庫
-    for idx, subj in enumerate(df_database['所有電機科目']):
-        if subj == '-':
-            continue
-        for idx2, cat in enumerate(transcript_sorted_group_map):
-            # Put the rest of courses to Others
-            if(idx2 == len(transcript_sorted_group_map) - 1):
-                temp = {'建議修課': subj}
-                df_category_courses_sugesstion_data[idx2] = df_category_courses_sugesstion_data[idx2].append(
-                    temp, ignore_index=True)
-                continue
+    df_category_courses_sugesstion_data = DatabaseCourseSorting(
+        df_database, df_category_courses_sugesstion_data, transcript_sorted_group_map)
 
-            # filter database by keywords. and exclude subject by anti_keywords
-            if any(keywords in subj for keywords in transcript_sorted_group_map[cat][KEY_WORDS] if not any(anti_keywords in subj for anti_keywords in transcript_sorted_group_map[cat][ANTI_KEY_WORDS])):
-                temp = {'建議修課': subj}
-                df_category_courses_sugesstion_data[idx2] = df_category_courses_sugesstion_data[idx2].append(
-                    temp, ignore_index=True)
-                break
     print(df_category_courses_sugesstion_data)
     # TODO: screening used matched keywords and keep not-yet matched keyword to screenning the suggestion courses
     # TODO: suggestion courses not work exactly
@@ -335,61 +245,9 @@ def EE_sorter(program_idx, file_path):
     #     df_category_courses_sugesstion_data[idx] = df_category_courses_sugesstion_data[idx][
     #         ~df_category_courses_sugesstion_data[idx]['建議修課'].str.contains('|'.join(temp_array))]
 
-    # Pseudo code for new algorithm 2 :
-    for idx, cat in enumerate(df_category_data):
-        temp_array = cat[cat.columns[0]].tolist()
-        # if 3, check 一 or 二, otherwise, not to screen  一 and 二
-        if len(transcript_sorted_group_map[cat.columns[0]]) == 3:
-            for course_name in temp_array:
-                # print(course_name)
-                # Find_the the keywords idx in keywords array
-                keyword = '-'
-                for keywords in transcript_sorted_group_map[cat.columns[0]][KEY_WORDS]:
-                    # print(keywords)
-                    if keywords in course_name:
-                        keyword = keywords
-                        break
-                # Find_the the idx in differentiation array (一 or 二) DIFFERENTIATE_KEY_WORDS
-                dif = '-'
-                for diff in transcript_sorted_group_map[cat.columns[0]][DIFFERENTIATE_KEY_WORDS]:
-                    # print(diff)
-                    if diff in course_name:
-                        dif = diff
-                        break
-
-                # remove the course in recommendation course in the category based on both keyword and differentiation
-                if keyword != '-' and dif != '-':
-                    df_category_courses_sugesstion_data[idx] = df_category_courses_sugesstion_data[idx][
-                        ~(df_category_courses_sugesstion_data[idx]['建議修課'].str.contains(keyword) & df_category_courses_sugesstion_data[idx]['建議修課'].str.contains(dif))]
-                else:
-                    df_category_courses_sugesstion_data[idx] = df_category_courses_sugesstion_data[idx][
-                        ~(df_category_courses_sugesstion_data[idx]['建議修課'].str.contains(course_name))]  # also remove the same course name from database
-        else:
-            # screening the course in suggestion courses in the category based on keyword of taken courses themselves and suggestion courses as keywords in taken courses.
-            for course_name in temp_array:
-                df_category_courses_sugesstion_data[idx] = df_category_courses_sugesstion_data[idx][
-                    ~(df_category_courses_sugesstion_data[idx]['建議修課'].str.contains(course_name))]  # also remove the same course name from database
-                # also: name contains keyword from suggestion course, delete them in suggestion course
-                for suggestion_course in df_category_courses_sugesstion_data[idx]['建議修課']:
-                    if suggestion_course in course_name:
-                        df_category_courses_sugesstion_data[idx] = df_category_courses_sugesstion_data[idx][
-                            ~(df_category_courses_sugesstion_data[idx]['建議修課'].str.contains(suggestion_course))]  # also remove the same course name from database
-
-
-    # Pseudo code for new algorithm 2:
-    # for each category
-    # {
-    #   if(check if differentiation needed)
-    #   {
-    #      Find_the the keywords idx in keywords array
-    #      Find_the the idx in differentiation array (一 or 二) DIFFERENTIATE_KEY_WORDS
-    #      remove the course in recommendation course in the category based on both keyword and differentiation
-    #   }
-    #   else
-    #   {
-    #      
-    #       remove the course in recommendation course in the category based on keyword?
-    #   }
+    # algorithm 2 :
+    df_category_courses_sugesstion_data = SuggestionCourseAlgorithm(
+        df_category_data, transcript_sorted_group_map, df_category_courses_sugesstion_data)
 
     output_file_name = 'generated_' + input_file_name
     writer = pd.ExcelWriter(
