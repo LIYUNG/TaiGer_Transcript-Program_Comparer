@@ -6,7 +6,7 @@ from cell_formatter import red_out_failed_subject
 from EE_KEYWORDS import *
 from util import *
 from alogrithms import *
-
+import gc
 import xlsxwriter
 
 # Global variable:
@@ -126,11 +126,12 @@ def RWTH_EI(transcript_sorted_group_map, df_transcript_array, df_category_course
     red_out_failed_subject(workbook, worksheet, 1, start_row)
 
     for df in df_PROG_SPEC_CATES:
-        print(df)
+        # print(df)
         for i, col in enumerate(df.columns):
-            print(i)
+            # print(i)
             # set the column length
             worksheet.set_column(i, i, column_len_array[i] * 2)
+    gc.collect()  # Forced GC
     print("Save to " + program_name)
 
 
@@ -245,6 +246,7 @@ def TUM_MSCE(transcript_sorted_group_map, df_transcript_array, df_category_cours
             # print("i")
             # set the column length
             worksheet.set_column(i, i, column_len_array[i] * 2)
+    gc.collect()  # Forced GC
     print("Save to TUM_MSCE")
 
 
@@ -328,8 +330,6 @@ def EE_sorter(program_idx, file_path):
     # 基本分類電機課程資料庫
     df_category_courses_sugesstion_data = DatabaseCourseSorting(
         df_database, df_category_courses_sugesstion_data, transcript_sorted_group_map)
-
-    print(df_category_courses_sugesstion_data)
 
     for idx, cat in enumerate(df_category_data):
         df_category_courses_sugesstion_data[idx]['建議修課'] = df_category_courses_sugesstion_data[idx]['建議修課'].str.replace(

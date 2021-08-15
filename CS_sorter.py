@@ -6,6 +6,7 @@ from cell_formatter import red_out_failed_subject
 from CS_KEYWORDS import *
 from util import *
 from alogrithms import *
+import gc
 
 import xlsxwriter
 
@@ -140,6 +141,7 @@ def TUM_CS(transcript_sorted_group_map, df_transcript_array, df_category_courses
         for i, col in enumerate(df.columns):
             # set the column length
             worksheet.set_column(i, i, column_len_array[i] * 2)
+    gc.collect()  # Forced GC
     print("Save to "+program_name)
 
 
