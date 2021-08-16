@@ -12,6 +12,7 @@ import xlsxwriter
 # Global variable:
 column_len_array = []
 
+
 def TUM_EI(transcript_sorted_group_map, df_transcript_array, writer):
     print("Create TUM EI sheet")
     # TODO: implement the mapping from the existing courses to program's requirement
@@ -77,9 +78,12 @@ def RWTH_EI(transcript_sorted_group_map, df_transcript_array, df_category_course
         PROG_SPEC_ELEKTROTECHNIK_SCHALTUNGSTECHNIK_PARAM,  # 電子
         PROG_SPEC_ELEKTROTECHNIK_SCHALTUNGSTECHNIK_PARAM,  # 電路
         PROG_SPEC_ELEKTROTECHNIK_SCHALTUNGSTECHNIK_PARAM,  # 電磁
+        PROG_SPEC_ANWENDUNG_MODULE_PARAM,  # 電力電子
+        PROG_SPEC_VERTIEFUNG_EI_PARAM,  # 通訊
         PROG_SPEC_VERTIEFUNG_EI_PARAM,  # 半導體
         PROG_SPEC_VERTIEFUNG_EI_PARAM,  # 電機專業選修
         PROG_SPEC_ANWENDUNG_MODULE_PARAM,  # 應用科技
+        PROG_SPEC_OTHERS,  # 力學,機械
         PROG_SPEC_OTHERS  # 其他
     ]
 
@@ -108,7 +112,8 @@ def RWTH_EI(transcript_sorted_group_map, df_transcript_array, df_category_course
         df_PROG_SPEC_CATES_COURSES_SUGGESTION, program_category_map, transcript_sorted_group_list, df_category_courses_sugesstion_data_temp)
 
     # append 總學分 for each program category
-    df_PROG_SPEC_CATES = AppendCreditsCount(df_PROG_SPEC_CATES, program_category)
+    df_PROG_SPEC_CATES = AppendCreditsCount(
+        df_PROG_SPEC_CATES, program_category)
 
     # Write to Excel
     start_row = 0
@@ -192,9 +197,12 @@ def TUM_MSCE(transcript_sorted_group_map, df_transcript_array, df_category_cours
         PROG_SPEC_GRUNDLAGE_ELEKTROTECHNIK_PARAM,  # 電子
         PROG_SPEC_GRUNDLAGE_ELEKTROTECHNIK_PARAM,  # 電路
         PROG_SPEC_GRUNDLAGE_ELEKTROTECHNIK_PARAM,  # 電磁
+        PROG_SPEC_GRUNDLAGE_ELEKTROTECHNIK_PARAM,  # 電力電子
+        PROG_SPEC_GRUNDLAGE_KOMMUNIKATIONSTECHNIK_PARAM,  # 通訊
         PROG_SPEC_GRUNDLAGE_ELEKTROTECHNIK_PARAM,  # 半導體
         PROG_SPEC_GRUNDLAGE_KOMMUNIKATIONSTECHNIK_PARAM,  # 電機專業選修
         PROG_SPEC_OTHERS,  # 應用科技
+        PROG_SPEC_OTHERS,  # 力學,機械
         PROG_SPEC_OTHERS  # 其他
     ]
 
@@ -208,15 +216,15 @@ def TUM_MSCE(transcript_sorted_group_map, df_transcript_array, df_category_cours
     #####################################################################
     ####################### End #########################################
     #####################################################################
-    
+
     df_PROG_SPEC_CATES, df_PROG_SPEC_CATES_COURSES_SUGGESTION = ProgramCategoryInit(
         program_category)
-    
+
     transcript_sorted_group_list = list(transcript_sorted_group_map)
     # Courses: mapping the students' courses to program-specific category
     df_PROG_SPEC_CATES = CoursesToProgramCategoryMapping(
         df_PROG_SPEC_CATES, program_category_map, transcript_sorted_group_list, df_transcript_array_temp)
-    
+
     # Suggestion courses: mapping the sugesstion courses to program-specific category
     df_PROG_SPEC_CATES_COURSES_SUGGESTION = CoursesToProgramCategoryMapping(
         df_PROG_SPEC_CATES_COURSES_SUGGESTION, program_category_map, transcript_sorted_group_list, df_category_courses_sugesstion_data_temp)
@@ -224,7 +232,7 @@ def TUM_MSCE(transcript_sorted_group_map, df_transcript_array, df_category_cours
     # append 總學分 for each program category
     df_PROG_SPEC_CATES = AppendCreditsCount(
         df_PROG_SPEC_CATES, program_category)
-    
+
     # Write to Excel
     start_row = 0
     for idx, sortedcourses in enumerate(df_PROG_SPEC_CATES):
@@ -250,7 +258,118 @@ def TUM_MSCE(transcript_sorted_group_map, df_transcript_array, df_category_cours
     print("Save to TUM_MSCE")
 
 
-program_sort_function = [TUM_EI, RWTH_EI, STUTTGART_EI, TUM_MSCE]
+def TUM_MSPE(transcript_sorted_group_map, df_transcript_array, df_category_courses_sugesstion_data, writer):
+    program_name = 'TUM_MSPE'
+    print("Create " + program_name + " sheet")
+    df_transcript_array_temp = []
+    df_category_courses_sugesstion_data_temp = []
+    for idx, df in enumerate(df_transcript_array):
+        df_transcript_array_temp.append(df.copy())
+    for idx, df in enumerate(df_category_courses_sugesstion_data):
+        df_category_courses_sugesstion_data_temp.append(df.copy())
+    # df_category_courses_sugesstion_data_temp = df_category_courses_sugesstion_data
+    #####################################################################
+    ############## Program Specific Parameters ##########################
+    #####################################################################
+
+    # Create transcript_sorted_group to program_category mapping
+    PROG_SPEC_MATH_PARAM = {
+        'Program_Category': 'Höhere_Mathematik', 'Required_CP': 30}
+    # Grundlagen der Elektrotechnik, Vertiefung Energietechnik
+    # Schaltungstechnik, Elektrische Felder und Wellen,Festkörperphysik und 
+    # Bauelemente, Hochspannungstechnik und Energie-übertragungstechnik, 
+    # elektrische Maschinen, etc.
+    PROG_SPEC_GRUNDLAGE_ELEKTROTECHNIK_PARAM = {
+        'Program_Category': 'Grundlagen_Elektrotechnik', 'Required_CP': 45}
+    # Grundlagen des Maschinenwesens, Vertiefung Energietechnik 
+    # (Technische Mechanik, Thermodynamik, Strömungsmechanik, 
+    # Wärme-und Stoffübertragung, Maschinendynamik, etc.)
+    PROG_SPEC_GRUNDLAGE_MASCHINEN_PARAM = {
+        'Program_Category': 'Grundlagen_Maschinenwesen', 'Required_CP': 45}
+    PROG_SPEC_OTHERS = {
+        'Program_Category': 'Others', 'Required_CP': 0}
+
+    # This fixed to program course category.
+    program_category = [
+        PROG_SPEC_MATH_PARAM,  # 數學
+        PROG_SPEC_GRUNDLAGE_ELEKTROTECHNIK_PARAM,  # 基礎電機電子
+        PROG_SPEC_GRUNDLAGE_MASCHINEN_PARAM,  # 基礎機械
+        PROG_SPEC_OTHERS  # 其他
+    ]
+
+    # Mapping table: same dimension as transcript_sorted_group/ The length depends on how fine the transcript is classified
+    program_category_map = [
+        PROG_SPEC_MATH_PARAM,  # 微積分
+        PROG_SPEC_MATH_PARAM,  # 數學
+        PROG_SPEC_OTHERS,  # 物理
+        PROG_SPEC_OTHERS,  # 物理實驗
+        PROG_SPEC_OTHERS,  # 資訊
+        PROG_SPEC_OTHERS,  # 控制系統
+        PROG_SPEC_GRUNDLAGE_ELEKTROTECHNIK_PARAM,  # 電子
+        PROG_SPEC_GRUNDLAGE_ELEKTROTECHNIK_PARAM,  # 電路
+        PROG_SPEC_GRUNDLAGE_ELEKTROTECHNIK_PARAM,  # 電磁
+        PROG_SPEC_GRUNDLAGE_ELEKTROTECHNIK_PARAM,  # 電力電子
+        PROG_SPEC_OTHERS,  # 通訊
+        PROG_SPEC_GRUNDLAGE_ELEKTROTECHNIK_PARAM,  # 半導體
+        PROG_SPEC_GRUNDLAGE_ELEKTROTECHNIK_PARAM,  # 電機專業選修
+        PROG_SPEC_OTHERS,  # 應用科技
+        PROG_SPEC_GRUNDLAGE_MASCHINEN_PARAM,  # 力學,機械相關
+        PROG_SPEC_OTHERS  # 其他
+    ]
+
+    # Development check
+    if len(program_category_map) != len(df_transcript_array):
+        print("program_category_map size: " + str(len(program_category_map)))
+        print("df_transcript_array size:  " + str(len(df_transcript_array)))
+        print("Please check the number of program_category_map again!")
+        sys.exit()
+
+    #####################################################################
+    ####################### End #########################################
+    #####################################################################
+
+    df_PROG_SPEC_CATES, df_PROG_SPEC_CATES_COURSES_SUGGESTION = ProgramCategoryInit(
+        program_category)
+
+    transcript_sorted_group_list = list(transcript_sorted_group_map)
+    # Courses: mapping the students' courses to program-specific category
+    df_PROG_SPEC_CATES = CoursesToProgramCategoryMapping(
+        df_PROG_SPEC_CATES, program_category_map, transcript_sorted_group_list, df_transcript_array_temp)
+
+    # Suggestion courses: mapping the sugesstion courses to program-specific category
+    df_PROG_SPEC_CATES_COURSES_SUGGESTION = CoursesToProgramCategoryMapping(
+        df_PROG_SPEC_CATES_COURSES_SUGGESTION, program_category_map, transcript_sorted_group_list, df_category_courses_sugesstion_data_temp)
+
+    # append 總學分 for each program category
+    df_PROG_SPEC_CATES = AppendCreditsCount(
+        df_PROG_SPEC_CATES, program_category)
+
+    # Write to Excel
+    start_row = 0
+    for idx, sortedcourses in enumerate(df_PROG_SPEC_CATES):
+        sortedcourses.to_excel(
+            writer, sheet_name=program_name, startrow=start_row, header=True, index=False)
+        df_PROG_SPEC_CATES_COURSES_SUGGESTION[idx].to_excel(
+            writer, sheet_name=program_name, startrow=start_row, startcol=5, header=True, index=False)
+        start_row += max(len(sortedcourses.index),
+                         len(df_PROG_SPEC_CATES_COURSES_SUGGESTION[idx].index)) + 2
+
+    # Formatting
+    workbook = writer.book
+    worksheet = writer.sheets[program_name]
+    red_out_failed_subject(workbook, worksheet, 1, start_row)
+
+    for df in df_PROG_SPEC_CATES:
+        # print(df)
+        for i, col in enumerate(df.columns):
+            # print("i")
+            # set the column length
+            worksheet.set_column(i, i, column_len_array[i] * 2)
+    gc.collect()  # Forced GC
+    print("Save to TUM_MSPE")
+
+
+program_sort_function = [TUM_EI, RWTH_EI, STUTTGART_EI, TUM_MSCE, TUM_MSPE]
 
 
 def EE_sorter(program_idx, file_path):
@@ -294,9 +413,12 @@ def EE_sorter(program_idx, file_path):
         '電子': [ELECTRONICS_KEY_WORDS, ELECTRONICS_ANTI_KEY_WORDS, ['一', '二']],
         '電路': [ELECTRO_CIRCUIT_KEY_WORDS, ELECTRO_CIRCUIT_ANTI_KEY_WORDS, ['一', '二']],
         '電磁': [ELECTRO_MAGNET_KEY_WORDS, ELECTRO_MAGNET_ANTI_KEY_WORDS, ['一', '二']],
+        '電力電子': [POWER_ELECTRO_KEY_WORDS, POWER_ELECTRO_ANTI_KEY_WORDS, ['一', '二']],
+        '通訊': [COMMUNICATION_KEY_WORDS, COMMUNICATION_ANTI_KEY_WORDS, ['一', '二']],
         '半導體': [SEMICONDUCTOR_KEY_WORDS, SEMICONDUCTOR_ANTI_KEY_WORDS],
         '電機專業選修': [ADVANCED_ELECTRO_KEY_WORDS, ADVANCED_ELECTRO_ANTI_KEY_WORDS],
         '專業應用課程': [APPLICATION_ORIENTED_KEY_WORDS, APPLICATION_ORIENTED_ANTI_KEY_WORDS],
+        '力學': [MACHINE_RELATED_KEY_WORDS, MACHINE_RELATED_ANTI_KEY_WORDS],
         '其他': [USELESS_COURSES_KEY_WORDS, USELESS_COURSES_ANTI_KEY_WORDS], }
 
     suggestion_courses_sorted_group_map = {
@@ -308,9 +430,12 @@ def EE_sorter(program_idx, file_path):
         '電子': [[], ELECTRONICS_ANTI_KEY_WORDS],
         '電路': [[], ELECTRO_CIRCUIT_ANTI_KEY_WORDS],
         '電磁': [[], ELECTRO_MAGNET_ANTI_KEY_WORDS],
+        '電力電子': [[], POWER_ELECTRO_ANTI_KEY_WORDS],
+        '通訊': [[], COMMUNICATION_ANTI_KEY_WORDS],
         '半導體': [[], SEMICONDUCTOR_ANTI_KEY_WORDS],
         '電機專業選修': [[], ADVANCED_ELECTRO_ANTI_KEY_WORDS],
         '專業應用課程': [[], APPLICATION_ORIENTED_ANTI_KEY_WORDS],
+        '力學': [[], MACHINE_RELATED_ANTI_KEY_WORDS],
         '其他': [[], USELESS_COURSES_ANTI_KEY_WORDS], }
 
     category_data = []
@@ -336,7 +461,7 @@ def EE_sorter(program_idx, file_path):
             '(', '', regex=False)
         df_category_courses_sugesstion_data[idx]['建議修課'] = df_category_courses_sugesstion_data[idx]['建議修課'].str.replace(
             ')', '', regex=False)
-    
+
     # 樹狀篩選 微積分:[一,二] 同時有含 微積分、一  的，就從recommendation拿掉
     # algorithm :
     df_category_courses_sugesstion_data = SuggestionCourseAlgorithm(
