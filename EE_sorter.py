@@ -498,7 +498,7 @@ def EE_sorter(program_idx, file_path):
     df_category_courses_sugesstion_data = SuggestionCourseAlgorithm(
         df_category_data, transcript_sorted_group_map, df_category_courses_sugesstion_data)
 
-    output_file_name = 'generated_' + input_file_name
+    output_file_name = 'analyzed_' + input_file_name
     writer = pd.ExcelWriter(
         Output_Path+output_file_name, engine='xlsxwriter')
 

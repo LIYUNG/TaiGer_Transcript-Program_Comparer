@@ -118,6 +118,7 @@ def RWTH_AUTO(transcript_sorted_group_map, df_transcript_array, df_category_cour
             writer, sheet_name=program_name, startrow=start_row, header=True, index=False)
         df_PROG_SPEC_CATES_COURSES_SUGGESTION[idx].to_excel(
             writer, sheet_name=program_name, startrow=start_row, startcol=5, header=True, index=False)
+        # TODO: maybe here, add condiftion_format for red out the insufficient credits.
         start_row += max(len(sortedcourses.index),
                          len(df_PROG_SPEC_CATES_COURSES_SUGGESTION[idx].index)) + 2
 
@@ -235,7 +236,7 @@ def ME_sorter(program_idx, file_path):
     df_category_courses_sugesstion_data = SuggestionCourseAlgorithm(
         df_category_data, transcript_sorted_group_map, df_category_courses_sugesstion_data)
 
-    output_file_name = 'generated_' + input_file_name
+    output_file_name = 'analyzed_' + input_file_name
     writer = pd.ExcelWriter(
         Output_Path+output_file_name, engine='xlsxwriter')
 
