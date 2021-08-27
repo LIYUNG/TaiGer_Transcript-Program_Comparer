@@ -68,7 +68,7 @@ def CoursesToProgramCategoryMapping(df_PROG_SPEC_CATES, program_category_map, tr
                 # print(cat.columns[0])
                 idx_temp = idx2
                 break
-        # remove the redundant suggestion courses of "Others" because those category in Others is not advanced courses.
+        # remove the redundant suggestion courses mapping to "Others" because those categories in Others are not advanced courses.
         if isSuggestionCourse:
             if idx != len(df_transcript_array_temp) - 1 and idx_temp == len(df_PROG_SPEC_CATES) - 1:
                 continue
