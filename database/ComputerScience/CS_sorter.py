@@ -1,5 +1,4 @@
 import xlsxwriter
-import gc
 from CourseSuggestionAlgorithms import *
 from util import *
 from database.ComputerScience.CS_KEYWORDS import *
@@ -134,9 +133,9 @@ def CS_sorter(program_idx, file_path):
     df_transcript = pd.read_excel(file_path,
                                   sheet_name='Transcript_Sorting')
     # Verify the format of transcript_course_list.xlsx
-    if df_transcript.columns[0] != '所修科目' or df_transcript.columns[1] != '學分' or df_transcript.columns[2] != '成績':
+    if '所修科目' not in df_transcript.columns or '學分' not in df_transcript.columns or '成績' not in df_transcript.columns:
         print("Error: Please check the student's transcript xlsx file.")
-        print("Header: column_1 = 所修科目, column_2 = 學分, column_3 = 成績")
+        print(" There must be 所修科目, 學分 and 成績 in student's course excel file.")
         sys.exit()
 
     df_database = pd.read_excel(Database_Path+Database_file_name,

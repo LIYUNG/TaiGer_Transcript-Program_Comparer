@@ -1,17 +1,17 @@
 # TaiGer_Transcript-Program_Comparer
 
-├───database
-│   ├───ComputerScience
+├───database                        
+│   ├───ComputerScience             
 │   │   ├─── CS_Course_database.xlsx 
-│   │   ├─── CS_KEYWORDS.py          
-│   │   ├─── CS_Programs.xlsx    
-│   │   └─── CS_sorter.py     
-│   ├───ElectricalEngineering
-│   │   ├─── ......                   
-│   ├───Management
-│   └───MechanicalEngineering
-├───CourseSuggestionAlgorithms.py 
-└───main.py                   
+│   │   ├─── CS_KEYWORDS.py           
+│   │   ├─── CS_Programs.xlsx        
+│   │   └─── CS_sorter.py           
+│   ├───ElectricalEngineering       
+│   │   ├─── ......                      
+│   ├───Management                  
+│   └───MechanicalEngineering       
+├───CourseSuggestionAlgorithms.py   
+└───main.py                          
 
 Example: 
 CS_Course_database.xlsx:
@@ -37,11 +37,9 @@ Software entry point
 Python 3.8
 ```
 
-## Requirement Python package (using: pip install <module_name>):
+## Installation of the requirement Python package (under the project root):
 ```
-xlsxwriter
-gc
-pandas
+pip install -r requirements.txt
 ```
 
 ## How to use?

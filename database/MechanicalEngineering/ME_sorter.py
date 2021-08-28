@@ -1,5 +1,4 @@
 import xlsxwriter
-import gc
 from CourseSuggestionAlgorithms import *
 from util import *
 from database.MechanicalEngineering.ME_KEYWORDS import *
@@ -51,7 +50,7 @@ def RWTH_AUTO(transcript_sorted_group_map, df_transcript_array, df_category_cour
 
     # This fixed to program course category.
     program_category = [
-        PROG_SPEC_MECHANIK_PARAM,  # 數學
+        PROG_SPEC_MECHANIK_PARAM,  # 力學
         PROG_SPEC_MASCHINENGESTALTUNG_PARAM,  # 機械繪圖
         PROG_SPEC_THERMODYNAMIK_PARAM,  # 熱力學
         PROG_SPEC_WARMSTOFFUBERTRAGUNG_PARAM,  # 熱 物質傳導
@@ -592,16 +591,16 @@ def ME_sorter(program_idx, file_path):
     df_transcript = pd.read_excel(file_path,
                                   sheet_name='Transcript_Sorting')
     # Verify the format of transcript_course_list.xlsx
-    if df_transcript.columns[0] != '所修科目' or df_transcript.columns[1] != '學分' or df_transcript.columns[2] != '成績':
+    if '所修科目' not in df_transcript.columns or '學分' not in df_transcript.columns or '成績' not in df_transcript.columns:
         print("Error: Please check the student's transcript xlsx file.")
-        print("Header: column_1 = 所修科目, column_2 = 學分, column_3 = 成績")
+        print(" There must be 所修科目, 學分 and 成績 in student's course excel file.")
         sys.exit()
 
     df_database = pd.read_excel(Database_Path+Database_file_name,
                                 sheet_name='All_ME_Courses')
     # Verify the format of ME_Course_database.xlsx
     if df_database.columns[0] != '所有科目':
-        print("Error: Please check the ME database xlsx file.")
+        print("Error: Please specifiy the ME database xlsx file.")
         sys.exit()
     df_database['所有科目'] = df_database['所有科目'].fillna('-')
 
