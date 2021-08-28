@@ -1,18 +1,20 @@
 # TaiGer_Transcript-Program_Comparer
-
-├───database                        
-│   ├───ComputerScience             
-│   │   ├─── CS_Course_database.xlsx 
-│   │   ├─── CS_KEYWORDS.py           
+```
+├───database    
+│   ├───ComputerScience     
+│   │   ├─── CS_Course_database.xlsx    
+│   │   ├─── CS_KEYWORDS.py     
 │   │   ├─── CS_Programs.xlsx        
 │   │   └─── CS_sorter.py           
 │   ├───ElectricalEngineering       
 │   │   ├─── ......                      
 │   ├───Management                  
+│   │   ├─── ......                 
 │   └───MechanicalEngineering       
+│   │   ├─── ......             
 ├───CourseSuggestionAlgorithms.py   
 └───main.py                          
-
+```
 Example: 
 CS_Course_database.xlsx:
 All course that students can take in their faculty. (here: Computer Science) 
