@@ -1,11 +1,10 @@
 import xlsxwriter
 import gc
-from CourseSuggestionAlogrithms import *
+from CourseSuggestionAlgorithms import *
 from util import *
 from database.ElectricalEngineering.EE_KEYWORDS import *
 from cell_formatter import red_out_failed_subject, red_out_insufficient_credit
 import pandas as pd
-from numpy import nan
 import sys
 import os
 env_file_path = os.path.realpath(__file__)
