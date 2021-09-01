@@ -34,6 +34,13 @@ if __name__ == "__main__":
     elif sys.argv[2] == 'mgm':
         program_selection_path = file_path + '/database/Management/MGM_Programs.xlsx'
         print(file_path)
+    elif sys.argv[2] == 'mtl': # Materials Science
+        program_selection_path = file_path + '/database/Materials_Science/MTL_Programs.xlsx'
+        print(file_path)
+    elif sys.argv[2] == 'cme':  # Chemical Engineering
+        program_selection_path = file_path + \
+            '/database/Materials_Science/MTL_Programs.xlsx'
+        print(file_path)
     else:
         print("Please specify program group: cs ee me")
         sys.exit()
@@ -54,3 +61,7 @@ if __name__ == "__main__":
         EE_sorter(program_idx, sys.argv[1])
     elif sys.argv[2] == 'me':
         ME_sorter(program_idx, sys.argv[1])
+    # elif sys.argv[2] == 'mgm':
+    #     MGM_sorter(program_idx, sys.argv[1])
+    # elif sys.argv[2] == 'mtl':
+    #     MTL_sorter(program_idx, sys.argv[1])

@@ -1,0 +1,37 @@
+KEY_WORDS = 0
+ANTI_KEY_WORDS = 1
+DIFFERENTIATE_KEY_WORDS = 2
+
+#################################################################################################################
+########################################## Mechanical Engineering ###############################################
+#################################################################################################################
+
+# TODO: defining the keywords in proper way (iterative steps: generating, and see result, if mssing, then add keywords/anti_keywords)
+MTL_CALCULUS_KEY_WORDS = ['微積分']
+MTL_CALCULUS_ANTI_KEY_WORDS = ['asdgladfj;l']
+MTL_MATH_KEY_WORDS = ['數學', '代數', '微分', '函數', '機率', '離散', '複變', '數值', '向量']
+MTL_MATH_ANTI_KEY_WORDS = ['asdgladfj;l']
+MTL_PHYSICS_KEY_WORDS = ['物理']
+MTL_PHYSICS_ANTI_KEY_WORDS = ['半導體', '元件', '實驗', '車輛','通識']
+MTL_PHYSICS_EXP_KEY_WORDS = ['物理']
+MTL_PHYSICS_EXP_ANTI_KEY_WORDS = ['半導體', '元件', '車輛']
+MTL_WERKSTOFFKUNDE_KEY_WORDS = ['材料']
+MTL_WERKSTOFFKUNDE_ANTI_KEY_WORDS = ['asdgladfj;l', '力學']
+MTL_CONTROL_THEORY_KEY_WORDS = ['控制', '線性系統', '非線性系統']
+MTL_CONTROL_THEORY_ANTI_KEY_WORDS = ['asdgladfj;l']
+MTL_FLUIDDYN_KEY_WORDS = ['流體']
+MTL_FLUIDDYN_ANTI_KEY_WORDS = ['asdgladfj;l']
+MTL_MECHANIK_KEY_WORDS = ['力學', '動力', '機動', '振動', '震動', '運動學', '應力']
+MTL_MECHANIK_ANTI_KEY_WORDS = ['熱力', '流體', '車輛', '氣動', '量子', '聲學']
+MTL_MECHATRONICS_KEY_WORDS = ['機電', '微處理']
+MTL_MECHATRONICS_ANTI_KEY_WORDS = ['asdgladfj;l']
+MTL_MEASUREMENT_KEY_WORDS = ['測量', '量測']
+MTL_MEASUREMENT_ANTI_KEY_WORDS = ['asdgladfj;l']
+MTL_VEHICLE_KEY_WORDS = ['車輛', '煞車', '內燃機', '電驅動', '汽車', '熱機', '懸吊', '變速']
+MTL_VEHICLE_ANTI_KEY_WORDS = ['asdgladfj;l']
+USELESS_COURSES_KEY_WORDS = ['asdgladfj;l']
+USELESS_COURSES_ANTI_KEY_WORDS = ['asdgladfj;l']
+
+#################################################################################################################
+#################################################################################################################
+#################################################################################################################
