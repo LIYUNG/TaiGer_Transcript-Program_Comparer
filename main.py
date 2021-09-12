@@ -4,7 +4,8 @@ import os
 import pandas as pd
 from database.ElectricalEngineering.EE_sorter import *
 from database.ComputerScience.CS_sorter import *
-from  database.MechanicalEngineering.ME_sorter import *
+from database.MechanicalEngineering.ME_sorter import *
+from database.MaterialsScience.MTL_sorter import *
 file_path = os.path.realpath(__file__)
 file_path = os.path.dirname(file_path)
 
@@ -35,11 +36,11 @@ if __name__ == "__main__":
         program_selection_path = file_path + '/database/Management/MGM_Programs.xlsx'
         print(file_path)
     elif sys.argv[2] == 'mtl': # Materials Science
-        program_selection_path = file_path + '/database/Materials_Science/MTL_Programs.xlsx'
+        program_selection_path = file_path + '/database/MaterialsScience/MTL_Programs.xlsx'
         print(file_path)
     elif sys.argv[2] == 'cme':  # Chemical Engineering
         program_selection_path = file_path + \
-            '/database/Materials_Science/MTL_Programs.xlsx'
+            '/database/Materials_Science/CME_Programs.xlsx'
         print(file_path)
     else:
         print("Please specify program group: cs ee me")
@@ -63,5 +64,5 @@ if __name__ == "__main__":
         ME_sorter(program_idx, sys.argv[1])
     # elif sys.argv[2] == 'mgm':
     #     MGM_sorter(program_idx, sys.argv[1])
-    # elif sys.argv[2] == 'mtl':
-    #     MTL_sorter(program_idx, sys.argv[1])
+    elif sys.argv[2] == 'mtl':
+        MTL_sorter(program_idx, sys.argv[1])
