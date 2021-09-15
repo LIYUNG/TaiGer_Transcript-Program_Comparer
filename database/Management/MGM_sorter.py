@@ -281,4 +281,4 @@ def ME_sorter(program_idx, file_path):
 
     writer.save()
     print("output data at: " + Output_Path + output_file_name)
-    print("Students' courses analysis and courses suggestion in EE area finished! ")
+    print("Students' courses analysis and courses suggestion in MGM area finished! ")
