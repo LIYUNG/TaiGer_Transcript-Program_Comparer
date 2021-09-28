@@ -33,24 +33,39 @@ def ProgramCategoryInit(program_category):
 
 def Naming_Convention(df_course):
     # modify data in the same
-    df_course['所修科目'] = df_course['所修科目'].fillna('-')
+    df_course['所修科目_中文'] = df_course['所修科目_中文'].fillna('-')
 
-    df_course['所修科目'] = df_course['所修科目'].str.replace(
+    df_course['所修科目_中文'] = df_course['所修科目_中文'].str.replace(
         '1', '一', regex=False)
-    df_course['所修科目'] = df_course['所修科目'].str.replace(
+    df_course['所修科目_中文'] = df_course['所修科目_中文'].str.replace(
         '2', '二', regex=False)
-    df_course['所修科目'] = df_course['所修科目'].str.replace(
+    df_course['所修科目_中文'] = df_course['所修科目_中文'].str.replace(
         '3', '三', regex=False)
-    df_course['所修科目'] = df_course['所修科目'].str.replace(
+    df_course['所修科目_中文'] = df_course['所修科目_中文'].str.replace(
         '(', '', regex=False)
-    df_course['所修科目'] = df_course['所修科目'].str.replace(
+    df_course['所修科目_中文'] = df_course['所修科目_中文'].str.replace(
         '（', '', regex=False)
-    df_course['所修科目'] = df_course['所修科目'].str.replace(
+    df_course['所修科目_中文'] = df_course['所修科目_中文'].str.replace(
         ')', '', regex=False)
-    df_course['所修科目'] = df_course['所修科目'].str.replace(
+    df_course['所修科目_中文'] = df_course['所修科目_中文'].str.replace(
         '）', '', regex=False)
-    df_course['所修科目'] = df_course['所修科目'].str.replace(
-        ' ', '', regex=False)
+    df_course['所修科目_中文'] = df_course['所修科目_中文'].str.replace(
+        ' ', '', regex=False)    
+    return df_course
+
+def Naming_Convention_EN(df_course):
+
+    ## English Version only:
+    df_course['所修科目_英語'] = df_course['所修科目_英語'].str.lower()
+
+    df_course['所修科目_英語'] = df_course['所修科目_英語'].str.replace(
+        '(', '', regex=False)
+    df_course['所修科目_英語'] = df_course['所修科目_英語'].str.replace(
+        '（', '', regex=False)
+    df_course['所修科目_英語'] = df_course['所修科目_英語'].str.replace(
+        ')', '', regex=False)
+    df_course['所修科目_英語'] = df_course['所修科目_英語'].str.replace(
+        '）', '', regex=False)
     return df_course
 
 
@@ -79,8 +94,10 @@ def CoursesToProgramCategoryMapping(df_PROG_SPEC_CATES, program_category_map, tr
 
 
 # course sorting
-def CourseSorting(df_transcript, df_category_data, transcript_sorted_group_map):
-    for idx, subj in enumerate(df_transcript['所修科目']):
+def CourseSorting(df_transcript, df_category_data, transcript_sorted_group_map, column_name_en_zh):
+    # print(df_transcript[column_name_en_zh])
+    # df_transcript = df_transcript.dropna()
+    for idx, subj in enumerate(df_transcript[column_name_en_zh]):
         if subj == '-':
             continue
         for idx2, cat in enumerate(transcript_sorted_group_map):
@@ -91,6 +108,7 @@ def CourseSorting(df_transcript, df_category_data, transcript_sorted_group_map):
                 df_category_data[idx2] = df_category_data[idx2].append(
                     temp, ignore_index=True)
                 continue
+            
             # filter subject by keywords. and exclude subject by anti_keywords
             if any(keywords in subj for keywords in transcript_sorted_group_map[cat][KEY_WORDS] if not any(anti_keywords in subj for anti_keywords in transcript_sorted_group_map[cat][ANTI_KEY_WORDS])):
                 temp_string = str(df_transcript['成績'][idx])
@@ -104,8 +122,8 @@ def CourseSorting(df_transcript, df_category_data, transcript_sorted_group_map):
     return df_category_data
 
 
-def DatabaseCourseSorting(df_database, df_category_courses_sugesstion_data, transcript_sorted_group_map):
-    for idx, subj in enumerate(df_database['所有科目']):
+def DatabaseCourseSorting(df_database, df_category_courses_sugesstion_data, transcript_sorted_group_map, column_name_en_zh):
+    for idx, subj in enumerate(df_database[column_name_en_zh]):
         if subj == '-':
             continue
         for idx2, cat in enumerate(transcript_sorted_group_map):

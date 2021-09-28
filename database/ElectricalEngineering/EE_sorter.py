@@ -39,19 +39,19 @@ def RWTH_EI(transcript_sorted_group_map, df_transcript_array, df_category_course
 
     # Create transcript_sorted_group to program_category mapping
     PROG_SPEC_MATH_PARAM = {
-        'Program_Category': 'Höhere Mathematik', 'Required_CP': 28}
+        'Program_Category': 'Mathematics', 'Required_CP': 28}
     PROG_SPEC_PHYSIK_PARAM = {
-        'Program_Category': 'Physik', 'Required_CP': 10}
+        'Program_Category': 'Physics', 'Required_CP': 10}
     PROG_SPEC_ELEKTROTECHNIK_SCHALTUNGSTECHNIK_PARAM = {
-        'Program_Category': 'Elektrotechnik_Schaltungstechnik', 'Required_CP': 34}
+        'Program_Category': 'Electronics and Circuits Module', 'Required_CP': 34}
     PROG_SPEC_PROGRAMMIERUNG_PARAM = {
-        'Program_Category': 'Programmierung', 'Required_CP': 12}
+        'Program_Category': 'Programming', 'Required_CP': 12}
     PROG_SPEC_SYSTEM_THEORIE_PARAM = {
-        'Program_Category': 'System_Theorie', 'Required_CP': 8}
+        'Program_Category': 'System_Theory', 'Required_CP': 8}
     PROG_SPEC_VERTIEFUNG_EI_PARAM = {
-        'Program_Category': 'Vertiefung_EI', 'Required_CP': 8}
+        'Program_Category': 'Advanced_Module_EECS', 'Required_CP': 8}
     PROG_SPEC_ANWENDUNG_MODULE_PARAM = {
-        'Program_Category': 'Anwendung_Module', 'Required_CP': 20}
+        'Program_Category': 'Application_Module_EECS', 'Required_CP': 20}
     PROG_SPEC_OTHERS = {
         'Program_Category': 'Others', 'Required_CP': 0}
 
@@ -100,8 +100,6 @@ def RWTH_EI(transcript_sorted_group_map, df_transcript_array, df_category_course
 
     WriteToExcel(writer, program_name, program_category, program_category_map,
                  transcript_sorted_group_map, df_transcript_array_temp, df_category_courses_sugesstion_data_temp, column_len_array)
-
-
 
 
 def STUTTGART_EI(df_transcript_array, writer):
@@ -260,6 +258,8 @@ def TUM_MSPE(transcript_sorted_group_map, df_transcript_array, df_category_cours
 
 # TODO: to finish it/ or move this program to biology related
 # https://portal.mytum.de/archiv/kompendium_rechtsangelegenheiten/fachpruefungsordnungen/2020-98-FPSO-Ma-Neuroengineering-FINAL-22-12-2020.pdf/download
+
+
 def TUM_MSNE(transcript_sorted_group_map, df_transcript_array, df_category_courses_sugesstion_data, writer):
     program_name = 'TUM_MSNE'
     print("Create " + program_name + " sheet")
@@ -329,12 +329,12 @@ def TUM_MSNE(transcript_sorted_group_map, df_transcript_array, df_category_cours
                  transcript_sorted_group_map, df_transcript_array_temp, df_category_courses_sugesstion_data_temp, column_len_array)
 
 
-program_sort_function = [TUM_EI, 
-                        RWTH_EI, 
-                        STUTTGART_EI, 
-                        TUM_MSCE, 
-                        TUM_MSPE, 
-                        TUM_MSNE]
+program_sort_function = [TUM_EI,
+                         RWTH_EI,
+                         STUTTGART_EI,
+                         TUM_MSCE,
+                         TUM_MSPE,
+                         TUM_MSNE]
 
 
 def EE_sorter(program_idx, file_path):
@@ -357,9 +357,9 @@ def EE_sorter(program_idx, file_path):
     df_transcript = pd.read_excel(file_path,
                                   sheet_name='Transcript_Sorting')
     # Verify the format of transcript_course_list.xlsx
-    if '所修科目' not in df_transcript.columns or '學分' not in df_transcript.columns or '成績' not in df_transcript.columns:
+    if '所修科目_中文' not in df_transcript.columns or '所修科目_英語' not in df_transcript.columns or '學分' not in df_transcript.columns or '成績' not in df_transcript.columns:
         print("Error: Please check the student's transcript xlsx file.")
-        print(" There must be 所修科目, 學分 and 成績 in student's course excel file.")
+        print(" There must be 所修科目_中文, 所修科目_英文, 學分 and 成績 in student's course excel file.")
         sys.exit()
 
     df_database = pd.read_excel(Database_Path+Database_file_name,
@@ -369,29 +369,52 @@ def EE_sorter(program_idx, file_path):
         print("Error: Please check the EE database xlsx file.")
         sys.exit()
     df_database['所有科目'] = df_database['所有科目'].fillna('-')
-
+    if df_database.columns[0] != '所有科目_英語':
+        df_database['所有科目_英語'] = df_database['所有科目_英語'].str.lower()
     # unify course naming convention
-    Naming_Convention(df_transcript)
+    df_transcript = Naming_Convention(df_transcript)
+    df_transcript = Naming_Convention_EN(df_transcript)
 
     sorted_courses = []
+    transcript_sorted_group_map = {}
     # EE
-    transcript_sorted_group_map = {
-        '微積分': [EE_CALCULUS_KEY_WORDS, EE_CALCULUS_ANTI_KEY_WORDS, ['一', '二']],
-        '數學': [EE_MATH_KEY_WORDS, EE_MATH_ANTI_KEY_WORDS],
-        '物理': [EE_PHYSICS_KEY_WORDS, EE_PHYSICS_ANTI_KEY_WORDS, ['一', '二']],
-        '物理實驗': [EE_PHYSICS_EXP_KEY_WORDS, EE_PHYSICS_EXP_ANTI_KEY_WORDS, ['一', '二']],
-        '資訊': [EE_PROGRAMMING_KEY_WORDS, EE_PROGRAMMING_ANTI_KEY_WORDS],
-        '控制系統': [EE_CONTROL_THEORY_KEY_WORDS, EE_CONTROL_THEORY_ANTI_KEY_WORDS],
-        '電子': [EE_ELECTRONICS_KEY_WORDS, EE_ELECTRONICS_ANTI_KEY_WORDS, ['一', '二']],
-        '電路': [EE_ELECTRO_CIRCUIT_KEY_WORDS, EE_ELECTRO_CIRCUIT_ANTI_KEY_WORDS, ['一', '二']],
-        '電磁': [EE_ELECTRO_MAGNET_KEY_WORDS, EE_ELECTRO_MAGNET_ANTI_KEY_WORDS, ['一', '二']],
-        '電力電子': [EE_POWER_ELECTRO_KEY_WORDS, EE_POWER_ELECTRO_ANTI_KEY_WORDS, ['一', '二']],
-        '通訊': [EE_COMMUNICATION_KEY_WORDS, EE_COMMUNICATION_ANTI_KEY_WORDS, ['一', '二']],
-        '半導體': [EE_SEMICONDUCTOR_KEY_WORDS, EE_SEMICONDUCTOR_ANTI_KEY_WORDS],
-        '電機專業選修': [EE_ADVANCED_ELECTRO_KEY_WORDS, EE_ADVANCED_ELECTRO_ANTI_KEY_WORDS],
-        '專業應用課程': [EE_APPLICATION_ORIENTED_KEY_WORDS, EE_APPLICATION_ORIENTED_ANTI_KEY_WORDS],
-        '力學': [EE_MACHINE_RELATED_KEY_WORDS, EE_MACHINE_RELATED_ANTI_KEY_WORDS],
-        '其他': [USELESS_COURSES_KEY_WORDS, USELESS_COURSES_ANTI_KEY_WORDS], }
+    Englist_Version = True
+    if Englist_Version:
+        transcript_sorted_group_map = {
+            '微積分': [EE_CALCULUS_KEY_WORDS_EN, EE_CALCULUS_ANTI_KEY_WORDS_EN, ['一', '二']],
+            '數學': [EE_MATH_KEY_WORDS_EN, EE_MATH_ANTI_KEY_WORDS_EN],
+            '物理': [EE_PHYSICS_KEY_WORDS_EN, EE_PHYSICS_ANTI_KEY_WORDS_EN, ['一', '二']],
+            '物理實驗': [EE_PHYSICS_EXP_KEY_WORDS_EN, EE_PHYSICS_EXP_ANTI_KEY_WORDS_EN, ['一', '二']],
+            '資訊': [EE_PROGRAMMING_KEY_WORDS_EN, EE_PROGRAMMING_ANTI_KEY_WORDS_EN],
+            '控制系統': [EE_CONTROL_THEORY_KEY_WORDS_EN, EE_CONTROL_THEORY_ANTI_KEY_WORDS_EN],
+            '電子': [EE_ELECTRONICS_KEY_WORDS_EN, EE_ELECTRONICS_ANTI_KEY_WORDS_EN, ['一', '二']],
+            '電路': [EE_ELECTRO_CIRCUIT_KEY_WORDS_EN, EE_ELECTRO_CIRCUIT_ANTI_KEY_WORDS_EN, ['一', '二']],
+            '電磁': [EE_ELECTRO_MAGNET_KEY_WORDS_EN, EE_ELECTRO_MAGNET_ANTI_KEY_WORDS_EN, ['一', '二']],
+            '電力電子': [EE_POWER_ELECTRO_KEY_WORDS_EN, EE_POWER_ELECTRO_ANTI_KEY_WORDS_EN, ['一', '二']],
+            '通訊': [EE_COMMUNICATION_KEY_WORDS_EN, EE_COMMUNICATION_ANTI_KEY_WORDS_EN, ['一', '二']],
+            '半導體': [EE_SEMICONDUCTOR_KEY_WORDS_EN, EE_SEMICONDUCTOR_ANTI_KEY_WORDS_EN],
+            '電機專業選修': [EE_ADVANCED_ELECTRO_KEY_WORDS_EN, EE_ADVANCED_ELECTRO_ANTI_KEY_WORDS_EN],
+            '專業應用課程': [EE_APPLICATION_ORIENTED_KEY_WORDS_EN, EE_APPLICATION_ORIENTED_ANTI_KEY_WORDS_EN],
+            '力學': [EE_MACHINE_RELATED_KEY_WORDS_EN, EE_MACHINE_RELATED_ANTI_KEY_WORDS_EN],
+            '其他': [USELESS_COURSES_KEY_WORDS_EN, USELESS_COURSES_ANTI_KEY_WORDS_EN], }
+    else:
+        transcript_sorted_group_map = {
+            '微積分': [EE_CALCULUS_KEY_WORDS, EE_CALCULUS_ANTI_KEY_WORDS, ['一', '二']],
+            '數學': [EE_MATH_KEY_WORDS, EE_MATH_ANTI_KEY_WORDS],
+            '物理': [EE_PHYSICS_KEY_WORDS, EE_PHYSICS_ANTI_KEY_WORDS, ['一', '二']],
+            '物理實驗': [EE_PHYSICS_EXP_KEY_WORDS, EE_PHYSICS_EXP_ANTI_KEY_WORDS, ['一', '二']],
+            '資訊': [EE_PROGRAMMING_KEY_WORDS, EE_PROGRAMMING_ANTI_KEY_WORDS],
+            '控制系統': [EE_CONTROL_THEORY_KEY_WORDS, EE_CONTROL_THEORY_ANTI_KEY_WORDS],
+            '電子': [EE_ELECTRONICS_KEY_WORDS, EE_ELECTRONICS_ANTI_KEY_WORDS, ['一', '二']],
+            '電路': [EE_ELECTRO_CIRCUIT_KEY_WORDS, EE_ELECTRO_CIRCUIT_ANTI_KEY_WORDS, ['一', '二']],
+            '電磁': [EE_ELECTRO_MAGNET_KEY_WORDS, EE_ELECTRO_MAGNET_ANTI_KEY_WORDS, ['一', '二']],
+            '電力電子': [EE_POWER_ELECTRO_KEY_WORDS, EE_POWER_ELECTRO_ANTI_KEY_WORDS, ['一', '二']],
+            '通訊': [EE_COMMUNICATION_KEY_WORDS, EE_COMMUNICATION_ANTI_KEY_WORDS, ['一', '二']],
+            '半導體': [EE_SEMICONDUCTOR_KEY_WORDS, EE_SEMICONDUCTOR_ANTI_KEY_WORDS],
+            '電機專業選修': [EE_ADVANCED_ELECTRO_KEY_WORDS, EE_ADVANCED_ELECTRO_ANTI_KEY_WORDS],
+            '專業應用課程': [EE_APPLICATION_ORIENTED_KEY_WORDS, EE_APPLICATION_ORIENTED_ANTI_KEY_WORDS],
+            '力學': [EE_MACHINE_RELATED_KEY_WORDS, EE_MACHINE_RELATED_ANTI_KEY_WORDS],
+            '其他': [USELESS_COURSES_KEY_WORDS, USELESS_COURSES_ANTI_KEY_WORDS], }
 
     suggestion_courses_sorted_group_map = {
         '微積分': [[], EE_CALCULUS_ANTI_KEY_WORDS],
@@ -420,13 +443,24 @@ def EE_sorter(program_idx, file_path):
         df_category_courses_sugesstion_data.append(
             pd.DataFrame(data=category_courses_sugesstion_data, columns=['建議修課']))
 
-    # 基本分類課程 (與學程無關)
-    df_category_data = CourseSorting(
-        df_transcript, df_category_data, transcript_sorted_group_map)
+   
+    if Englist_Version:
+        # 基本分類課程 (與申請學程無關)
+        df_category_data = CourseSorting(
+            df_transcript, df_category_data, transcript_sorted_group_map, "所修科目_英語")
+        # 基本分類電機課程資料庫
+        df_category_courses_sugesstion_data = DatabaseCourseSorting(
+            df_database, df_category_courses_sugesstion_data, transcript_sorted_group_map, "所有科目_英語")
+    else:
+        # 基本分類課程 (與申請學程無關)
+        df_category_data = CourseSorting(
+            df_transcript, df_category_data, transcript_sorted_group_map, "所修科目_中文")
+        # 基本分類電機課程資料庫
+        df_category_courses_sugesstion_data = DatabaseCourseSorting(
+            df_database, df_category_courses_sugesstion_data, transcript_sorted_group_map, "所有科目")
 
-    # 基本分類電機課程資料庫
-    df_category_courses_sugesstion_data = DatabaseCourseSorting(
-        df_database, df_category_courses_sugesstion_data, transcript_sorted_group_map)
+    
+    
 
     for idx, cat in enumerate(df_category_data):
         df_category_courses_sugesstion_data[idx]['建議修課'] = df_category_courses_sugesstion_data[idx]['建議修課'].str.replace(
@@ -458,10 +492,15 @@ def EE_sorter(program_idx, file_path):
 
     for i, col in enumerate(df_transcript.columns):
         # find length of column i
+
         column_len = df_transcript[col].astype(str).str.len().max()
         # Setting the length if the column header is larger
         # than the max column value length
-        column_len_array.append(max(column_len, len(col)))
+        if i == 1:
+            column_len_array.append(len(col))
+        else:
+            column_len_array.append(max(column_len, len(col)))
+            
         # set the column length
         worksheet.set_column(i, i, column_len_array[i] * 2)
 
