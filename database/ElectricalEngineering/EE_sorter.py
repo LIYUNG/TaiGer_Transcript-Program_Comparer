@@ -79,7 +79,7 @@ def RWTH_EI(transcript_sorted_group_map, df_transcript_array, df_category_course
         PROG_SPEC_ELEKTROTECHNIK_SCHALTUNGSTECHNIK_PARAM,  # 電路
         PROG_SPEC_ELEKTROTECHNIK_SCHALTUNGSTECHNIK_PARAM,  # 電磁
         PROG_SPEC_ANWENDUNG_MODULE_PARAM,  # 電力電子
-        PROG_SPEC_VERTIEFUNG_EI_PARAM,  # 通訊
+        PROG_SPEC_ANWENDUNG_MODULE_PARAM,  # 通訊
         PROG_SPEC_VERTIEFUNG_EI_PARAM,  # 半導體
         PROG_SPEC_VERTIEFUNG_EI_PARAM,  # 電機專業選修
         PROG_SPEC_ANWENDUNG_MODULE_PARAM,  # 應用科技
@@ -337,68 +337,27 @@ program_sort_function = [TUM_EI,
                          TUM_MSNE]
 
 
-def EE_sorter(program_idx, file_path):
+def EE_sorter(program_idx, file_path, abbrev):
 
-    Database_Path = env_file_path + '/'
-    Output_Path = os.path.split(file_path)
-    Output_Path = Output_Path[0]
-    Output_Path = Output_Path + '/output/'
-    print("output file path " + Output_Path)
+    basic_classification_en = {
+        '微積分': [EE_CALCULUS_KEY_WORDS_EN, EE_CALCULUS_ANTI_KEY_WORDS_EN, ['一', '二']],
+        '數學': [EE_MATH_KEY_WORDS_EN, EE_MATH_ANTI_KEY_WORDS_EN],
+        '物理': [EE_PHYSICS_KEY_WORDS_EN, EE_PHYSICS_ANTI_KEY_WORDS_EN, ['一', '二']],
+        '物理實驗': [EE_PHYSICS_EXP_KEY_WORDS_EN, EE_PHYSICS_EXP_ANTI_KEY_WORDS_EN, ['一', '二']],
+        '資訊': [EE_PROGRAMMING_KEY_WORDS_EN, EE_PROGRAMMING_ANTI_KEY_WORDS_EN],
+        '控制系統': [EE_CONTROL_THEORY_KEY_WORDS_EN, EE_CONTROL_THEORY_ANTI_KEY_WORDS_EN],
+        '電子': [EE_ELECTRONICS_KEY_WORDS_EN, EE_ELECTRONICS_ANTI_KEY_WORDS_EN, ['一', '二']],
+        '電路': [EE_ELECTRO_CIRCUIT_KEY_WORDS_EN, EE_ELECTRO_CIRCUIT_ANTI_KEY_WORDS_EN, ['一', '二']],
+        '電磁': [EE_ELECTRO_MAGNET_KEY_WORDS_EN, EE_ELECTRO_MAGNET_ANTI_KEY_WORDS_EN, ['一', '二']],
+        '電力電子': [EE_POWER_ELECTRO_KEY_WORDS_EN, EE_POWER_ELECTRO_ANTI_KEY_WORDS_EN, ['一', '二']],
+        '通訊': [EE_COMMUNICATION_KEY_WORDS_EN, EE_COMMUNICATION_ANTI_KEY_WORDS_EN, ['一', '二']],
+        '半導體': [EE_SEMICONDUCTOR_KEY_WORDS_EN, EE_SEMICONDUCTOR_ANTI_KEY_WORDS_EN],
+        '電機專業選修': [EE_ADVANCED_ELECTRO_KEY_WORDS_EN, EE_ADVANCED_ELECTRO_ANTI_KEY_WORDS_EN],
+        '專業應用課程': [EE_APPLICATION_ORIENTED_KEY_WORDS_EN, EE_APPLICATION_ORIENTED_ANTI_KEY_WORDS_EN],
+        '力學': [EE_MACHINE_RELATED_KEY_WORDS_EN, EE_MACHINE_RELATED_ANTI_KEY_WORDS_EN],
+        '其他': [USELESS_COURSES_KEY_WORDS_EN, USELESS_COURSES_ANTI_KEY_WORDS_EN], }
 
-    if not os.path.exists(Output_Path):
-        print("create output folder")
-        os.makedirs(Output_Path)
-
-    Database_file_name = 'EE_Course_database.xlsx'
-    input_file_name = os.path.split(file_path)
-    input_file_name = input_file_name[1]
-    print("input file name " + input_file_name)
-
-    df_transcript = pd.read_excel(file_path,
-                                  sheet_name='Transcript_Sorting')
-    # Verify the format of transcript_course_list.xlsx
-    if '所修科目_中文' not in df_transcript.columns or '所修科目_英語' not in df_transcript.columns or '學分' not in df_transcript.columns or '成績' not in df_transcript.columns:
-        print("Error: Please check the student's transcript xlsx file.")
-        print(" There must be 所修科目_中文, 所修科目_英文, 學分 and 成績 in student's course excel file.")
-        sys.exit()
-
-    df_database = pd.read_excel(Database_Path+Database_file_name,
-                                sheet_name='All_EE_Courses')
-    # Verify the format of EE_Course_database.xlsx
-    if df_database.columns[0] != '所有科目':
-        print("Error: Please check the EE database xlsx file.")
-        sys.exit()
-    df_database['所有科目'] = df_database['所有科目'].fillna('-')
-    if df_database.columns[0] != '所有科目_英語':
-        df_database['所有科目_英語'] = df_database['所有科目_英語'].str.lower()
-    # unify course naming convention
-    df_transcript = Naming_Convention(df_transcript)
-    df_transcript = Naming_Convention_EN(df_transcript)
-
-    sorted_courses = []
-    transcript_sorted_group_map = {}
-    # EE
-    Englist_Version = True
-    if Englist_Version:
-        transcript_sorted_group_map = {
-            '微積分': [EE_CALCULUS_KEY_WORDS_EN, EE_CALCULUS_ANTI_KEY_WORDS_EN, ['一', '二']],
-            '數學': [EE_MATH_KEY_WORDS_EN, EE_MATH_ANTI_KEY_WORDS_EN],
-            '物理': [EE_PHYSICS_KEY_WORDS_EN, EE_PHYSICS_ANTI_KEY_WORDS_EN, ['一', '二']],
-            '物理實驗': [EE_PHYSICS_EXP_KEY_WORDS_EN, EE_PHYSICS_EXP_ANTI_KEY_WORDS_EN, ['一', '二']],
-            '資訊': [EE_PROGRAMMING_KEY_WORDS_EN, EE_PROGRAMMING_ANTI_KEY_WORDS_EN],
-            '控制系統': [EE_CONTROL_THEORY_KEY_WORDS_EN, EE_CONTROL_THEORY_ANTI_KEY_WORDS_EN],
-            '電子': [EE_ELECTRONICS_KEY_WORDS_EN, EE_ELECTRONICS_ANTI_KEY_WORDS_EN, ['一', '二']],
-            '電路': [EE_ELECTRO_CIRCUIT_KEY_WORDS_EN, EE_ELECTRO_CIRCUIT_ANTI_KEY_WORDS_EN, ['一', '二']],
-            '電磁': [EE_ELECTRO_MAGNET_KEY_WORDS_EN, EE_ELECTRO_MAGNET_ANTI_KEY_WORDS_EN, ['一', '二']],
-            '電力電子': [EE_POWER_ELECTRO_KEY_WORDS_EN, EE_POWER_ELECTRO_ANTI_KEY_WORDS_EN, ['一', '二']],
-            '通訊': [EE_COMMUNICATION_KEY_WORDS_EN, EE_COMMUNICATION_ANTI_KEY_WORDS_EN, ['一', '二']],
-            '半導體': [EE_SEMICONDUCTOR_KEY_WORDS_EN, EE_SEMICONDUCTOR_ANTI_KEY_WORDS_EN],
-            '電機專業選修': [EE_ADVANCED_ELECTRO_KEY_WORDS_EN, EE_ADVANCED_ELECTRO_ANTI_KEY_WORDS_EN],
-            '專業應用課程': [EE_APPLICATION_ORIENTED_KEY_WORDS_EN, EE_APPLICATION_ORIENTED_ANTI_KEY_WORDS_EN],
-            '力學': [EE_MACHINE_RELATED_KEY_WORDS_EN, EE_MACHINE_RELATED_ANTI_KEY_WORDS_EN],
-            '其他': [USELESS_COURSES_KEY_WORDS_EN, USELESS_COURSES_ANTI_KEY_WORDS_EN], }
-    else:
-        transcript_sorted_group_map = {
+    basic_classification_zh = {
             '微積分': [EE_CALCULUS_KEY_WORDS, EE_CALCULUS_ANTI_KEY_WORDS, ['一', '二']],
             '數學': [EE_MATH_KEY_WORDS, EE_MATH_ANTI_KEY_WORDS],
             '物理': [EE_PHYSICS_KEY_WORDS, EE_PHYSICS_ANTI_KEY_WORDS, ['一', '二']],
@@ -416,104 +375,5 @@ def EE_sorter(program_idx, file_path):
             '力學': [EE_MACHINE_RELATED_KEY_WORDS, EE_MACHINE_RELATED_ANTI_KEY_WORDS],
             '其他': [USELESS_COURSES_KEY_WORDS, USELESS_COURSES_ANTI_KEY_WORDS], }
 
-    suggestion_courses_sorted_group_map = {
-        '微積分': [[], EE_CALCULUS_ANTI_KEY_WORDS],
-        '數學': [[], EE_MATH_ANTI_KEY_WORDS],
-        '物理': [[], EE_PHYSICS_ANTI_KEY_WORDS],
-        '資訊': [[], EE_PROGRAMMING_ANTI_KEY_WORDS],
-        '控制系統': [[], EE_CONTROL_THEORY_ANTI_KEY_WORDS],
-        '電子': [[], EE_ELECTRONICS_ANTI_KEY_WORDS],
-        '電路': [[], EE_ELECTRO_CIRCUIT_ANTI_KEY_WORDS],
-        '電磁': [[], EE_ELECTRO_MAGNET_ANTI_KEY_WORDS],
-        '電力電子': [[], EE_POWER_ELECTRO_ANTI_KEY_WORDS],
-        '通訊': [[], EE_COMMUNICATION_ANTI_KEY_WORDS],
-        '半導體': [[], EE_SEMICONDUCTOR_ANTI_KEY_WORDS],
-        '電機專業選修': [[], EE_ADVANCED_ELECTRO_ANTI_KEY_WORDS],
-        '專業應用課程': [[], EE_APPLICATION_ORIENTED_ANTI_KEY_WORDS],
-        '力學': [[], EE_MACHINE_RELATED_ANTI_KEY_WORDS],
-        '其他': [[], USELESS_COURSES_ANTI_KEY_WORDS], }
-
-    category_data = []
-    df_category_data = []
-    category_courses_sugesstion_data = []
-    df_category_courses_sugesstion_data = []
-    for idx, cat in enumerate(transcript_sorted_group_map):
-        category_data = {cat: [], '學分': [], '成績': []}
-        df_category_data.append(pd.DataFrame(data=category_data))
-        df_category_courses_sugesstion_data.append(
-            pd.DataFrame(data=category_courses_sugesstion_data, columns=['建議修課']))
-
-   
-    if Englist_Version:
-        # 基本分類課程 (與申請學程無關)
-        df_category_data = CourseSorting(
-            df_transcript, df_category_data, transcript_sorted_group_map, "所修科目_英語")
-        # 基本分類電機課程資料庫
-        df_category_courses_sugesstion_data = DatabaseCourseSorting(
-            df_database, df_category_courses_sugesstion_data, transcript_sorted_group_map, "所有科目_英語")
-    else:
-        # 基本分類課程 (與申請學程無關)
-        df_category_data = CourseSorting(
-            df_transcript, df_category_data, transcript_sorted_group_map, "所修科目_中文")
-        # 基本分類電機課程資料庫
-        df_category_courses_sugesstion_data = DatabaseCourseSorting(
-            df_database, df_category_courses_sugesstion_data, transcript_sorted_group_map, "所有科目")
-
-    
-    
-
-    for idx, cat in enumerate(df_category_data):
-        df_category_courses_sugesstion_data[idx]['建議修課'] = df_category_courses_sugesstion_data[idx]['建議修課'].str.replace(
-            '(', '', regex=False)
-        df_category_courses_sugesstion_data[idx]['建議修課'] = df_category_courses_sugesstion_data[idx]['建議修課'].str.replace(
-            ')', '', regex=False)
-
-    # 樹狀篩選 微積分:[一,二] 同時有含 微積分、一  的，就從recommendation拿掉
-    # algorithm :
-    df_category_courses_sugesstion_data = SuggestionCourseAlgorithm(
-        df_category_data, transcript_sorted_group_map, df_category_courses_sugesstion_data)
-
-    output_file_name = 'analyzed_' + input_file_name
-    writer = pd.ExcelWriter(
-        Output_Path+output_file_name, engine='xlsxwriter')
-
-    sorted_courses = df_category_data
-
-    start_row = 0
-    for idx, sortedcourses in enumerate(sorted_courses):
-        sortedcourses.to_excel(
-            writer, sheet_name='General', startrow=start_row, index=False)
-        start_row += len(sortedcourses.index) + 2
-    workbook = writer.book
-    worksheet = writer.sheets['General']
-    global column_len_array
-
-    red_out_failed_subject(workbook, worksheet, 1, start_row)
-
-    for i, col in enumerate(df_transcript.columns):
-        # find length of column i
-
-        column_len = df_transcript[col].astype(str).str.len().max()
-        # Setting the length if the column header is larger
-        # than the max column value length
-        if i == 1:
-            column_len_array.append(len(col))
-        else:
-            column_len_array.append(max(column_len, len(col)))
-            
-        # set the column length
-        worksheet.set_column(i, i, column_len_array[i] * 2)
-
-    # Modify to column width for "Required_CP"
-    column_len_array.append(6)
-
-    for idx in program_idx:
-        program_sort_function[idx](
-            transcript_sorted_group_map,
-            sorted_courses,
-            df_category_courses_sugesstion_data,
-            writer)
-
-    writer.save()
-    print("output data at: " + Output_Path + output_file_name)
-    print("Students' courses analysis and courses suggestion in EE area finished! ")
+    Classifier(program_idx, file_path, abbrev, env_file_path,
+               basic_classification_en, basic_classification_zh, column_len_array, program_sort_function)

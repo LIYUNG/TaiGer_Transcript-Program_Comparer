@@ -31,5 +31,28 @@ USELESS_COURSES_KEY_WORDS = ['asdgladfj;l']
 USELESS_COURSES_ANTI_KEY_WORDS = ['asdgladfj;l']
 
 #################################################################################################################
+################################### Mechanical Engineering Englis ###############################################
 #################################################################################################################
-#################################################################################################################
+
+MTL_CALCULUS_KEY_WORDS_EN = ['微積分']
+MTL_CALCULUS_ANTI_KEY_WORDS_EN = ['asdgladfj;l']
+MTL_MATH_KEY_WORDS_EN = ['數學', '代數', '微分', '函數', '機率', '離散', '複變', '數值', '向量']
+MTL_MATH_ANTI_KEY_WORDS_EN = ['asdgladfj;l']
+MTL_PHYSICS_KEY_WORDS_EN = ['物理']
+MTL_PHYSICS_ANTI_KEY_WORDS_EN = ['半導體', '元件', '實驗', '車輛', '通識']
+MTL_PHYSICS_EXP_KEY_WORDS_EN = ['物理']
+MTL_PHYSICS_EXP_ANTI_KEY_WORDS_EN = ['半導體', '元件', '車輛']
+MTL_CHEMISTRY_KEY_WORDS_EN = ['化學']
+MTL_CHEMISTRY_ANTI_KEY_WORDS_EN = ['半導體', '元件', '實驗', '車輛', '通識']
+MTL_CHEMISTRY_EXP_KEY_WORDS_EN = ['化學']
+MTL_CHEMISTRY_EXP_ANTI_KEY_WORDS_EN = ['半導體', '元件', '車輛']
+MTL_WERKSTOFFKUNDE_KEY_WORDS_EN = ['材料']
+MTL_WERKSTOFFKUNDE_ANTI_KEY_WORDS_EN = ['asdgladfj;l', '力學']
+MTL_CONTROL_THEORY_KEY_WORDS_EN = ['控制', '線性系統', '非線性系統']
+MTL_CONTROL_THEORY_ANTI_KEY_WORDS_EN = ['asdgladfj;l']
+MTL_FLUIDDYN_KEY_WORDS_EN = ['流體']
+MTL_FLUIDDYN_ANTI_KEY_WORDS_EN = ['asdgladfj;l']
+MTL_MECHANIK_KEY_WORDS_EN = ['力學', '動力', '機動', '振動', '震動', '運動學', '應力']
+MTL_MECHANIK_ANTI_KEY_WORDS_EN = ['熱力', '流體', '車輛', '氣動', '量子', '聲學']
+USELESS_COURSES_KEY_WORDS_EN = ['asdgladfj;l']
+USELESS_COURSES_ANTI_KEY_WORDS_EN = ['asdgladfj;l']

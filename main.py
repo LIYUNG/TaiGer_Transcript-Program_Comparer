@@ -56,13 +56,14 @@ if __name__ == "__main__":
     for idx, choose in enumerate(df_programs_selection['Choose']):
         if(choose == 'Yes'):
             program_idx.append(idx)
+            
     if sys.argv[2] == 'cs':
-        CS_sorter(program_idx, sys.argv[1])
+        CS_sorter(program_idx, sys.argv[1], 'CS')
     elif sys.argv[2] == 'ee':
-        EE_sorter(program_idx, sys.argv[1])
+        EE_sorter(program_idx, sys.argv[1], 'EE')
     elif sys.argv[2] == 'me':
-        ME_sorter(program_idx, sys.argv[1])
+        ME_sorter(program_idx, sys.argv[1], 'ME')
     # elif sys.argv[2] == 'mgm':
-    #     MGM_sorter(program_idx, sys.argv[1])
+    #     MGM_sorter(program_idx, sys.argv[1], 'MGM')
     elif sys.argv[2] == 'mtl':
-        MTL_sorter(program_idx, sys.argv[1])
+        MTL_sorter(program_idx, sys.argv[1], 'MTL')

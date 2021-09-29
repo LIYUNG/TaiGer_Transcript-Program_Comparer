@@ -492,44 +492,30 @@ program_sort_function = [TUM_CS,
                          TUM_DATA_ENGINEERING_ANALYTICS]
 
 
-def CS_sorter(program_idx, file_path):
+def CS_sorter(program_idx, file_path, abbrev):
 
-    Database_Path = env_file_path + '/'
-    Output_Path = os.path.split(file_path)
-    Output_Path = Output_Path[0]
-    Output_Path = Output_Path + '/output/'
-    print("output file path " + Output_Path)
+    basic_classification_en = {
+        '基礎資工': [CS_INTRO_INFO_KEY_WORDS_EN, CS_INTRO_INFO_ANTI_KEY_WORDS_EN, ['一', '二']],
+        '基礎電機電子': [CS_INTRO_ELEKTROTECHNIK_KEY_WORDS_EN, CS_INTRO_ELEKTROTECHNIK_ANTI_KEY_WORDS_EN, ['一', '二']],
+        '程式設計': [CS_PROGRAMMING_KEY_WORDS_EN, CS_PROGRAMMING_ANTI_KEY_WORDS_EN, ['一', '二']],
+        '電腦結構': [CS_COMP_ARCH_KEY_WORDS_EN, CS_COMP_ARCH_ANTI_KEY_WORDS_EN, ['一', '二']],
+        '軟體工程': [CS_SWE_KEY_WORDS_EN, CS_SWE_ANTI_KEY_WORDS_EN],
+        '資料庫': [CS_DB_KEY_WORDS_EN, CS_DB_ANTI_KEY_WORDS_EN],
+        '作業系統': [CS_OS_KEY_WORDS_EN, CS_OS_ANTI_KEY_WORDS_EN],
+        '電腦網絡': [CS_COMP_NETW_KEY_WORDS_EN, CS_COMP_NETW_ANTI_KEY_WORDS_EN],
+        '數理邏輯': [CS_MATH_LOGIC_KEY_WORDS_EN, CS_MATH_LOGIC_PROG_ANTI_KEY_WORDS_EN],
+        '正規方法': [CS_FORMAL_METHOD_KEY_WORDS_EN, CS_FORMAL_METHOD_ANTI_KEY_WORDS_EN],
+        '函式程式': [CS_FUNC_PROG_KEY_WORDS_EN, CS_FUNC_PROG_ANTI_KEY_WORDS_EN],
+        '資料結構演算法': [CS_ALGO_DATA_STRUCT_KEY_WORDS_EN, CS_ALGO_DATA_STRUCT_ANTI_KEY_WORDS_EN],
+        '理論資工': [CS_THEORY_COMP_KEY_WORDS_EN, CS_THEORY_COMP_ANTI_KEY_WORDS_EN],
+        '離散': [CS_MATH_DISCRETE_KEY_WORDS_EN, CS_MATH_DISCRETE_ANTI_KEY_WORDS_EN],
+        '線性代數': [CS_MATH_LIN_ALGE_KEY_WORDS_EN, CS_MATH_LIN_ALGE_ANTI_KEY_WORDS_EN],
+        '微積分': [CS_CALCULUS_KEY_WORDS_EN, CS_CALCULUS_ANTI_KEY_WORDS_EN, ['一', '二']],
+        '機率': [CS_MATH_PROB_KEY_WORDS_EN, CS_MATH_PROB_ANTI_KEY_WORDS_EN],
+        '進階資工': [CS_ADVANCED_INFO_KEY_WORDS_EN, CS_ADVANCED_INFO_ANTI_KEY_WORDS_EN],
+        '其他': [USELESS_COURSES_KEY_WORDS_EN, USELESS_COURSES_ANTI_KEY_WORDS_EN], }
 
-    if not os.path.exists(Output_Path):
-        print("create output folder")
-        os.makedirs(Output_Path)
-
-    Database_file_name = 'CS_Course_database.xlsx'
-    input_file_name = os.path.split(file_path)
-    input_file_name = input_file_name[1]
-    print("input file name " + input_file_name)
-
-    df_transcript = pd.read_excel(file_path,
-                                  sheet_name='Transcript_Sorting')
-    # Verify the format of transcript_course_list.xlsx
-    if '所修科目' not in df_transcript.columns or '學分' not in df_transcript.columns or '成績' not in df_transcript.columns:
-        print("Error: Please check the student's transcript xlsx file.")
-        print(" There must be 所修科目, 學分 and 成績 in student's course excel file.")
-        sys.exit()
-
-    df_database = pd.read_excel(Database_Path+Database_file_name,
-                                sheet_name='All_CS_Courses')
-    # Verify the format of CS_Course_database.xlsx
-    if df_database.columns[0] != '所有科目':
-        print("Error: Please check the CS database xlsx file format.")
-        sys.exit()
-    df_database['所有科目'] = df_database['所有科目'].fillna('-')
-
-    Naming_Convention(df_transcript)
-
-    sorted_courses = []
-    # Computer Science
-    transcript_sorted_group_map = {
+    basic_classification_zh = {
         '基礎資工': [CS_INTRO_INFO_KEY_WORDS, CS_INTRO_INFO_ANTI_KEY_WORDS, ['一', '二']],
         '基礎電機電子': [CS_INTRO_ELEKTROTECHNIK_KEY_WORDS, CS_INTRO_ELEKTROTECHNIK_ANTI_KEY_WORDS, ['一', '二']],
         '程式設計': [CS_PROGRAMMING_KEY_WORDS, CS_PROGRAMMING_ANTI_KEY_WORDS, ['一', '二']],
@@ -550,93 +536,5 @@ def CS_sorter(program_idx, file_path):
         '進階資工': [CS_ADVANCED_INFO_KEY_WORDS, CS_ADVANCED_INFO_ANTI_KEY_WORDS],
         '其他': [USELESS_COURSES_KEY_WORDS, USELESS_COURSES_ANTI_KEY_WORDS], }
 
-    suggestion_courses_sorted_group_map = {
-        '基礎資工': [[], CS_INTRO_INFO_ANTI_KEY_WORDS],
-        '基礎電機電子': [[], CS_INTRO_ELEKTROTECHNIK_ANTI_KEY_WORDS],
-        '程式設計': [[], CS_PROGRAMMING_ANTI_KEY_WORDS],
-        '電腦結構': [[], CS_COMP_ARCH_ANTI_KEY_WORDS, ['一', '二']],
-        '軟體工程': [[], CS_SWE_ANTI_KEY_WORDS, ['一', '二']],
-        '資料庫': [[], CS_DB_ANTI_KEY_WORDS],
-        '作業系統': [[], CS_OS_ANTI_KEY_WORDS],
-        '電腦網絡': [[], CS_COMP_NETW_ANTI_KEY_WORDS],
-        '數理邏輯': [[], CS_MATH_LOGIC_PROG_ANTI_KEY_WORDS],
-        '正規方法': [[], CS_FORMAL_METHOD_ANTI_KEY_WORDS],
-        '函式程式': [[], CS_FUNC_PROG_ANTI_KEY_WORDS],
-        '資料結構演算法': [[], CS_ALGO_DATA_STRUCT_ANTI_KEY_WORDS],
-        '理論資工': [[], CS_THEORY_COMP_ANTI_KEY_WORDS],
-        '離散': [[], CS_MATH_DISCRETE_ANTI_KEY_WORDS],
-        '線性代數': [[], CS_MATH_LIN_ALGE_ANTI_KEY_WORDS],
-        '微積分': [[], CS_CALCULUS_ANTI_KEY_WORDS, ['一', '二']],
-        '機率': [[], CS_MATH_PROB_ANTI_KEY_WORDS],
-        '進階資工': [[], CS_ADVANCED_INFO_ANTI_KEY_WORDS],
-        '其他': [[], USELESS_COURSES_ANTI_KEY_WORDS], }
-
-    category_data = []
-    df_category_data = []
-    category_courses_sugesstion_data = []
-    df_category_courses_sugesstion_data = []
-    for idx, cat in enumerate(transcript_sorted_group_map):
-        category_data = {cat: [], '學分': [], '成績': []}
-        df_category_data.append(pd.DataFrame(data=category_data))
-        df_category_courses_sugesstion_data.append(
-            pd.DataFrame(data=category_courses_sugesstion_data, columns=['建議修課']))
-
-    df_category_data = CourseSorting(
-        df_transcript, df_category_data, transcript_sorted_group_map)
-
-    # 基本分類資工課程資料庫
-    df_category_courses_sugesstion_data = DatabaseCourseSorting(
-        df_database, df_category_courses_sugesstion_data, transcript_sorted_group_map)
-
-    # print(df_category_courses_sugesstion_data)
-
-    for idx, cat in enumerate(df_category_data):
-        df_category_courses_sugesstion_data[idx]['建議修課'] = df_category_courses_sugesstion_data[idx]['建議修課'].str.replace(
-            '(', '', regex=False)
-        df_category_courses_sugesstion_data[idx]['建議修課'] = df_category_courses_sugesstion_data[idx]['建議修課'].str.replace(
-            ')', '', regex=False)
-    # 樹狀篩選 >> 微積分:[一,二] 同時有含 微積分、一  的，就從recommendation拿掉
-    # algorithm :
-    df_category_courses_sugesstion_data = SuggestionCourseAlgorithm(
-        df_category_data, transcript_sorted_group_map, df_category_courses_sugesstion_data)
-
-    output_file_name = 'analyzed_' + input_file_name
-
-    writer = pd.ExcelWriter(
-        Output_Path+output_file_name, engine='xlsxwriter')
-
-    sorted_courses = df_category_data
-
-    start_row = 0
-    for idx, sortedcourses in enumerate(sorted_courses):
-        sortedcourses.to_excel(
-            writer, sheet_name='General', startrow=start_row, index=False)
-        start_row += len(sortedcourses.index) + 2
-    workbook = writer.book
-    worksheet = writer.sheets['General']
-    global column_len_array
-
-    red_out_failed_subject(workbook, worksheet, 1, start_row)
-
-    for i, col in enumerate(df_transcript.columns):
-        # find length of column i
-        column_len = df_transcript[col].astype(str).str.len().max()
-        # Setting the length if the column header is larger
-        # than the max column value length
-        column_len_array.append(max(column_len, len(col)))
-        # set the column length
-        worksheet.set_column(i, i, column_len_array[i] * 2)
-
-    # Modify to column width for "Required_CP"
-    column_len_array.append(6)
-
-    for idx in program_idx:
-        program_sort_function[idx](
-            transcript_sorted_group_map,
-            sorted_courses,
-            df_category_courses_sugesstion_data,
-            writer)
-
-    writer.save()
-    print("output data at: " + Output_Path + output_file_name)
-    print("Students' courses analysis and courses suggestion in CS area finished! ")
+    Classifier(program_idx, file_path, abbrev, env_file_path,
+               basic_classification_en, basic_classification_zh, column_len_array, program_sort_function)

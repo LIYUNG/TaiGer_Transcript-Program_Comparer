@@ -36,7 +36,7 @@ EE_SEMICONDUCTOR_ANTI_KEY_WORDS = ['專題', '倫理', '素養']
 EE_ADVANCED_ELECTRO_KEY_WORDS = ['積體電路', '自動化',  '藍芽', '晶片', '類比', '數位訊號', '數位信號',
                                  '微算機', '微處理', 'VLSI', '嵌入式', '人工智慧', '機器學習']
 EE_ADVANCED_ELECTRO_ANTI_KEY_WORDS = ['倫理', '素養']
-EE_APPLICATION_ORIENTED_KEY_WORDS = ['生醫', '光機電', '電腦', '微系統', '物聯網', '密碼學', '聲學',
+EE_APPLICATION_ORIENTED_KEY_WORDS = ['生醫', '光機電', '電腦', '微系統', '物聯網', '密碼學', '聲學', 
                                      '影像', '深度學習', '光電', '應用', '綠能', '雲端運算', '醫學工程', '再生能源']
 EE_APPLICATION_ORIENTED_ANTI_KEY_WORDS = ['倫理', '素養']
 EE_MACHINE_RELATED_KEY_WORDS = ['力學', '流體',
@@ -46,7 +46,7 @@ USELESS_COURSES_KEY_WORDS = ['asdgladfj;l']
 USELESS_COURSES_ANTI_KEY_WORDS = ['asdgladfj;l']
 
 #################################################################################################################
-####################################Electrical Engineering English###############################################
+################################### Electrical Engineering English ##############################################
 #################################################################################################################
 
 # TODO: defining the keywords in proper way (iterative steps: generating, and see result, if mssing, then add keywords/anti_keywords)
