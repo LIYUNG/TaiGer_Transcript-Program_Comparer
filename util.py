@@ -153,7 +153,8 @@ def CourseSorting(df_transcript, df_category_data, transcript_sorted_group_map, 
             # filter subject by keywords. and exclude subject by anti_keywords
             if any(keywords in subj for keywords in transcript_sorted_group_map[cat][KEY_WORDS] if not any(anti_keywords in subj for anti_keywords in transcript_sorted_group_map[cat][ANTI_KEY_WORDS])):
                 temp_string = str(df_transcript['成績'][idx])
-                if((isfloat(temp_string) and float(temp_string) < 60)):  # failed subject not count
+                # failed subject not count
+                if((isfloat(temp_string) and float(temp_string) < 60 and float(temp_string) and float(temp_string)> 4.5)):
                     continue
                 temp = {cat: subj, '學分': df_transcript['學分'][idx],
                         '成績': df_transcript['成績'][idx]}

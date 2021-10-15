@@ -50,5 +50,56 @@ USELESS_COURSES_KEY_WORDS = ['asdgladfj;l']
 USELESS_COURSES_ANTI_KEY_WORDS = ['asdgladfj;l']
 
 #################################################################################################################
+################################### Mechanical Engineering English ##############################################
 #################################################################################################################
-#################################################################################################################
+
+
+ME_CALCULUS_KEY_WORDS_EN = ['calculus']
+ME_CALCULUS_ANTI_KEY_WORDS_EN = ['asdgladfj;l']
+ME_MATH_KEY_WORDS_EN = ['math', 'linear algebra', 'differential', '函數',
+                        'probability', 'discrete', 'complex', 'numerical', 'vector analy']
+ME_MATH_ANTI_KEY_WORDS_EN = ['asdgladfj;l']
+ME_PHYSICS_KEY_WORDS_EN = ['physics']
+ME_PHYSICS_ANTI_KEY_WORDS_EN = [
+    'semiconductor', 'device', 'experi', '車輛', '通識']
+ME_PHYSICS_EXP_KEY_WORDS_EN = ['物理']
+ME_PHYSICS_EXP_ANTI_KEY_WORDS_EN = ['semiconductor', 'device', '車輛']
+ME_MASCHINENGESTALTUNG_KEY_WORDS_EN = [
+    '繪圖', 'computer aid', 'machine design', 'machine', '工程圖', 'cad']
+ME_MASCHINENGESTALTUNG_ANTI_KEY_WORDS_EN = ['asdgladfj;l', 'manufactur']
+ME_MASCHINEN_ELEMENTE_KEY_WORDS_EN = [
+    '機構', '機械構']
+ME_MASCHINEN_ELEMENTE_ANTI_KEY_WORDS_EN = ['asdgladfj;l']
+ME_THERMODYN_KEY_WORDS_EN = ['熱力']
+ME_THERMODYN_ANTI_KEY_WORDS_EN = ['asdgladfj;l']
+ME_WARMTRANSPORT_KEY_WORDS_EN = ['heat conduction', 'heat conduction', 'heat flux']
+ME_WARMTRANSPORT_ANTI_KEY_WORDS_EN = ['asdgladfj;l']
+ME_WERKSTOFFKUNDE_KEY_WORDS_EN = ['材料']
+ME_WERKSTOFFKUNDE_ANTI_KEY_WORDS_EN = ['asdgladfj;l', 'mechanics', '應用']
+ME_CONTROL_THEORY_KEY_WORDS_EN = ['control', 'linear system', '非線性系統']
+ME_CONTROL_THEORY_ANTI_KEY_WORDS_EN = ['asdgladfj;l', '車輛']
+ME_FLUIDDYN_KEY_WORDS_EN = ['fluid']
+ME_FLUIDDYN_ANTI_KEY_WORDS_EN = ['asdgladfj;l']
+ME_MECHANIK_KEY_WORDS_EN = ['mechanics', 'statics',
+                            'dynamics', '機動', 'vibra', 'kine', '應力']
+ME_MECHANIK_ANTI_KEY_WORDS_EN = [
+    'thermodynam', 'fluid', 'automotive', '氣動', 'quantum', 'accoustic']
+ME_ELECTRICAL_ENG_KEY_WORDS_EN = [
+    'power electr', 'electrical machine', 'electromagne', 'electronics', 'circuit']
+ME_ELECTRICAL_ENG_ANTI_KEY_WORDS_EN = ['asdgladfj;l', 'logic', 'automation', 'microelectroni']
+ME_MANUFACTURE_ENG_KEY_WORDS_EN = ['manufactur', 'fabrica', 'produc']
+ME_MANUFACTURE_ENG_ANTI_KEY_WORDS_EN = [
+    'asdgladfj;l', 'logic', 'automation', 'microelectroni']
+ME_COMPUTER_SCIENCE_KEY_WORDS_EN = [
+    '計算機', '程式語言', '程式設計', 'object', 'data structure', 'algorithm']
+ME_COMPUTER_SCIENCE_ANTI_KEY_WORDS_EN = [
+    'asdgladfj;l', '應用', 'Matlab', "labview", "matlab"]
+ME_MECHATRONICS_KEY_WORDS_EN = ['機電', '微處理']
+ME_MECHATRONICS_ANTI_KEY_WORDS_EN = ['asdgladfj;l']
+ME_MEASUREMENT_KEY_WORDS_EN = ['measure', 'sensor']
+ME_MEASUREMENT_ANTI_KEY_WORDS_EN = ['asdgladfj;l']
+ME_VEHICLE_KEY_WORDS_EN = ['車輛', '煞車', '內燃機',
+                           '電驅動', 'automotive', '熱機', 'suspens']
+ME_VEHICLE_ANTI_KEY_WORDS_EN = ['asdgladfj;l']
+USELESS_COURSES_KEY_WORDS_EN = ['asdgladfj;l']
+USELESS_COURSES_ANTI_KEY_WORDS_EN = ['asdgladfj;l']
