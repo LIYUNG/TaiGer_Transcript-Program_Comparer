@@ -157,47 +157,29 @@ def TUM_CONSUMER_SCIENCE(transcript_sorted_group_map, df_transcript_array, df_ca
 program_sort_function = [TUM_MMT, TUM_CONSUMER_SCIENCE]
 
 
-def ME_sorter(program_idx, file_path):
-    Database_Path = env_file_path + '/database/'
-    Output_Path = os.path.split(file_path)
-    Output_Path = Output_Path[0]
-    Output_Path = Output_Path + '/output/'
-    print("output file path " + Output_Path)
+def MGM_sorter(program_idx, file_path, abbrev):
+    basic_classification_en = {
+        '微積分': [MGM_CALCULUS_KEY_WORDS_EN, MGM_CALCULUS_ANTI_KEY_WORDS_EN],
+        '數學': [MGM_MATH_KEY_WORDS_EN, MGM_MATH_ANTI_KEY_WORDS_EN],
+        '經濟': [MGM_ECONOMICS_KEY_WORDS_EN, MGM_ECONOMICS_ANTI_KEY_WORDS_EN],
+        '企業': [MGM_BUSINESS_KEY_WORDS_EN, MGM_BUSINESS_ANTI_KEY_WORDS_EN],
+        '管理': [MGM_MANAGEMENT_KEY_WORDS_EN, MGM_MANAGEMENT_ANTI_KEY_WORDS_EN],
+        '會計': [MGM_ACCOUNTING_KEY_WORDS_EN, MGM_ACCOUNTING_ANTI_KEY_WORDS_EN],
+        '統計': [MGM_STATISTICS_KEY_WORDS_EN, MGM_STATISTICS_ANTI_KEY_WORDS_EN],
+        '金融': [MGM_FINANCE_KEY_WORDS_EN, MGM_FINANCE_ANTI_KEY_WORDS_EN],
+        '行銷': [MGM_MARKETING_KEY_WORDS_EN, MGM_MARKETING_ANTI_KEY_WORDS_EN],
+        '作業研究': [MGM_OP_RESEARCH_KEY_WORDS_EN, MGM_OP_RESEARCH_ANTI_KEY_WORDS_EN],
+        '觀察研究': [MGM_EP_RESEARCH_KEY_WORDS_EN, MGM_EP_RESEARCH_ANTI_KEY_WORDS_EN],
+        '程式': [MGM_PROGRAMMING_KEY_WORDS_EN, MGM_PROGRAMMING_ANTI_KEY_WORDS_EN],
+        '資料科學': [MGM_DATA_SCIENCE_KEY_WORDS_EN, MGM_DATA_SCIENCE_ANTI_KEY_WORDS_EN],
+        '論文': [MGM_BACHELOR_THESIS_KEY_WORDS_EN, MGM_BACHELOR_THESIS_ANTI_KEY_WORDS_EN],
+        '其他': [USELESS_COURSES_KEY_WORDS_EN, USELESS_COURSES_ANTI_KEY_WORDS_EN], }
 
-    if not os.path.exists(Output_Path):
-        print("create output folder")
-        os.makedirs(Output_Path)
-
-    Database_file_name = 'ME_Course_database.xlsx'
-    input_file_name = os.path.split(file_path)
-    input_file_name = input_file_name[1]
-    print("input file name " + input_file_name)
-
-    df_transcript = pd.read_excel(file_path,
-                                  sheet_name='Transcript_Sorting')
-    # Verify the format of transcript_course_list.xlsx
-    if '所修科目' not in df_transcript.columns or '學分' not in df_transcript.columns or '成績' not in df_transcript.columns:
-        print("Error: Please check the student's transcript xlsx file.")
-        print(" There must be 所修科目, 學分 and 成績 in student's course excel file.")
-        sys.exit()
-
-    df_database = pd.read_excel(Database_Path+Database_file_name,
-                                sheet_name='All_MGM_Courses')
-    # Verify the format of ME_Course_database.xlsx
-    if df_database.columns[0] != '所有科目':
-        print("Error: Please check the ME database xlsx file.")
-        sys.exit()
-    df_database['所有科目'] = df_database['所有科目'].fillna('-')
-
-    # unify course naming convention
-    Naming_Convention(df_transcript)
-
-    sorted_courses = []
-    # ME
-    transcript_sorted_group_map = {
+    basic_classification_zh = {
         '微積分': [MGM_CALCULUS_KEY_WORDS, MGM_CALCULUS_ANTI_KEY_WORDS],
         '數學': [MGM_MATH_KEY_WORDS, MGM_MATH_ANTI_KEY_WORDS],
         '經濟': [MGM_ECONOMICS_KEY_WORDS, MGM_ECONOMICS_ANTI_KEY_WORDS],
+        '企業': [MGM_BUSINESS_KEY_WORDS, MGM_BUSINESS_ANTI_KEY_WORDS],
         '管理': [MGM_MANAGEMENT_KEY_WORDS, MGM_MANAGEMENT_ANTI_KEY_WORDS],
         '會計': [MGM_ACCOUNTING_KEY_WORDS, MGM_ACCOUNTING_ANTI_KEY_WORDS],
         '統計': [MGM_STATISTICS_KEY_WORDS, MGM_STATISTICS_ANTI_KEY_WORDS],
@@ -210,75 +192,5 @@ def ME_sorter(program_idx, file_path):
         '論文': [MGM_BACHELOR_THESIS_KEY_WORDS, MGM_BACHELOR_THESIS_ANTI_KEY_WORDS],
         '其他': [USELESS_COURSES_KEY_WORDS, USELESS_COURSES_ANTI_KEY_WORDS], }
 
-    suggestion_courses_sorted_group_map = {
-        '經濟學': [[], MGM_ECONOMICS_ANTI_KEY_WORDS],
-        '其他': [[], USELESS_COURSES_ANTI_KEY_WORDS], }
-
-    category_data = []
-    df_category_data = []
-    category_courses_sugesstion_data = []
-    df_category_courses_sugesstion_data = []
-    for idx, cat in enumerate(transcript_sorted_group_map):
-        category_data = {cat: [], '學分': [], '成績': []}
-        df_category_data.append(pd.DataFrame(data=category_data))
-        df_category_courses_sugesstion_data.append(
-            pd.DataFrame(data=category_courses_sugesstion_data, columns=['建議修課']))
-
-    # 基本分類課程 (與學程無關)
-    df_category_data = CourseSorting(
-        df_transcript, df_category_data, transcript_sorted_group_map)
-
-    # 基本分類機械課程資料庫
-    df_category_courses_sugesstion_data = DatabaseCourseSorting(
-        df_database, df_category_courses_sugesstion_data, transcript_sorted_group_map)
-
-    for idx, cat in enumerate(df_category_data):
-        df_category_courses_sugesstion_data[idx]['建議修課'] = df_category_courses_sugesstion_data[idx]['建議修課'].str.replace(
-            '(', '', regex=False)
-        df_category_courses_sugesstion_data[idx]['建議修課'] = df_category_courses_sugesstion_data[idx]['建議修課'].str.replace(
-            ')', '', regex=False)
-
-    # 樹狀篩選 微積分:[一,二] 同時有含 微積分、一  的，就從recommendation拿掉
-    # algorithm :
-    df_category_courses_sugesstion_data = SuggestionCourseAlgorithm(
-        df_category_data, transcript_sorted_group_map, df_category_courses_sugesstion_data)
-
-    output_file_name = 'analyzed_' + input_file_name
-    writer = pd.ExcelWriter(
-        Output_Path+output_file_name, engine='xlsxwriter')
-
-    sorted_courses = df_category_data
-
-    start_row = 0
-    for idx, sortedcourses in enumerate(sorted_courses):
-        sortedcourses.to_excel(
-            writer, sheet_name='General', startrow=start_row, index=False)
-        start_row += len(sortedcourses.index) + 2
-    workbook = writer.book
-    worksheet = writer.sheets['General']
-    global column_len_array
-
-    red_out_failed_subject(workbook, worksheet, 1, start_row)
-
-    for i, col in enumerate(df_transcript.columns):
-        # find length of column i
-        column_len = df_transcript[col].astype(str).str.len().max()
-        # Setting the length if the column header is larger
-        # than the max column value length
-        column_len_array.append(max(column_len, len(col)))
-        # set the column length
-        worksheet.set_column(i, i, column_len_array[i] * 2)
-
-    # Modify to column width for "Required_CP"
-    column_len_array.append(6)
-
-    for idx in program_idx:
-        program_sort_function[idx](
-            transcript_sorted_group_map,
-            sorted_courses,
-            df_category_courses_sugesstion_data,
-            writer)
-
-    writer.save()
-    print("output data at: " + Output_Path + output_file_name)
-    print("Students' courses analysis and courses suggestion in MGM area finished! ")
+    Classifier(program_idx, file_path, abbrev, env_file_path,
+               basic_classification_en, basic_classification_zh, column_len_array, program_sort_function)
