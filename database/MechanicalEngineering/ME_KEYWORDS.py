@@ -34,7 +34,7 @@ ME_FLUIDDYN_ANTI_KEY_WORDS = ['asdgladfj;l']
 ME_MECHANIK_KEY_WORDS = ['力學', '動力', '機動', '振動', '震動', '運動學', '應力']
 ME_MECHANIK_ANTI_KEY_WORDS = ['熱力', '流體', '車輛', '氣動', '量子', '聲學']
 ME_ELECTRICAL_ENG_KEY_WORDS = ['電力電子', '電機', '電動機', '電磁', '電子', '電路', '電工']
-ME_ELECTRICAL_ENG_ANTI_KEY_WORDS = ['asdgladfj;l', '邏輯', '自動化', '微電子']
+ME_ELECTRICAL_ENG_ANTI_KEY_WORDS = ['asdgladfj;l', '邏輯', '自動化', '微電子', '商務']
 ME_MANUFACTURE_ENG_KEY_WORDS = ['製造']
 ME_MANUFACTURE_ENG_ANTI_KEY_WORDS = ['asdgladfj;l', '邏輯', '自動化', '微電子']
 ME_COMPUTER_SCIENCE_KEY_WORDS = ['計算機', '程式語言', '程式設計', '物件導向', '資料結構', '演算法']
@@ -72,7 +72,8 @@ ME_MASCHINEN_ELEMENTE_KEY_WORDS_EN = [
 ME_MASCHINEN_ELEMENTE_ANTI_KEY_WORDS_EN = ['asdgladfj;l']
 ME_THERMODYN_KEY_WORDS_EN = ['熱力']
 ME_THERMODYN_ANTI_KEY_WORDS_EN = ['asdgladfj;l']
-ME_WARMTRANSPORT_KEY_WORDS_EN = ['heat conduction', 'heat conduction', 'heat flux']
+ME_WARMTRANSPORT_KEY_WORDS_EN = [
+    'heat conduction', 'heat conduction', 'heat flux']
 ME_WARMTRANSPORT_ANTI_KEY_WORDS_EN = ['asdgladfj;l']
 ME_WERKSTOFFKUNDE_KEY_WORDS_EN = ['材料']
 ME_WERKSTOFFKUNDE_ANTI_KEY_WORDS_EN = ['asdgladfj;l', 'mechanics', '應用']
@@ -86,7 +87,8 @@ ME_MECHANIK_ANTI_KEY_WORDS_EN = [
     'thermodynam', 'fluid', 'automotive', '氣動', 'quantum', 'accoustic']
 ME_ELECTRICAL_ENG_KEY_WORDS_EN = [
     'power electr', 'electrical machine', 'electromagne', 'electronics', 'circuit']
-ME_ELECTRICAL_ENG_ANTI_KEY_WORDS_EN = ['asdgladfj;l', 'logic', 'automation', 'microelectroni']
+ME_ELECTRICAL_ENG_ANTI_KEY_WORDS_EN = [
+    'asdgladfj;l', 'logic', 'automation', 'microelectroni', 'business']
 ME_MANUFACTURE_ENG_KEY_WORDS_EN = ['manufactur', 'fabrica', 'produc']
 ME_MANUFACTURE_ENG_ANTI_KEY_WORDS_EN = [
     'asdgladfj;l', 'logic', 'automation', 'microelectroni']

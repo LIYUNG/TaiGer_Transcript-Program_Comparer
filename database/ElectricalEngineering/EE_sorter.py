@@ -74,6 +74,8 @@ def RWTH_EI(transcript_sorted_group_map, df_transcript_array, df_category_course
         PROG_SPEC_PHYSIK_PARAM,  # 物理
         PROG_SPEC_PHYSIK_PARAM,  # 物理實驗
         PROG_SPEC_PROGRAMMIERUNG_PARAM,  # 資訊
+        PROG_SPEC_PROGRAMMIERUNG_PARAM,  # 程式
+        PROG_SPEC_PROGRAMMIERUNG_PARAM,  # 軟體工程
         PROG_SPEC_SYSTEM_THEORIE_PARAM,  # 控制系統
         PROG_SPEC_ELEKTROTECHNIK_SCHALTUNGSTECHNIK_PARAM,  # 電子
         PROG_SPEC_ELEKTROTECHNIK_SCHALTUNGSTECHNIK_PARAM,  # 電子實驗
@@ -139,6 +141,7 @@ def STUTTGART_EI(transcript_sorted_group_map, df_transcript_array, df_category_c
         'Program_Category': 'Electromagnetics', 'Required_CP': 9}
     PROG_SPEC_NACHRICHTENTECHNIK_PARAM = {
         'Program_Category': 'Communication Engineering', 'Required_CP': 9}
+    # Grundlagen der Informationsverarbeitung
     PROG_SPEC_INTRO_INFOR_VERARBEITUNG_PARAM = {
         'Program_Category': 'Intro. Information processing', 'Required_CP': 6}
     PROG_SPEC_SIGNAL_SYSTEM_PARAM = {
@@ -154,13 +157,13 @@ def STUTTGART_EI(transcript_sorted_group_map, df_transcript_array, df_category_c
         PROG_SPEC_PHY_EXP_PARAM,    # 物理實驗
         PROG_SPEC_MICROELECTRONICS_PARAM,  # 微電子
         PROG_SPEC_INTRO_ELECT_ENG_PROJ_PARAM,  # 基礎電子實驗
-        PROG_SPEC_INTRO_PROGRAMMING_ENG_PARAM,  # 基礎計算機概論
-        PROG_SPEC_INTRO_SOFTWARE_SYSTEM_PARAM,  # 基礎軟體系統
+        PROG_SPEC_INTRO_PROGRAMMING_ENG_PARAM,  # 基礎計算機概論 
+        PROG_SPEC_INTRO_SOFTWARE_SYSTEM_PARAM,  # 基礎軟體系統 Objektorientierung, Design pattern 軟體工程理論, UML
         PROG_SPEC_ENERGIETECHNIK_PARAM,         # 能源工程
         PROG_SPEC_SCHALTUNGSTECHNIK_PARAM,      # 電路學
         PROG_SPEC_ELEKTRODYNAMIK_PARAM,         # 電磁學
         PROG_SPEC_NACHRICHTENTECHNIK_PARAM,     # 通訊工程
-        PROG_SPEC_INTRO_INFOR_VERARBEITUNG_PARAM,   # 資料處理
+        PROG_SPEC_INTRO_INFOR_VERARBEITUNG_PARAM,   # 資料處理 資料結構 演算法 數位邏輯
         PROG_SPEC_SIGNAL_SYSTEM_PARAM,          # 訊號與系統
         PROG_SPEC_SCHWERPUNKTE_PARAM,           # 專業選修
         PROG_SPEC_OTHERS  # 其他
@@ -172,8 +175,10 @@ def STUTTGART_EI(transcript_sorted_group_map, df_transcript_array, df_category_c
         PROG_SPEC_MATH_PARAM,  # 數學
         PROG_SPEC_PHY_EXP_PARAM,  # 物理
         PROG_SPEC_PHY_EXP_PARAM,  # 物理實驗
-        PROG_SPEC_INTRO_PROGRAMMING_ENG_PARAM,  # 資訊
-        PROG_SPEC_OTHERS,  # 控制系統
+        PROG_SPEC_INTRO_INFOR_VERARBEITUNG_PARAM,  # 資訊
+        PROG_SPEC_INTRO_PROGRAMMING_ENG_PARAM,  # 程式
+        PROG_SPEC_INTRO_SOFTWARE_SYSTEM_PARAM,  # 軟體工程
+        PROG_SPEC_SCHWERPUNKTE_PARAM,  # 控制系統
         PROG_SPEC_MICROELECTRONICS_PARAM,  # 電子
         PROG_SPEC_INTRO_ELECT_ENG_PROJ_PARAM,  # 電子實驗
         PROG_SPEC_SCHALTUNGSTECHNIK_PARAM,  # 電路
@@ -245,6 +250,8 @@ def TUM_MSCE(transcript_sorted_group_map, df_transcript_array, df_category_cours
         PROG_SPEC_OTHERS,  # 物理
         PROG_SPEC_OTHERS,  # 物理實驗
         PROG_SPEC_GRUNDLAGE_ELEKTROTECHNIK_PARAM,  # 資訊
+        PROG_SPEC_GRUNDLAGE_ELEKTROTECHNIK_PARAM,  # 程式
+        PROG_SPEC_OTHERS,  # 軟體工程
         PROG_SPEC_OTHERS,  # 控制系統
         PROG_SPEC_GRUNDLAGE_ELEKTROTECHNIK_PARAM,  # 電子
         PROG_SPEC_GRUNDLAGE_ELEKTROTECHNIK_PARAM,  # 電子實驗
@@ -321,6 +328,8 @@ def TUM_MSPE(transcript_sorted_group_map, df_transcript_array, df_category_cours
         PROG_SPEC_OTHERS,  # 物理
         PROG_SPEC_OTHERS,  # 物理實驗
         PROG_SPEC_OTHERS,  # 資訊
+        PROG_SPEC_OTHERS,  # 程式
+        PROG_SPEC_OTHERS,  # 軟體工程
         PROG_SPEC_OTHERS,  # 控制系統
         PROG_SPEC_GRUNDLAGE_ELEKTROTECHNIK_PARAM,  # 電子
         PROG_SPEC_GRUNDLAGE_ELEKTROTECHNIK_PARAM,  # 電子實驗
@@ -395,6 +404,8 @@ def TUM_MSNE(transcript_sorted_group_map, df_transcript_array, df_category_cours
         PROG_SPEC_GRUNDLAGE_NATUR_PARAM,  # 物理
         PROG_SPEC_GRUNDLAGE_NATUR_PARAM,  # 物理實驗
         PROG_SPEC_OTHERS,  # 資訊
+        PROG_SPEC_OTHERS,  # 程式
+        PROG_SPEC_OTHERS,  # 軟體工程
         PROG_SPEC_OTHERS,  # 控制系統
         PROG_SPEC_OTHERS,  # 電子
         PROG_SPEC_OTHERS,  # 電子實驗
@@ -440,7 +451,9 @@ def EE_sorter(program_idx, file_path, abbrev):
         '數學': [EE_MATH_KEY_WORDS_EN, EE_MATH_ANTI_KEY_WORDS_EN],
         '物理': [EE_PHYSICS_KEY_WORDS_EN, EE_PHYSICS_ANTI_KEY_WORDS_EN, ['一', '二']],
         '物理實驗': [EE_PHYSICS_EXP_KEY_WORDS_EN, EE_PHYSICS_EXP_ANTI_KEY_WORDS_EN, ['一', '二']],
-        '資訊': [EE_PROGRAMMING_KEY_WORDS_EN, EE_PROGRAMMING_ANTI_KEY_WORDS_EN],
+        '資訊': [EE_INTRO_COMPUTER_SCIENCE_KEY_WORDS_EN, EE_INTRO_COMPUTER_SCIENCE_ANTI_KEY_WORDS_EN],
+        '程式': [EE_PROGRAMMING_KEY_WORDS_EN, EE_PROGRAMMING_ANTI_KEY_WORDS_EN],
+        '軟體工程': [EE_SOFTWARE_SYSTEM_KEY_WORDS_EN, EE_SOFTWARE_SYSTEM_ANTI_KEY_WORDS_EN],
         '控制系統': [EE_CONTROL_THEORY_KEY_WORDS_EN, EE_CONTROL_THEORY_ANTI_KEY_WORDS_EN],
         '電子': [EE_ELECTRONICS_KEY_WORDS_EN, EE_ELECTRONICS_ANTI_KEY_WORDS_EN, ['一', '二']],
         '電子實驗': [EE_ELECTRONICS_EXP_KEY_WORDS_EN, EE_ELECTRONICS_EXP_ANTI_KEY_WORDS_EN, ['一', '二']],
@@ -460,7 +473,9 @@ def EE_sorter(program_idx, file_path, abbrev):
         '數學': [EE_MATH_KEY_WORDS, EE_MATH_ANTI_KEY_WORDS],
         '物理': [EE_PHYSICS_KEY_WORDS, EE_PHYSICS_ANTI_KEY_WORDS, ['一', '二']],
         '物理實驗': [EE_PHYSICS_EXP_KEY_WORDS, EE_PHYSICS_EXP_ANTI_KEY_WORDS, ['一', '二']],
-        '資訊': [EE_PROGRAMMING_KEY_WORDS, EE_PROGRAMMING_ANTI_KEY_WORDS],
+        '資訊': [EE_INTRO_COMPUTER_SCIENCE_KEY_WORDS, EE_INTRO_COMPUTER_SCIENCE_ANTI_KEY_WORDS],
+        '程式': [EE_PROGRAMMING_KEY_WORDS, EE_PROGRAMMING_ANTI_KEY_WORDS],
+        '軟體工程': [EE_SOFTWARE_SYSTEM_KEY_WORDS, EE_SOFTWARE_SYSTEM_ANTI_KEY_WORDS],
         '控制系統': [EE_CONTROL_THEORY_KEY_WORDS, EE_CONTROL_THEORY_ANTI_KEY_WORDS],
         '電子': [EE_ELECTRONICS_KEY_WORDS, EE_ELECTRONICS_ANTI_KEY_WORDS, ['一', '二']],
         '電子實驗': [EE_ELECTRONICS_EXP_KEY_WORDS, EE_ELECTRONICS_EXP_ANTI_KEY_WORDS, ['一', '二']],
