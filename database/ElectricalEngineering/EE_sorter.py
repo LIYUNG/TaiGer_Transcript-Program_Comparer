@@ -45,11 +45,11 @@ def RWTH_EI(transcript_sorted_group_map, df_transcript_array, df_category_course
     PROG_SPEC_ELEKTROTECHNIK_SCHALTUNGSTECHNIK_PARAM = {
         'Program_Category': 'Electronics and Circuits Module', 'Required_CP': 34}
     PROG_SPEC_PROGRAMMIERUNG_PARAM = {
-        'Program_Category': 'Programming', 'Required_CP': 12}
+        'Program_Category': 'Programming and Computer science', 'Required_CP': 12}
     PROG_SPEC_SYSTEM_THEORIE_PARAM = {
         'Program_Category': 'System_Theory', 'Required_CP': 8}
     PROG_SPEC_VERTIEFUNG_EI_PARAM = {
-        'Program_Category': 'Advanced_Module_EECS', 'Required_CP': 8}
+        'Program_Category': 'Theoretical_Module_EECS', 'Required_CP': 8}
     PROG_SPEC_ANWENDUNG_MODULE_PARAM = {
         'Program_Category': 'Application_Module_EECS', 'Required_CP': 20}
     PROG_SPEC_OTHERS = {
@@ -84,7 +84,8 @@ def RWTH_EI(transcript_sorted_group_map, df_transcript_array, df_category_course
         PROG_SPEC_ELEKTROTECHNIK_SCHALTUNGSTECHNIK_PARAM,  # 電磁
         PROG_SPEC_ANWENDUNG_MODULE_PARAM,  # 電力電子
         PROG_SPEC_ANWENDUNG_MODULE_PARAM,  # 通訊
-        PROG_SPEC_VERTIEFUNG_EI_PARAM,  # 半導體
+        PROG_SPEC_OTHERS,  # 半導體
+        PROG_SPEC_VERTIEFUNG_EI_PARAM,  # 進階電磁理論
         PROG_SPEC_VERTIEFUNG_EI_PARAM,  # 電機專業選修
         PROG_SPEC_ANWENDUNG_MODULE_PARAM,  # 應用科技
         PROG_SPEC_OTHERS,  # 力學,機械
@@ -187,6 +188,7 @@ def STUTTGART_EI(transcript_sorted_group_map, df_transcript_array, df_category_c
         PROG_SPEC_ENERGIETECHNIK_PARAM,  # 電力電子
         PROG_SPEC_NACHRICHTENTECHNIK_PARAM,  # 通訊
         PROG_SPEC_SCHWERPUNKTE_PARAM,  # 半導體
+        PROG_SPEC_ELEKTRODYNAMIK_PARAM,  # 進階電磁理論
         PROG_SPEC_SCHWERPUNKTE_PARAM,  # 電機專業選修
         PROG_SPEC_SCHWERPUNKTE_PARAM,  # 應用科技
         PROG_SPEC_OTHERS,  # 力學,機械
@@ -261,6 +263,7 @@ def TUM_MSCE(transcript_sorted_group_map, df_transcript_array, df_category_cours
         PROG_SPEC_GRUNDLAGE_ELEKTROTECHNIK_PARAM,  # 電力電子
         PROG_SPEC_GRUNDLAGE_KOMMUNIKATIONSTECHNIK_PARAM,  # 通訊
         PROG_SPEC_GRUNDLAGE_ELEKTROTECHNIK_PARAM,  # 半導體
+        PROG_SPEC_GRUNDLAGE_KOMMUNIKATIONSTECHNIK_PARAM,  # 進階電磁理論
         PROG_SPEC_GRUNDLAGE_KOMMUNIKATIONSTECHNIK_PARAM,  # 電機專業選修
         PROG_SPEC_OTHERS,  # 應用科技
         PROG_SPEC_OTHERS,  # 力學,機械
@@ -339,6 +342,7 @@ def TUM_MSPE(transcript_sorted_group_map, df_transcript_array, df_category_cours
         PROG_SPEC_GRUNDLAGE_ELEKTROTECHNIK_PARAM,  # 電力電子
         PROG_SPEC_OTHERS,  # 通訊
         PROG_SPEC_GRUNDLAGE_ELEKTROTECHNIK_PARAM,  # 半導體
+        PROG_SPEC_GRUNDLAGE_ELEKTROTECHNIK_PARAM,  # 進階電磁理論
         PROG_SPEC_GRUNDLAGE_ELEKTROTECHNIK_PARAM,  # 電機專業選修
         PROG_SPEC_OTHERS,  # 應用科技
         PROG_SPEC_GRUNDLAGE_MASCHINEN_PARAM,  # 力學,機械相關
@@ -415,6 +419,7 @@ def TUM_MSNE(transcript_sorted_group_map, df_transcript_array, df_category_cours
         PROG_SPEC_OTHERS,  # 電力電子
         PROG_SPEC_OTHERS,  # 通訊
         PROG_SPEC_OTHERS,  # 半導體
+        PROG_SPEC_OTHERS,  # 進階電磁理論
         PROG_SPEC_OTHERS,  # 電機專業選修
         PROG_SPEC_OTHERS,  # 應用科技
         PROG_SPEC_OTHERS,  # 力學,機械相關
@@ -436,12 +441,114 @@ def TUM_MSNE(transcript_sorted_group_map, df_transcript_array, df_category_cours
                  transcript_sorted_group_map, df_transcript_array_temp, df_category_courses_sugesstion_data_temp, column_len_array)
 
 
+# Requirement: https://www.tuhh.de/t3resources/tuhh/download/studium/studieninteressierte/Fachspezifische_Kenntnisse_Master/Fachspezifische-Anforderung-2016-MM.pdf
+# https://www.tuhh.de/alt/tuhh/education/degree-courses/international-study-programs/how-and-when-to-apply/specific-requirements.html
+
+def TUHH_MICROELECTRONICS(transcript_sorted_group_map, df_transcript_array, df_category_courses_sugesstion_data, writer):
+    program_name = 'TUHH_MICROELECTRONICS'
+    print("Create " + program_name + " sheet")
+    df_transcript_array_temp = []
+    df_category_courses_sugesstion_data_temp = []
+    for idx, df in enumerate(df_transcript_array):
+        df_transcript_array_temp.append(df.copy())
+    for idx, df in enumerate(df_category_courses_sugesstion_data):
+        df_category_courses_sugesstion_data_temp.append(df.copy())
+    # df_category_courses_sugesstion_data_temp = df_category_courses_sugesstion_data
+    #####################################################################
+    ############## Program Specific Parameters ##########################
+    #####################################################################
+
+    # Create transcript_sorted_group to program_category mapping
+    PROG_SPEC_MATH_PARAM = {
+        'Program_Category': 'Mathematics', 'Required_CP': 30}
+    PROG_SPEC_COMPUTER_SCIENCE_ENG_PARAM = {
+        'Program_Category': 'Computer Science', 'Required_CP': 18}
+    PROG_SPEC_SYSTEM_THEORIE_PARAM = {
+        'Program_Category': 'Control Theory', 'Required_CP': 6}
+    PROG_SPEC_PHY_EXP_PARAM = {
+        'Program_Category': 'Physics', 'Required_CP': 6}
+    PROG_SPEC_EE_PARAM = {
+        # direct/alternating current, electronics
+        'Program_Category': 'Electrical Engineering', 'Required_CP': 3}
+    PROG_SPEC_METHOD_DATA_PROCESSING_PARAM = {
+        'Program_Category': 'Measurements: Methods and data processing', 'Required_CP': 3}
+    PROG_SPEC_CIRCUIT_THEORY_PARAM = {
+        'Program_Category': 'Circuit theory', 'Required_CP': 6}
+    PROG_SPEC_SIGNAL_SYSTEM_PARAM = {
+        'Program_Category': 'Signals and systems', 'Required_CP': 6}
+    PROG_SPEC_THEORY_ELECTRICAL_ENG_PARAM = {
+        'Program_Category': 'Theoretical Electrical Engineering', 'Required_CP': 12}
+    PROG_SPEC_SEMICONDUCTOR_CIRCUIT_PARAM = {
+        'Program_Category': 'Semiconductor and electronics devices', 'Required_CP': 6}
+    PROG_SPEC_ELECTRICAL_ENG_PARAM = {
+        'Program_Category': 'Fundamental Electrical Engineering', 'Required_CP': 21}
+    PROG_SPEC_OTHERS = {
+        'Program_Category': 'Others', 'Required_CP': 0}
+
+    # This fixed to program course category.
+    program_category = [
+        PROG_SPEC_MATH_PARAM,  # 數學
+        PROG_SPEC_COMPUTER_SCIENCE_ENG_PARAM,  # 基礎資工
+        PROG_SPEC_SYSTEM_THEORIE_PARAM,  # 控制理論
+        PROG_SPEC_PHY_EXP_PARAM,           # 物理
+        PROG_SPEC_EE_PARAM,  # 基礎電機電子
+        PROG_SPEC_METHOD_DATA_PROCESSING_PARAM,  # 電子實驗
+        PROG_SPEC_CIRCUIT_THEORY_PARAM,  # 電路學
+        PROG_SPEC_SIGNAL_SYSTEM_PARAM,  # 信號系統
+        PROG_SPEC_THEORY_ELECTRICAL_ENG_PARAM,  # 電磁學
+        PROG_SPEC_SEMICONDUCTOR_CIRCUIT_PARAM,  # 半導體電路設計 電子元件 aka電子學 
+        PROG_SPEC_ELECTRICAL_ENG_PARAM,           # 基礎電機電子
+        PROG_SPEC_OTHERS  # 其他
+    ]
+
+    # Mapping table: same dimension as transcript_sorted_group/ The length depends on how fine the transcript is classified
+    program_category_map = [
+        PROG_SPEC_MATH_PARAM,  # 微積分
+        PROG_SPEC_MATH_PARAM,  # 數學
+        PROG_SPEC_PHY_EXP_PARAM,  # 物理
+        PROG_SPEC_PHY_EXP_PARAM,  # 物理實驗
+        PROG_SPEC_COMPUTER_SCIENCE_ENG_PARAM,  # 資訊
+        PROG_SPEC_COMPUTER_SCIENCE_ENG_PARAM,  # 程式
+        PROG_SPEC_COMPUTER_SCIENCE_ENG_PARAM,  # 軟體工程
+        PROG_SPEC_SYSTEM_THEORIE_PARAM,  # 控制系統
+        PROG_SPEC_EE_PARAM,  # 電子
+        PROG_SPEC_METHOD_DATA_PROCESSING_PARAM,  # 電子實驗
+        PROG_SPEC_CIRCUIT_THEORY_PARAM,  # 電路
+        PROG_SPEC_SIGNAL_SYSTEM_PARAM,  # 訊號系統
+        PROG_SPEC_THEORY_ELECTRICAL_ENG_PARAM,  # 電磁
+        PROG_SPEC_ELECTRICAL_ENG_PARAM,  # 電力電子
+        PROG_SPEC_ELECTRICAL_ENG_PARAM,  # 通訊
+        PROG_SPEC_SEMICONDUCTOR_CIRCUIT_PARAM,  # 半導體
+        PROG_SPEC_THEORY_ELECTRICAL_ENG_PARAM,  # 進階電磁理論
+        PROG_SPEC_OTHERS,  # 電機專業選修
+        PROG_SPEC_OTHERS,  # 應用科技
+        PROG_SPEC_OTHERS,  # 力學,機械
+        PROG_SPEC_OTHERS  # 其他
+    ]
+
+    # Development check
+    if len(program_category_map) != len(df_transcript_array):
+        print("program_category_map size: " + str(len(program_category_map)))
+        print("df_transcript_array size:  " + str(len(df_transcript_array)))
+        print("Please check the number of program_category_map again!")
+        sys.exit()
+
+    #####################################################################
+    ####################### End #########################################
+    #####################################################################
+
+    WriteToExcel(writer, program_name, program_category, program_category_map,
+                 transcript_sorted_group_map, df_transcript_array_temp, df_category_courses_sugesstion_data_temp, column_len_array)
+
+
+
 program_sort_function = [TUM_EI,
                          RWTH_EI,
                          STUTTGART_EI,
                          TUM_MSCE,
                          TUM_MSPE,
-                         TUM_MSNE]
+                         TUM_MSNE,
+                         TUHH_MICROELECTRONICS]
 
 
 def EE_sorter(program_idx, file_path, abbrev):
@@ -463,6 +570,7 @@ def EE_sorter(program_idx, file_path, abbrev):
         '電力電子': [EE_POWER_ELECTRO_KEY_WORDS_EN, EE_POWER_ELECTRO_ANTI_KEY_WORDS_EN, ['一', '二']],
         '通訊': [EE_COMMUNICATION_KEY_WORDS_EN, EE_COMMUNICATION_ANTI_KEY_WORDS_EN, ['一', '二']],
         '半導體': [EE_SEMICONDUCTOR_KEY_WORDS_EN, EE_SEMICONDUCTOR_ANTI_KEY_WORDS_EN],
+        '進階電磁理論': [EE_HF_RF_THEO_INFO_KEY_WORDS_EN, EE_HF_RF_THEO_INFO_ANTI_KEY_WORDS_EN],
         '電機專業選修': [EE_ADVANCED_ELECTRO_KEY_WORDS_EN, EE_ADVANCED_ELECTRO_ANTI_KEY_WORDS_EN],
         '專業應用課程': [EE_APPLICATION_ORIENTED_KEY_WORDS_EN, EE_APPLICATION_ORIENTED_ANTI_KEY_WORDS_EN],
         '力學': [EE_MACHINE_RELATED_KEY_WORDS_EN, EE_MACHINE_RELATED_ANTI_KEY_WORDS_EN],
@@ -485,6 +593,7 @@ def EE_sorter(program_idx, file_path, abbrev):
         '電力電子': [EE_POWER_ELECTRO_KEY_WORDS, EE_POWER_ELECTRO_ANTI_KEY_WORDS, ['一', '二']],
         '通訊': [EE_COMMUNICATION_KEY_WORDS, EE_COMMUNICATION_ANTI_KEY_WORDS, ['一', '二']],
         '半導體': [EE_SEMICONDUCTOR_KEY_WORDS, EE_SEMICONDUCTOR_ANTI_KEY_WORDS],
+        '進階電磁理論': [EE_HF_RF_THEO_INFO_KEY_WORDS, EE_HF_RF_THEO_INFO_ANTI_KEY_WORDS],
         '電機專業選修': [EE_ADVANCED_ELECTRO_KEY_WORDS, EE_ADVANCED_ELECTRO_ANTI_KEY_WORDS],
         '專業應用課程': [EE_APPLICATION_ORIENTED_KEY_WORDS, EE_APPLICATION_ORIENTED_ANTI_KEY_WORDS],
         '力學': [EE_MACHINE_RELATED_KEY_WORDS, EE_MACHINE_RELATED_ANTI_KEY_WORDS],

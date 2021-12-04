@@ -8,6 +8,7 @@ from database.MechanicalEngineering.ME_sorter import *
 from database.MaterialsScience.MTL_sorter import *
 from database.Management.MGM_sorter import *
 from database.DataScience_BusinessIntelligence.DSBI_sorter import *
+from database.TransportationEngineering.TE_sorter import *
 file_path = os.path.realpath(__file__)
 file_path = os.path.dirname(file_path)
 
@@ -40,6 +41,9 @@ if __name__ == "__main__":
     elif sys.argv[2] == 'cme':  # Chemical Engineering
         program_selection_path = file_path + \
             '/database/Materials_Science/CME_Programs.xlsx'
+    elif sys.argv[2] == 'te':  # Chemical Engineering
+        program_selection_path = file_path + \
+            '/database/TransportationEngineering/TE_Programs.xlsx'
     else:
         print("Please specify program group: cs ee me")
         sys.exit()
@@ -69,3 +73,5 @@ if __name__ == "__main__":
         DSBI_sorter(program_idx, sys.argv[1], 'DSBI')
     elif sys.argv[2] == 'mtl':
         MTL_sorter(program_idx, sys.argv[1], 'MTL')
+    elif sys.argv[2] == 'te':
+        TE_sorter(program_idx, sys.argv[1], 'TE')

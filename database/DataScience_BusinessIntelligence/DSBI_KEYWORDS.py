@@ -3,7 +3,7 @@ ANTI_KEY_WORDS = 1
 DIFFERENTIATE_KEY_WORDS = 2
 
 #################################################################################################################
-########################################## Mechanical Engineering ###############################################
+##################################### Data Science and Business Intelligence#####################################
 #################################################################################################################
 
 # TODO: defining the keywords in proper way (iterative steps: generating, and see result, if mssing, then add keywords/anti_keywords)
@@ -29,7 +29,7 @@ DSBI_OP_RESEARCH_KEY_WORDS = ['作業研究']
 DSBI_OP_RESEARCH_ANTI_KEY_WORDS = ['asdgladfj;l']
 DSBI_EP_RESEARCH_KEY_WORDS = ['觀察研究']
 DSBI_EP_RESEARCH_ANTI_KEY_WORDS = ['asdgladfj;l']
-DSBI_BASIC_CS_KEY_WORDS = ['計算機', '資料庫', '資料結構', '演算法']
+DSBI_BASIC_CS_KEY_WORDS = ['計算機', '資料庫', '資料結構', '演算法', '作業系統']
 DSBI_BASIC_CS_ANTI_KEY_WORDS = ['asdgladfj;l']
 DSBI_PROGRAMMING_KEY_WORDS = ['程式']
 DSBI_PROGRAMMING_ANTI_KEY_WORDS = ['asdgladfj;l']
@@ -41,7 +41,7 @@ USELESS_COURSES_KEY_WORDS = ['asdgladfj;l']
 USELESS_COURSES_ANTI_KEY_WORDS = ['asdgladfj;l']
 
 #################################################################################################################
-########################################## Mechanical Engineering English########################################
+##################################### Data Science and Business Intelligence English#############################
 #################################################################################################################
 
 # TODO: defining the keywords in proper way (iterative steps: generating, and see result, if mssing, then add keywords/anti_keywords)

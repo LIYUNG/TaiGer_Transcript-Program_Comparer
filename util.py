@@ -2,7 +2,8 @@ import pandas as pd
 from CourseSuggestionAlgorithms import *
 from cell_formatter import red_out_failed_subject, red_out_insufficient_credit
 import gc
-import sys, os
+import sys
+import os
 
 KEY_WORDS = 0
 ANTI_KEY_WORDS = 1
@@ -36,7 +37,7 @@ def ProgramCategoryInit(program_category):
 def CheckTemplateFormat(df_transcript):
     if '所修科目_中文' not in df_transcript.columns or '所修科目_英語' not in df_transcript.columns or '學分' not in df_transcript.columns or '成績' not in df_transcript.columns:
         print("Error: Please check the student's transcript xlsx file.")
-        print(" There must be 所修科目_中文, 所修科目_英文, 學分 and 成績 in student's course excel file.")
+        print(" There must be 所修科目_中文, 所修科目_英語, 學分 and 成績 in student's course excel file.")
         sys.exit()
 
 
@@ -47,7 +48,7 @@ def CheckDBFormat(df_database):
 
 
 def isOutputEnglish(df_transcript):
-    
+
     if ~df_transcript['所修科目_英語'].isnull().any():
         # output English version
         print("Output English Version")
@@ -61,6 +62,7 @@ def isOutputEnglish(df_transcript):
     print("所修科目_英語 所修科目_中文 學分 和 成績 not matcj. Please make sure you fill the template correctly")
     sys.exit()
 
+
 def DataPreparation(df_database, df_transcript):
     df_database['所有科目'] = df_database['所有科目'].fillna('-')
     if '所有科目_英語' in df_database.columns:
@@ -71,10 +73,14 @@ def DataPreparation(df_database, df_transcript):
     print("Prepared data successfully.")
     return df_database, df_transcript
 
+
 def Naming_Convention_ZH(df_course):
     # modify data in the same
     df_course['所修科目_中文'] = df_course['所修科目_中文'].fillna('-')
 
+
+    df_course['所修科目_中文'] = df_course['所修科目_中文'].str.replace(   
+    '+', '＋', regex=False)
     df_course['所修科目_中文'] = df_course['所修科目_中文'].str.replace(
         '1', '一', regex=False)
     df_course['所修科目_中文'] = df_course['所修科目_中文'].str.replace(
@@ -90,14 +96,18 @@ def Naming_Convention_ZH(df_course):
     df_course['所修科目_中文'] = df_course['所修科目_中文'].str.replace(
         '）', '', regex=False)
     df_course['所修科目_中文'] = df_course['所修科目_中文'].str.replace(
-        ' ', '', regex=False)    
+        ' ', '', regex=False)
     return df_course
 
+
 def Naming_Convention_EN(df_course):
-    ## English Version only:
+    # English Version only:
     df_course['所修科目_英語'] = df_course['所修科目_英語'].fillna('-')
 
     df_course['所修科目_英語'] = df_course['所修科目_英語'].str.lower()
+
+    df_course['所修科目_英語'] = df_course['所修科目_英語'].str.replace(
+        '+', '＋', regex=False)
 
     df_course['所修科目_英語'] = df_course['所修科目_英語'].str.replace(
         '(', '', regex=False)
@@ -149,12 +159,13 @@ def CourseSorting(df_transcript, df_category_data, transcript_sorted_group_map, 
                 df_category_data[idx2] = df_category_data[idx2].append(
                     temp, ignore_index=True)
                 continue
-            
+
             # filter subject by keywords. and exclude subject by anti_keywords
             if any(keywords in subj for keywords in transcript_sorted_group_map[cat][KEY_WORDS] if not any(anti_keywords in subj for anti_keywords in transcript_sorted_group_map[cat][ANTI_KEY_WORDS])):
                 temp_string = str(df_transcript['成績'][idx])
                 # failed subject not count
-                if((isfloat(temp_string) and float(temp_string) < 60 and float(temp_string) and float(temp_string)> 4.5)):
+                if((isfloat(temp_string) and float(temp_string) < 60 and float(temp_string) and float(temp_string) > 4.5) 
+                   or "Fail" in temp_string or "W" in temp_string or "F" in temp_string or "fail" in temp_string or "退選" in temp_string or "withdraw" in temp_string):
                     continue
                 temp = {cat: subj, '學分': df_transcript['學分'][idx],
                         '成績': df_transcript['成績'][idx]}

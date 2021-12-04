@@ -37,11 +37,9 @@ EE_ELECTRO_MAGNET_KEY_WORDS = ['電磁']
 EE_ELECTRO_MAGNET_ANTI_KEY_WORDS = ['asdgladfj;l', '專題', '進階']
 EE_POWER_ELECTRO_KEY_WORDS = ['電力', '能源', '電動機', '電機', '高壓電', '電傳輸', '配電']
 EE_POWER_ELECTRO_ANTI_KEY_WORDS = ['asdgladfj;l', '專題', '進階']
-EE_COMMUNICATION_KEY_WORDS = ['密碼學', '安全', '傳輸', '射頻',
-                              '網路', '無線', '通信', '通訊', '電波', '無線網路']
+EE_COMMUNICATION_KEY_WORDS = ['高頻', '天線', '微波', '密碼學', '安全', '傳輸', '射頻',
+                              '網路', '無線', '通信', '通訊', '電波', '無線網路', '消息']
 EE_COMMUNICATION_ANTI_KEY_WORDS = ['asdgladfj;l', '專題', '進階']
-EE_HF_RF_THEO_INFO_KEY_WORDS = ['微波', '高頻', '電磁波', '天線', '通道', '消息']
-EE_HF_RF_THEO_INFO_ANTI_KEY_WORDS = ['asdgladfj;l', '專題', '進階']
 EE_SEMICONDUCTOR_KEY_WORDS = ['半導體', '元件', '固態']
 EE_SEMICONDUCTOR_ANTI_KEY_WORDS = ['專題', '倫理', '素養']
 EE_ADVANCED_ELECTRO_KEY_WORDS = ['積體電路', '自動化',  '藍芽', '晶片', '類比', '數位訊號', '數位信號',
@@ -98,12 +96,9 @@ EE_ELECTRO_MAGNET_ANTI_KEY_WORDS_EN = ['asdgladfj;l', '專題', '進階']
 EE_POWER_ELECTRO_KEY_WORDS_EN = [
     'power', 'energy', '電動機', 'electrical machine', 'high voltage', 'transmission']
 EE_POWER_ELECTRO_ANTI_KEY_WORDS_EN = ['asdgladfj;l', '專題', '進階']
-EE_COMMUNICATION_KEY_WORDS_EN = ['microwave', 'crypto', 'security', 'radio frequ',
-                                 'network', 'wireless', 'communication', '通訊', '電波']
+EE_COMMUNICATION_KEY_WORDS_EN = ['high frequen', 'antenna', 'microwave', 'crypto', 'security', 'radio frequ',
+                                 'network', 'wireless', 'communication', '通訊', '電波', 'information theory']
 EE_COMMUNICATION_ANTI_KEY_WORDS_EN = ['asdgladfj;l', '專題', '進階']
-EE_HF_RF_THEO_INFO_KEY_WORDS_EN = [
-    'microwav', 'high frequen', 'electromagnetic wave' 'antenna', 'channel', 'information theory']
-EE_HF_RF_THEO_INFO_ANTI_KEY_WORDS_EN = ['asdgladfj;l', '專題', '進階']
 EE_SEMICONDUCTOR_KEY_WORDS_EN = ['semicondu', '元件', '固態']
 EE_SEMICONDUCTOR_ANTI_KEY_WORDS_EN = ['專題', 'ethnic', '素養']
 EE_ADVANCED_ELECTRO_KEY_WORDS_EN = ['integrated circuit', 'automation',  'bluetooth', 'chip', 'analog', 'digital', 'digital signal',

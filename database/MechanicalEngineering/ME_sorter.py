@@ -177,9 +177,8 @@ def TUM_MW(transcript_sorted_group_map, df_transcript_array, df_category_courses
     WriteToExcel(writer, program_name, program_category, program_category_map,
                  transcript_sorted_group_map, df_transcript_array_temp, df_category_courses_sugesstion_data_temp, column_len_array)
 
-# TODO
 
-
+# https://www.tuhh.de/t3resources/tuhh/download/studium/studieninteressierte/Fachspezifische_Kenntnisse_Master/fachspez._anforderungen_IMPMEC.pdf
 def TUHH_MECHATRONICS(transcript_sorted_group_map, df_transcript_array, df_category_courses_sugesstion_data, writer):
     program_name = 'TUHH_MECHATRONICS'
     print("Create " + program_name + " sheet")
@@ -573,8 +572,6 @@ def TUM_COMP_MECH(transcript_sorted_group_map, df_transcript_array, df_category_
                  transcript_sorted_group_map, df_transcript_array_temp, df_category_courses_sugesstion_data_temp, column_len_array)
 
 # FPSO: https://www.vm.tu-berlin.de/fileadmin/f5/FAKV_Dateien/StuBe_Maschinenbau/Master/Maschinenbau/AMBl._Nr._10_vom_29.03.2019.pdf
-
-
 def TUBerlin_ME(transcript_sorted_group_map, df_transcript_array, df_category_courses_sugesstion_data, writer):
     program_name = 'TUBerlin_ME'
     print("Create " + program_name + " sheet")
