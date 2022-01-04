@@ -25,7 +25,7 @@ def ProgramCategoryInit(program_category):
     df_PROG_SPEC_CATES_COURSES_SUGGESTION = []
     for idx, cat in enumerate(program_category):
         PROG_SPEC_CAT = {cat['Program_Category']: [],
-                         '學分': [], '成績': [], 'Required_CP': cat['Required_CP']}
+                         '學分': [], '成績': [], 'Required_ECTS': cat['Required_ECTS']}
         PROG_SPEC_CATES_COURSES_SUGGESTION = {cat['Program_Category']: [],
                                               }
         df_PROG_SPEC_CATES.append(pd.DataFrame(data=PROG_SPEC_CAT))
@@ -78,9 +78,8 @@ def Naming_Convention_ZH(df_course):
     # modify data in the same
     df_course['所修科目_中文'] = df_course['所修科目_中文'].fillna('-')
 
-
-    df_course['所修科目_中文'] = df_course['所修科目_中文'].str.replace(   
-    '+', '＋', regex=False)
+    df_course['所修科目_中文'] = df_course['所修科目_中文'].str.replace(
+        '+', '＋', regex=False)
     df_course['所修科目_中文'] = df_course['所修科目_中文'].str.replace(
         '1', '一', regex=False)
     df_course['所修科目_中文'] = df_course['所修科目_中文'].str.replace(
@@ -164,7 +163,7 @@ def CourseSorting(df_transcript, df_category_data, transcript_sorted_group_map, 
             if any(keywords in subj for keywords in transcript_sorted_group_map[cat][KEY_WORDS] if not any(anti_keywords in subj for anti_keywords in transcript_sorted_group_map[cat][ANTI_KEY_WORDS])):
                 temp_string = str(df_transcript['成績'][idx])
                 # failed subject not count
-                if((isfloat(temp_string) and float(temp_string) < 60 and float(temp_string) and float(temp_string) > 4.5) 
+                if((isfloat(temp_string) and float(temp_string) < 60 and float(temp_string) and float(temp_string) > 4.5)
                    or "Fail" in temp_string or "W" in temp_string or "F" in temp_string or "fail" in temp_string or "退選" in temp_string or "withdraw" in temp_string):
                     continue
                 temp = {cat: subj, '學分': df_transcript['學分'][idx],
@@ -198,8 +197,13 @@ def DatabaseCourseSorting(df_database, df_category_courses_sugesstion_data, tran
 
 def AppendCreditsCount(df_PROG_SPEC_CATES, program_category):
     for idx, trans_cat in enumerate(df_PROG_SPEC_CATES):
-        category_credits_sum = {'學分': df_PROG_SPEC_CATES[idx]['學分'].sum(
-        ), 'Required_CP': program_category[idx]['Required_CP']}
+        credit_sum = df_PROG_SPEC_CATES[idx]['學分'].sum()
+        category_credits_sum = {
+            trans_cat.columns[0]: "sum", '學分': credit_sum}
+        df_PROG_SPEC_CATES[idx] = df_PROG_SPEC_CATES[idx].append(
+            category_credits_sum, ignore_index=True)
+        category_credits_sum = {trans_cat.columns[0]: "ECTS轉換", '學分': 1.5 *
+                                credit_sum, 'Required_ECTS': program_category[idx]['Required_ECTS']}
         df_PROG_SPEC_CATES[idx] = df_PROG_SPEC_CATES[idx].append(
             category_credits_sum, ignore_index=True)
     return df_PROG_SPEC_CATES
@@ -369,7 +373,7 @@ def Classifier(program_idx, file_path, abbrev, env_file_path, basic_classificati
         # set the column length
         worksheet.set_column(i, i, column_len_array[i] * 2)
 
-    # Modify to column width for "Required_CP"
+    # Modify to column width for "Required_ECTS"
     column_len_array.append(6)
 
     for idx in program_idx:

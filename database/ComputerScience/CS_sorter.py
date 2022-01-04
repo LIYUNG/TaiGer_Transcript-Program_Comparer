@@ -30,33 +30,33 @@ def TUM_CS(transcript_sorted_group_map, df_transcript_array, df_category_courses
     # Create transcript_sorted_group to program_category mapping
     # https://campus.tum.de/tumonline/wbLv.wbShowLVDetail?pStpSpNr=950159179&pSpracheNr=2
     PROG_SPEC_INTRO_INFO_PARAM = {
-        'Program_Category': 'Introduction_to_Informatics', 'Required_CP': 12}
+        'Program_Category': 'Introduction_to_Informatics', 'Required_ECTS': 12}
     PROG_SPEC_COMP_ARCH_PARAM = {
-        'Program_Category': 'Computer Architecture', 'Required_CP': 16}  # Computer Architecture: Organization and Technology
+        'Program_Category': 'Computer Architecture', 'Required_ECTS': 16}  # Computer Architecture: Organization and Technology
     PROG_SPEC_SWE_PARAM = {
-        'Program_Category': 'Software_Engineering', 'Required_CP': 6}
+        'Program_Category': 'Software_Engineering', 'Required_ECTS': 6}
     PROG_SPEC_DB_PARAM = {
-        'Program_Category': 'Databases', 'Required_CP': 6}
+        'Program_Category': 'Databases', 'Required_ECTS': 6}
     PROG_SPEC_OS_PARAM = {
-        'Program_Category': 'Operating_Systems', 'Required_CP': 6}  # Operating Systems and System Software
+        'Program_Category': 'Operating_Systems', 'Required_ECTS': 6}  # Operating Systems and System Software
     PROG_SPEC_COMP_NETW_MODULE_PARAM = {
-        'Program_Category': 'Computer Network', 'Required_CP': 6}   # Computer Networks, Distributed Systems
+        'Program_Category': 'Computer Network', 'Required_ECTS': 6}   # Computer Networks, Distributed Systems
     PROG_SPEC_FUNC_PROG_MODULE_PARAM = {
-        'Program_Category': 'Functional_Programming', 'Required_CP': 5}
+        'Program_Category': 'Functional_Programming', 'Required_ECTS': 5}
     PROG_SPEC_ALGOR_DATA_STRUC_MODULE_PARAM = {
-        'Program_Category': 'Algorithms_Data_Structures', 'Required_CP': 6}
+        'Program_Category': 'Algorithms_Data_Structures', 'Required_ECTS': 6}
     PROG_SPEC_THEORY_COMP_MODULE_PARAM = {
-        'Program_Category': 'Theory_of_Computation', 'Required_CP': 8}
+        'Program_Category': 'Theory_of_Computation', 'Required_ECTS': 8}
     PROG_SPEC_DISCRETE_STRUCTURE_MODULE_PARAM = {
-        'Program_Category': 'Discrete_Structures', 'Required_CP': 8}
+        'Program_Category': 'Discrete_Structures', 'Required_ECTS': 8}
     PROG_SPEC_LINEAR_ALGEBRA_MODULE_PARAM = {
-        'Program_Category': 'Linear_Algebra', 'Required_CP': 8}
+        'Program_Category': 'Linear_Algebra', 'Required_ECTS': 8}
     PROG_SPEC_CALCULUS_MODULE_PARAM = {
-        'Program_Category': 'Analysis_Calculus', 'Required_CP': 8}
+        'Program_Category': 'Analysis_Calculus', 'Required_ECTS': 8}
     PROG_SPEC_DISCRETE_PROB_MODULE_PARAM = {
-        'Program_Category': 'Discrete_Probability_Theory', 'Required_CP': 6}
+        'Program_Category': 'Discrete_Probability_Theory', 'Required_ECTS': 6}
     PROG_SPEC_OTHERS = {
-        'Program_Category': 'Others', 'Required_CP': 0}
+        'Program_Category': 'Others', 'Required_ECTS': 0}
 
     # This fixed to program course category.
     program_category = [
@@ -97,6 +97,8 @@ def TUM_CS(transcript_sorted_group_map, df_transcript_array, df_category_courses
         PROG_SPEC_CALCULUS_MODULE_PARAM,  # 微積分 分析
         PROG_SPEC_DISCRETE_PROB_MODULE_PARAM,  # 機率
         PROG_SPEC_OTHERS,  # 進階資工
+        PROG_SPEC_OTHERS,  # 物理化學資工工程
+        PROG_SPEC_OTHERS,  # 商管經
         PROG_SPEC_OTHERS,  # 其他
     ]
 
@@ -132,39 +134,39 @@ def RWTH_DATA_SCIENCE(transcript_sorted_group_map, df_transcript_array, df_categ
 
     # Create transcript_sorted_group to program_category mapping
     PROG_SPEC_PROGRAMMING_PARAM = {
-        'Program_Category': 'Programming', 'Required_CP': 8}
+        'Program_Category': 'Programming', 'Required_ECTS': 8}
     PROG_SPEC_ALGOR_DATA_STRUC_MODULE_PARAM = {
-        'Program_Category': 'Algorithms_Data_Structures', 'Required_CP': 8}
+        'Program_Category': 'Algorithms_Data_Structures', 'Required_ECTS': 8}
     PROG_SPEC_DB_PARAM = {
-        'Program_Category': 'Databases and Info-system', 'Required_CP': 6}
+        'Program_Category': 'Databases and Info-system', 'Required_ECTS': 6}
     PROG_SPEC_SWE_PARAM = {
-        'Program_Category': 'Software_Engineering', 'Required_CP': 6}
+        'Program_Category': 'Software_Engineering', 'Required_ECTS': 6}
 
     # https://embedded.rwth-aachen.de/doku.php?id=lehre:wise0910:technische_informatik
     PROG_SPEC_INTRO_INFO_PARAM = {
-        'Program_Category': 'Introduction_to_Technical_Informatics', 'Required_CP': 6}  # 邏輯設計，基礎電機電子!!
+        'Program_Category': 'Introduction_to_Technical_Informatics', 'Required_ECTS': 6}  # 邏輯設計，基礎電機電子!!
     PROG_SPEC_OS_PARAM = {
-        'Program_Category': 'Operating_Systems', 'Required_CP': 6}  # Operating Systems and System Software
+        'Program_Category': 'Operating_Systems', 'Required_ECTS': 6}  # Operating Systems and System Software
     PROG_SPEC_COMP_NETW_MODULE_PARAM = {
-        'Program_Category': 'Computer Network', 'Required_CP': 6}   # Computer Networks, Distributed Systems
+        'Program_Category': 'Computer Network', 'Required_ECTS': 6}   # Computer Networks, Distributed Systems
 
     PROG_SPEC_FORMAL_AUTOMATEN_PARAM = {
-        'Program_Category': 'Formal System, Aubstract machine and Process', 'Required_CP': 6}
+        'Program_Category': 'Formal System, Aubstract machine and Process', 'Required_ECTS': 6}
     PROG_SPEC_COMPU_COMPLEXITY_PARAM = {
-        'Program_Category': 'Computability and Complexity', 'Required_CP': 6}
+        'Program_Category': 'Computability and Complexity', 'Required_ECTS': 6}
     PROG_SPEC_MATH_LOGIC_PARAM = {
-        'Program_Category': 'Mathematical Logic', 'Required_CP': 6}
+        'Program_Category': 'Mathematical Logic', 'Required_ECTS': 6}
 
     PROG_SPEC_DISCRETE_STRUCTURE_MODULE_PARAM = {
-        'Program_Category': 'Discrete_Structures', 'Required_CP': 6}
+        'Program_Category': 'Discrete_Structures', 'Required_ECTS': 6}
     PROG_SPEC_ANALYSIS_INFORMATIKER_PARAM = {
-        'Program_Category': 'Analysis for Informatiker', 'Required_CP': 8}  # calculus
+        'Program_Category': 'Analysis for Informatiker', 'Required_ECTS': 8}  # calculus
     PROG_SPEC_LINEAR_ALGEBRA_MODULE_PARAM = {
-        'Program_Category': 'Linear_Algebra', 'Required_CP': 6}
+        'Program_Category': 'Linear_Algebra', 'Required_ECTS': 6}
     PROG_SPEC_STOCHASTIK_PARAM = {
-        'Program_Category': 'Stochastics', 'Required_CP': 6}
+        'Program_Category': 'Stochastics', 'Required_ECTS': 6}
     PROG_SPEC_OTHERS = {
-        'Program_Category': 'Others', 'Required_CP': 0}
+        'Program_Category': 'Others', 'Required_ECTS': 0}
 
     # This fixed to program course category.
     program_category = [
@@ -206,6 +208,8 @@ def RWTH_DATA_SCIENCE(transcript_sorted_group_map, df_transcript_array, df_categ
         PROG_SPEC_ANALYSIS_INFORMATIKER_PARAM,  # 微積分 分析
         PROG_SPEC_STOCHASTIK_PARAM,  # 機率
         PROG_SPEC_OTHERS,  # 進階資工
+        PROG_SPEC_OTHERS,  # 物理化學資工工程
+        PROG_SPEC_OTHERS,  # 商管經
         PROG_SPEC_OTHERS,  # 其他
     ]
 
@@ -240,21 +244,21 @@ def FU_BERLIN_DATA_SCIENCE(transcript_sorted_group_map, df_transcript_array, df_
 
     # Create transcript_sorted_group to program_category mapping
     PROG_SPEC_PROGRAMMING_PARAM = {
-        'Program_Category': 'Programming', 'Required_CP': 5}
+        'Program_Category': 'Programming', 'Required_ECTS': 5}
     PROG_SPEC_DS_ALGO_PARAM = {
-        'Program_Category': 'Data Structure and Algorithm', 'Required_CP': 5}
+        'Program_Category': 'Data Structure and Algorithm', 'Required_ECTS': 5}
     PROG_SPEC_DISCRETE_STRUCTURE_MODULE_PARAM = {
-        'Program_Category': 'Discrete_Structures', 'Required_CP': 5}  # 離散
+        'Program_Category': 'Discrete_Structures', 'Required_ECTS': 5}  # 離散
     PROG_SPEC_ANALYSIS_INFORMATIKER_PARAM = {
-        'Program_Category': 'Analysis for Informatiker', 'Required_CP': 5}  # calculus
+        'Program_Category': 'Analysis for Informatiker', 'Required_ECTS': 5}  # calculus
     PROG_SPEC_LINEAR_ALGEBRA_MODULE_PARAM = {
-        'Program_Category': 'Linear_Algebra', 'Required_CP': 5}
+        'Program_Category': 'Linear_Algebra', 'Required_ECTS': 5}
     PROG_SPEC_PROBABILITY_PARAM = {
-        'Program_Category': 'Probability and Statistics', 'Required_CP': 5}
+        'Program_Category': 'Probability and Statistics', 'Required_ECTS': 5}
     PROG_SPEC_CS_MODULE_PARAM = {
-        'Program_Category': 'Computer Science Module', 'Required_CP': 10}
+        'Program_Category': 'Computer Science Module', 'Required_ECTS': 10}
     PROG_SPEC_OTHERS = {
-        'Program_Category': 'Others', 'Required_CP': 0}
+        'Program_Category': 'Others', 'Required_ECTS': 0}
 
     # This fixed to program course category.
     program_category = [
@@ -289,6 +293,8 @@ def FU_BERLIN_DATA_SCIENCE(transcript_sorted_group_map, df_transcript_array, df_
         PROG_SPEC_ANALYSIS_INFORMATIKER_PARAM,  # 微積分 分析
         PROG_SPEC_PROBABILITY_PARAM,  # 機率
         PROG_SPEC_CS_MODULE_PARAM,  # 進階資工
+        PROG_SPEC_OTHERS,  # 物理化學資工工程
+        PROG_SPEC_OTHERS,  # 商管經
         PROG_SPEC_OTHERS,  # 其他
     ]
 
@@ -324,17 +330,17 @@ def TU_BERLIN_COMPUTER_SCIENCE(transcript_sorted_group_map, df_transcript_array,
 
     # Create transcript_sorted_group to program_category mapping
     PROG_SPEC_THEORETICAL_INFO_PARAM = {
-        'Program_Category': 'Theoretical Informatics', 'Required_CP': 12}  #
+        'Program_Category': 'Theoretical Informatics', 'Required_ECTS': 12}  #
     PROG_SPEC_TECHNICAL_INFO_PARAM = {
-        'Program_Category': 'Technical Informatics', 'Required_CP': 12}
+        'Program_Category': 'Technical Informatics', 'Required_ECTS': 12}
     PROG_SPEC_METHO_PRACTICAL_INFO_PARAM = {
-        'Program_Category': 'Methodological-practical Informatics', 'Required_CP': 12}
+        'Program_Category': 'Methodological-practical Informatics', 'Required_ECTS': 12}
     PROG_SPEC_MATH_PARAM = {
-        'Program_Category': 'Mathematics', 'Required_CP': 18}  # 數學
+        'Program_Category': 'Mathematics', 'Required_ECTS': 18}  # 數學
     PROG_SPEC_ADVANCED_INFO_PARAM = {
-        'Program_Category': 'Advanced course of Informatics', 'Required_CP': 30}  #
+        'Program_Category': 'Advanced course of Informatics', 'Required_ECTS': 30}  #
     PROG_SPEC_OTHERS = {
-        'Program_Category': 'Others', 'Required_CP': 0}
+        'Program_Category': 'Others', 'Required_ECTS': 0}
 
     # This fixed to program course category.
     program_category = [
@@ -367,6 +373,8 @@ def TU_BERLIN_COMPUTER_SCIENCE(transcript_sorted_group_map, df_transcript_array,
         PROG_SPEC_MATH_PARAM,  # 微積分 分析
         PROG_SPEC_MATH_PARAM,  # 機率
         PROG_SPEC_ADVANCED_INFO_PARAM,  # 進階資工
+        PROG_SPEC_OTHERS,  # 物理化學資工工程
+        PROG_SPEC_OTHERS,  # 商管經
         PROG_SPEC_OTHERS,  # 其他
     ]
 
@@ -402,31 +410,31 @@ def TUM_DATA_ENGINEERING_ANALYTICS(transcript_sorted_group_map, df_transcript_ar
 
     # Create transcript_sorted_group to program_category mapping
     PROG_SPEC_INTRO_INFO_PARAM = {
-        'Program_Category': 'Introduction_to_Informatics', 'Required_CP': 12}
+        'Program_Category': 'Introduction_to_Informatics', 'Required_ECTS': 12}
     PROG_SPEC_DB_PARAM = {
-        'Program_Category': 'Databases', 'Required_CP': 6}
+        'Program_Category': 'Databases', 'Required_ECTS': 6}
     PROG_SPEC_COMP_ARCH_PARAM = {
-        'Program_Category': 'Computer Architecture', 'Required_CP': 8}  # Computer Architecture: Organization and Technology
+        'Program_Category': 'Computer Architecture', 'Required_ECTS': 8}  # Computer Architecture: Organization and Technology
     PROG_SPEC_SWE_PARAM = {
-        'Program_Category': 'Software_Engineering', 'Required_CP': 6}
+        'Program_Category': 'Software_Engineering', 'Required_ECTS': 6}
     PROG_SPEC_OS_PARAM = {
-        'Program_Category': 'Operating_Systems', 'Required_CP': 6}  # Operating Systems and System Software
+        'Program_Category': 'Operating_Systems', 'Required_ECTS': 6}  # Operating Systems and System Software
     PROG_SPEC_COMP_NETW_MODULE_PARAM = {
-        'Program_Category': 'Computer Network', 'Required_CP': 6}   # Computer Networks, Distributed Systems
+        'Program_Category': 'Computer Network', 'Required_ECTS': 6}   # Computer Networks, Distributed Systems
     PROG_SPEC_ALGOR_DATA_STRUC_MODULE_PARAM = {
-        'Program_Category': 'Algorithms_Data_Structures', 'Required_CP': 6}
+        'Program_Category': 'Algorithms_Data_Structures', 'Required_ECTS': 6}
     PROG_SPEC_THEORY_COMP_MODULE_PARAM = {
-        'Program_Category': 'Theory_of_Computation', 'Required_CP': 8}
+        'Program_Category': 'Theory_of_Computation', 'Required_ECTS': 8}
     PROG_SPEC_DISCRETE_STRUCTURE_MODULE_PARAM = {
-        'Program_Category': 'Discrete_Structures', 'Required_CP': 8}
+        'Program_Category': 'Discrete_Structures', 'Required_ECTS': 8}
     PROG_SPEC_LINEAR_ALGEBRA_MODULE_PARAM = {
-        'Program_Category': 'Linear_Algebra', 'Required_CP': 8}
+        'Program_Category': 'Linear_Algebra', 'Required_ECTS': 8}
     PROG_SPEC_CALCULUS_MODULE_PARAM = {
-        'Program_Category': 'Analysis_Calculus', 'Required_CP': 8}
+        'Program_Category': 'Analysis_Calculus', 'Required_ECTS': 8}
     PROG_SPEC_DISCRETE_PROB_MODULE_PARAM = {
-        'Program_Category': 'Discrete_Probability_Theory', 'Required_CP': 6}
+        'Program_Category': 'Discrete_Probability_Theory', 'Required_ECTS': 6}
     PROG_SPEC_OTHERS = {
-        'Program_Category': 'Others', 'Required_CP': 0}
+        'Program_Category': 'Others', 'Required_ECTS': 0}
 
     # This fixed to program course category.
     program_category = [
@@ -466,6 +474,8 @@ def TUM_DATA_ENGINEERING_ANALYTICS(transcript_sorted_group_map, df_transcript_ar
         PROG_SPEC_CALCULUS_MODULE_PARAM,  # 微積分 分析
         PROG_SPEC_DISCRETE_PROB_MODULE_PARAM,  # 機率
         PROG_SPEC_OTHERS,  # 進階資工
+        PROG_SPEC_OTHERS,  # 物理化學資工工程
+        PROG_SPEC_OTHERS,  # 商管經
         PROG_SPEC_OTHERS,  # 其他
     ]
 
@@ -500,18 +510,18 @@ def TU_Delft_CS(transcript_sorted_group_map, df_transcript_array, df_category_co
 
     # Create transcript_sorted_group to program_category mapping
     PROG_SPEC_MATH_MODEL_PARAM = {
-        'Program_Category': 'Mathematics and Modelling', 'Required_CP': 15}  # Calculus, Linear Algebra, Probability Theory and Statistics
+        'Program_Category': 'Mathematics and Modelling', 'Required_ECTS': 15}  # Calculus, Linear Algebra, Probability Theory and Statistics
     PROG_SPEC_SW_BASIC_PARAM = {
         # Object Oriented Programming, Software Quality and Testing, Software Engineering Methods, Concepts of Programming Languages, Object Oriented Programming Project, Software Project
-        'Program_Category': 'Software Development Fundamentals', 'Required_CP': 30}
+        'Program_Category': 'Software Development Fundamentals', 'Required_ECTS': 30}
     PROG_SPEC_COMP_SYS_PARAM = {
-        'Program_Category': 'Computer Systems', 'Required_CP': 10}  # Computer Organisation, Computer Networks
+        'Program_Category': 'Computer Systems', 'Required_ECTS': 10}  # Computer Organisation, Computer Networks
     PROG_SPEC_FUNDAMENTAL_CS_PARAM = {
-        'Program_Category': 'Fundamental Computer Science', 'Required_CP': 15}  # Logic, Algorithms and Data Structures, Algorithm Design, Computability
+        'Program_Category': 'Fundamental Computer Science', 'Required_ECTS': 15}  # Logic, Algorithms and Data Structures, Algorithm Design, Computability
     PROG_SPEC_DATA_INFO_SYS_PARAM = {
-        'Program_Category': 'Data and Information Systems', 'Required_CP': 15}  # Machine Learning, Data Management, Web- & Database Technology
+        'Program_Category': 'Data and Information Systems', 'Required_ECTS': 15}  # Machine Learning, Data Management, Web- & Database Technology
     PROG_SPEC_OTHERS = {
-        'Program_Category': 'Others', 'Required_CP': 0}
+        'Program_Category': 'Others', 'Required_ECTS': 0}
 
     # This fixed to program course category.
     program_category = [
@@ -544,6 +554,226 @@ def TU_Delft_CS(transcript_sorted_group_map, df_transcript_array, df_category_co
         PROG_SPEC_MATH_MODEL_PARAM,  # 微積分 分析
         PROG_SPEC_MATH_MODEL_PARAM,  # 機率
         PROG_SPEC_DATA_INFO_SYS_PARAM,  # 進階資工
+        PROG_SPEC_OTHERS,  # 物理化學資工工程
+        PROG_SPEC_OTHERS,  # 商管經
+        PROG_SPEC_OTHERS,  # 其他
+    ]
+
+    # Development check
+    if len(program_category_map) != len(df_transcript_array):
+        print("program_category_map size: " + str(len(program_category_map)))
+        print("df_transcript_array size:  " + str(len(df_transcript_array)))
+        print("Please check the number of program_category_map again!")
+        sys.exit()
+
+    #####################################################################
+    ####################### End #########################################
+    #####################################################################
+
+    WriteToExcel(writer, program_name, program_category, program_category_map,
+                 transcript_sorted_group_map, df_transcript_array_temp, df_category_courses_sugesstion_data_temp, column_len_array)
+
+
+# Requirement:
+def RWTH_DDS(transcript_sorted_group_map, df_transcript_array, df_category_courses_sugesstion_data, writer):
+    program_name = 'RWTH_DDS'
+    print("Create " + program_name + " sheet")
+    df_transcript_array_temp = []
+    df_category_courses_sugesstion_data_temp = []
+    for idx, df in enumerate(df_transcript_array):
+        df_transcript_array_temp.append(df.copy())
+    for idx, df in enumerate(df_category_courses_sugesstion_data):
+        df_category_courses_sugesstion_data_temp.append(df.copy())
+    #####################################################################
+    ############## Program Specific Parameters ##########################
+    #####################################################################
+
+    # Create transcript_sorted_group to program_category mapping
+    PROG_SPEC_MATH_PARAM = {
+        'Program_Category': 'Mathematics and Statistics', 'Required_ECTS': 15}  # Calculus, Linear Algebra, Probability Theory and Statistics
+    PROG_SPEC_NS_INFO_ENG_PARAM = {
+        # natural science, Informatik, Engineering
+        'Program_Category': 'Natural Science, CS, Engineering', 'Required_ECTS': 125}
+    PROG_SPEC_OTHERS = {
+        'Program_Category': 'Others', 'Required_ECTS': 0}
+
+    # This fixed to program course category.
+    program_category = [
+        PROG_SPEC_MATH_PARAM,  # 數學
+        PROG_SPEC_NS_INFO_ENG_PARAM,  # Natural Science, Informatik, Engineering
+        PROG_SPEC_OTHERS  # 其他
+    ]
+
+    # Mapping table: same dimension as transcript_sorted_group/ The length depends on how fine the transcript is classified
+    program_category_map = [
+        PROG_SPEC_NS_INFO_ENG_PARAM,  # 計算機概論
+        PROG_SPEC_NS_INFO_ENG_PARAM,  # 基礎電機電子
+        PROG_SPEC_NS_INFO_ENG_PARAM,  # 程式設計
+        PROG_SPEC_NS_INFO_ENG_PARAM,  # computer architecture
+        PROG_SPEC_NS_INFO_ENG_PARAM,  # software engineering
+        PROG_SPEC_NS_INFO_ENG_PARAM,  # 資料庫
+        PROG_SPEC_NS_INFO_ENG_PARAM,  # 作業系統
+        PROG_SPEC_NS_INFO_ENG_PARAM,  # 電腦網路
+        PROG_SPEC_NS_INFO_ENG_PARAM,  # 數理邏輯
+        PROG_SPEC_NS_INFO_ENG_PARAM,  # 正規方法
+        PROG_SPEC_NS_INFO_ENG_PARAM,  # 函數程式
+        PROG_SPEC_NS_INFO_ENG_PARAM,  # 演算法 資料結構
+        PROG_SPEC_NS_INFO_ENG_PARAM,  # 可運算度 複雜度
+        PROG_SPEC_MATH_PARAM,  # 離散
+        PROG_SPEC_MATH_PARAM,  # 線性代數
+        PROG_SPEC_MATH_PARAM,  # 微積分 分析
+        PROG_SPEC_MATH_PARAM,  # 機率
+        PROG_SPEC_NS_INFO_ENG_PARAM,  # 進階資工
+        PROG_SPEC_NS_INFO_ENG_PARAM,  # 物理化學工程
+        PROG_SPEC_OTHERS,  # 商管經
+        PROG_SPEC_OTHERS,  # 其他
+    ]
+
+    # Development check
+    if len(program_category_map) != len(df_transcript_array):
+        print("program_category_map size: " + str(len(program_category_map)))
+        print("df_transcript_array size:  " + str(len(df_transcript_array)))
+        print("Please check the number of program_category_map again!")
+        sys.exit()
+
+    #####################################################################
+    ####################### End #########################################
+    #####################################################################
+
+    WriteToExcel(writer, program_name, program_category, program_category_map,
+                 transcript_sorted_group_map, df_transcript_array_temp, df_category_courses_sugesstion_data_temp, column_len_array)
+
+
+# Requirement:
+def RWTH_TIME(transcript_sorted_group_map, df_transcript_array, df_category_courses_sugesstion_data, writer):
+    program_name = 'RWTH_TIME'
+    print("Create " + program_name + " sheet")
+    df_transcript_array_temp = []
+    df_category_courses_sugesstion_data_temp = []
+    for idx, df in enumerate(df_transcript_array):
+        df_transcript_array_temp.append(df.copy())
+    for idx, df in enumerate(df_category_courses_sugesstion_data):
+        df_category_courses_sugesstion_data_temp.append(df.copy())
+    #####################################################################
+    ############## Program Specific Parameters ##########################
+    #####################################################################
+
+    # Create transcript_sorted_group to program_category mapping
+    PROG_SPEC_MATH_PARAM = {
+        'Program_Category': 'Mathematics and Statistics', 'Required_ECTS': 16}  # Calculus, Linear Algebra, Probability Theory and Statistics
+    PROG_SPEC_NS_INFO_ENG_PARAM = {
+        # natural science, Informatik, Engineering
+        'Program_Category': 'Natural Science, CS, Engineering', 'Required_ECTS': 125}
+    PROG_SPEC_BA_BI_PARAM = {
+        # BA, BI
+        'Program_Category': 'BI BA', 'Required_ECTS': 10}
+    PROG_SPEC_OTHERS = {
+        'Program_Category': 'Others', 'Required_ECTS': 0}
+
+    # This fixed to program course category.
+    program_category = [
+        PROG_SPEC_MATH_PARAM,  # 數學
+        PROG_SPEC_NS_INFO_ENG_PARAM,  # natural science Informatik, Engineering
+        PROG_SPEC_BA_BI_PARAM,  # BA, BI,
+        PROG_SPEC_OTHERS  # 其他
+    ]
+
+    # Mapping table: same dimension as transcript_sorted_group/ The length depends on how fine the transcript is classified
+    program_category_map = [
+        PROG_SPEC_NS_INFO_ENG_PARAM,  # 計算機概論
+        PROG_SPEC_NS_INFO_ENG_PARAM,  # 基礎電機電子
+        PROG_SPEC_NS_INFO_ENG_PARAM,  # 程式設計
+        PROG_SPEC_NS_INFO_ENG_PARAM,  # computer architecture
+        PROG_SPEC_NS_INFO_ENG_PARAM,  # software engineering
+        PROG_SPEC_NS_INFO_ENG_PARAM,  # 資料庫
+        PROG_SPEC_NS_INFO_ENG_PARAM,  # 作業系統
+        PROG_SPEC_NS_INFO_ENG_PARAM,  # 電腦網路
+        PROG_SPEC_NS_INFO_ENG_PARAM,  # 數理邏輯
+        PROG_SPEC_NS_INFO_ENG_PARAM,  # 正規方法
+        PROG_SPEC_NS_INFO_ENG_PARAM,  # 函數程式
+        PROG_SPEC_NS_INFO_ENG_PARAM,  # 演算法 資料結構
+        PROG_SPEC_NS_INFO_ENG_PARAM,  # 可運算度 複雜度
+        PROG_SPEC_MATH_PARAM,  # 離散
+        PROG_SPEC_MATH_PARAM,  # 線性代數
+        PROG_SPEC_MATH_PARAM,  # 微積分 分析
+        PROG_SPEC_MATH_PARAM,  # 機率
+        PROG_SPEC_NS_INFO_ENG_PARAM,  # 進階資工
+        PROG_SPEC_NS_INFO_ENG_PARAM,  # 物理化學工程
+        PROG_SPEC_BA_BI_PARAM,  # 商管經
+        PROG_SPEC_OTHERS,  # 其他
+    ]
+
+    # Development check
+    if len(program_category_map) != len(df_transcript_array):
+        print("program_category_map size: " + str(len(program_category_map)))
+        print("df_transcript_array size:  " + str(len(df_transcript_array)))
+        print("Please check the number of program_category_map again!")
+        sys.exit()
+
+    #####################################################################
+    ####################### End #########################################
+    #####################################################################
+
+    WriteToExcel(writer, program_name, program_category, program_category_map,
+                 transcript_sorted_group_map, df_transcript_array_temp, df_category_courses_sugesstion_data_temp, column_len_array)
+
+
+# Requirement:
+def UNI_GOETTINGEN_APPLIED_CS(transcript_sorted_group_map, df_transcript_array, df_category_courses_sugesstion_data, writer):
+    program_name = 'UNI_GOETTINGEN_APPLIED_CS'
+    print("Create " + program_name + " sheet")
+    df_transcript_array_temp = []
+    df_category_courses_sugesstion_data_temp = []
+    for idx, df in enumerate(df_transcript_array):
+        df_transcript_array_temp.append(df.copy())
+    for idx, df in enumerate(df_category_courses_sugesstion_data):
+        df_category_courses_sugesstion_data_temp.append(df.copy())
+    #####################################################################
+    ############## Program Specific Parameters ##########################
+    #####################################################################
+
+    # Create transcript_sorted_group to program_category mapping
+    PROG_SPEC_INFO_PARAM = {
+        'Program_Category': 'Fundamental CS', 'Required_ECTS': 16}  # Calculus, Linear Algebra, Probability Theory and Statistics
+    PROG_SPEC_MATH_NS_ENG_PARAM = {
+        # natural science, Engineering
+        'Program_Category': 'Mathematics, Natural Science or Engineering', 'Required_ECTS': 15}
+    PROG_SPEC_ADV_CS_MATH_PARAM = {
+        # BA, BI
+        'Program_Category': 'Advanced CS and Math(can also be fundamental)', 'Required_ECTS': 15}
+    PROG_SPEC_OTHERS = {
+        'Program_Category': 'Others', 'Required_ECTS': 0}
+
+    # This fixed to program course category.
+    program_category = [
+        PROG_SPEC_INFO_PARAM,  # 數學
+        PROG_SPEC_MATH_NS_ENG_PARAM,  # natural science Informatik, Engineering
+        PROG_SPEC_ADV_CS_MATH_PARAM,  # BA, BI,
+        PROG_SPEC_OTHERS  # 其他
+    ]
+
+    # Mapping table: same dimension as transcript_sorted_group/ The length depends on how fine the transcript is classified
+    program_category_map = [
+        PROG_SPEC_INFO_PARAM,  # 計算機概論
+        PROG_SPEC_MATH_NS_ENG_PARAM,  # 基礎電機電子
+        PROG_SPEC_INFO_PARAM,  # 程式設計
+        PROG_SPEC_INFO_PARAM,  # computer architecture
+        PROG_SPEC_INFO_PARAM,  # software engineering
+        PROG_SPEC_INFO_PARAM,  # 資料庫
+        PROG_SPEC_INFO_PARAM,  # 作業系統
+        PROG_SPEC_INFO_PARAM,  # 電腦網路
+        PROG_SPEC_INFO_PARAM,  # 數理邏輯
+        PROG_SPEC_ADV_CS_MATH_PARAM,  # 正規方法
+        PROG_SPEC_ADV_CS_MATH_PARAM,  # 函數程式
+        PROG_SPEC_INFO_PARAM,  # 演算法 資料結構
+        PROG_SPEC_ADV_CS_MATH_PARAM,  # 可運算度 複雜度
+        PROG_SPEC_MATH_NS_ENG_PARAM,  # 離散
+        PROG_SPEC_MATH_NS_ENG_PARAM,  # 線性代數
+        PROG_SPEC_MATH_NS_ENG_PARAM,  # 微積分 分析
+        PROG_SPEC_MATH_NS_ENG_PARAM,  # 機率
+        PROG_SPEC_ADV_CS_MATH_PARAM,  # 進階資工
+        PROG_SPEC_MATH_NS_ENG_PARAM,  # 物理化學工程
+        PROG_SPEC_OTHERS,  # 商管經
         PROG_SPEC_OTHERS,  # 其他
     ]
 
@@ -567,7 +797,10 @@ program_sort_function = [TUM_CS,
                          FU_BERLIN_DATA_SCIENCE,
                          TU_BERLIN_COMPUTER_SCIENCE,
                          TUM_DATA_ENGINEERING_ANALYTICS,
-                         TU_Delft_CS]
+                         TU_Delft_CS,
+                         RWTH_DDS,
+                         RWTH_TIME,
+                         UNI_GOETTINGEN_APPLIED_CS]
 
 
 def CS_sorter(program_idx, file_path, abbrev):
@@ -591,6 +824,8 @@ def CS_sorter(program_idx, file_path, abbrev):
         '微積分': [CS_CALCULUS_KEY_WORDS_EN, CS_CALCULUS_ANTI_KEY_WORDS_EN, ['一', '二']],
         '機率': [CS_MATH_PROB_KEY_WORDS_EN, CS_MATH_PROB_ANTI_KEY_WORDS_EN],
         '進階資工': [CS_ADVANCED_INFO_KEY_WORDS_EN, CS_ADVANCED_INFO_ANTI_KEY_WORDS_EN],
+        '物理化學工程': [CS_PHY_CHEM_NS_ENG_KEY_WORDS_EN, CS_PHY_CHEM_NS_ENG_ANTI_KEY_WORDS_EN],
+        '商管經': [CS_BA_BI_ENG_KEY_WORDS_EN, CS_BA_BI_ENG_ANTI_KEY_WORDS_EN],
         '其他': [USELESS_COURSES_KEY_WORDS_EN, USELESS_COURSES_ANTI_KEY_WORDS_EN], }
 
     basic_classification_zh = {
@@ -612,6 +847,8 @@ def CS_sorter(program_idx, file_path, abbrev):
         '微積分': [CS_CALCULUS_KEY_WORDS, CS_CALCULUS_ANTI_KEY_WORDS, ['一', '二']],
         '機率': [CS_MATH_PROB_KEY_WORDS, CS_MATH_PROB_ANTI_KEY_WORDS],
         '進階資工': [CS_ADVANCED_INFO_KEY_WORDS, CS_ADVANCED_INFO_ANTI_KEY_WORDS],
+        '物理化學工程': [CS_PHY_CHEM_NS_ENG_KEY_WORDS, CS_PHY_CHEM_NS_ENG_ANTI_KEY_WORDS],
+        '商管經': [CS_BA_BI_ENG_KEY_WORDS, CS_BA_BI_ENG_ANTI_KEY_WORDS],
         '其他': [USELESS_COURSES_KEY_WORDS, USELESS_COURSES_ANTI_KEY_WORDS], }
 
     Classifier(program_idx, file_path, abbrev, env_file_path,

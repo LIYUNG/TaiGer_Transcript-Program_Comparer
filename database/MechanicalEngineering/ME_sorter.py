@@ -29,25 +29,25 @@ def RWTH_AUTO(transcript_sorted_group_map, df_transcript_array, df_category_cour
     # Create transcript_sorted_group to program_category mapping
 
     PROG_SPEC_MECHANIK_PARAM = {
-        'Program_Category': 'Mechanik', 'Required_CP': 18}
+        'Program_Category': 'Mechanik', 'Required_ECTS': 18}
     PROG_SPEC_MASCHINENGESTALTUNG_PARAM = {
-        'Program_Category': 'Maschinengestaltung', 'Required_CP': 13}
+        'Program_Category': 'Maschinengestaltung', 'Required_ECTS': 13}
     PROG_SPEC_THERMODYNAMIK_PARAM = {
-        'Program_Category': 'Thermodynamik', 'Required_CP': 7}
+        'Program_Category': 'Thermodynamik', 'Required_ECTS': 7}
     PROG_SPEC_WARMSTOFFUBERTRAGUNG_PARAM = {
-        'Program_Category': 'Wärm_und_Stoffübertragung', 'Required_CP': 6}
+        'Program_Category': 'Wärm_und_Stoffübertragung', 'Required_ECTS': 6}
     PROG_SPEC_WERKSTOFFKUNDE_PARAM = {
-        'Program_Category': 'Werkstoffkunde', 'Required_CP': 8}
+        'Program_Category': 'Werkstoffkunde', 'Required_ECTS': 8}
     PROG_SPEC_CONTROL_TECHNIQUE_PARAM = {
-        'Program_Category': 'Regelungstechnik', 'Required_CP': 6}
+        'Program_Category': 'Regelungstechnik', 'Required_ECTS': 6}
     PROG_SPEC_STROEMUNGSMECHANIK_PARAM = {
-        'Program_Category': 'Strömungsmechanik I', 'Required_CP': 6}
+        'Program_Category': 'Strömungsmechanik I', 'Required_ECTS': 6}
     PROG_SPEC_MATH_PARAM = {
-        'Program_Category': 'Höhere Mathematik', 'Required_CP': 17}
+        'Program_Category': 'Höhere Mathematik', 'Required_ECTS': 17}
     PROG_SPEC_FAHRZEUGTECHNIK_PARAM = {
-        'Program_Category': 'Fahrzeugtechnik', 'Required_CP': 22}
+        'Program_Category': 'Fahrzeugtechnik', 'Required_ECTS': 22}
     PROG_SPEC_OTHERS = {
-        'Program_Category': 'Others', 'Required_CP': 0}
+        'Program_Category': 'Others', 'Required_ECTS': 0}
 
     # This fixed to program course category.
     program_category = [
@@ -118,17 +118,17 @@ def TUM_MW(transcript_sorted_group_map, df_transcript_array, df_category_courses
 
     # Create transcript_sorted_group to program_category mapping
     PROG_SPEC_MATH_PARAM = {
-        'Program_Category': 'Höhere Mathematik 1,2,3', 'Required_CP': 19}
+        'Program_Category': 'Höhere Mathematik 1,2,3', 'Required_ECTS': 19}
     PROG_SPEC_MECHANIK_PARAM = {
-        'Program_Category': 'Technische Mechanik 1,2,3', 'Required_CP': 19}
+        'Program_Category': 'Technische Mechanik 1,2,3', 'Required_ECTS': 19}
     PROG_SPEC_MASCHINENELEMENTE_PARAM = {
-        'Program_Category': 'Maschinenelemente 1,2', 'Required_CP': 15}
+        'Program_Category': 'Maschinenelemente 1,2', 'Required_ECTS': 15}
     PROG_SPEC_WERKSTOFFKUNDE_PARAM = {
-        'Program_Category': 'Werkstoffkunde 1,2', 'Required_CP': 10}
+        'Program_Category': 'Werkstoffkunde 1,2', 'Required_ECTS': 10}
     PROG_SPEC_THERMODYNAMIK_PARAM = {
-        'Program_Category': 'Thermodynamik', 'Required_CP': 6}
+        'Program_Category': 'Thermodynamik', 'Required_ECTS': 6}
     PROG_SPEC_OTHERS = {
-        'Program_Category': 'Others', 'Required_CP': 0}
+        'Program_Category': 'Others', 'Required_ECTS': 0}
 
     # This fixed to program course category.
     program_category = [
@@ -194,31 +194,31 @@ def TUHH_MECHATRONICS(transcript_sorted_group_map, df_transcript_array, df_categ
 
     # Create transcript_sorted_group to program_category mapping
     PROG_SPEC_CALCULUS_PARAM = {
-        'Program_Category': 'Calculus', 'Required_CP': 12}
+        'Program_Category': 'Calculus', 'Required_ECTS': 12}
     PROG_SPEC_MATH_PARAM = {
-        'Program_Category': 'Mathematics', 'Required_CP': 18}
+        'Program_Category': 'Mathematics', 'Required_ECTS': 18}
     PROG_SPEC_MECHANICS_PARAM = {
-        'Program_Category': 'Mechanics', 'Required_CP': 21}
+        'Program_Category': 'Mechanics', 'Required_ECTS': 21}
     PROG_SPEC_CONTROL_THEORY_PARAM = {
-        'Program_Category': 'Control Theory', 'Required_CP': 6}
+        'Program_Category': 'Control Theory', 'Required_ECTS': 6}
     PROG_SPEC_MECHATRONICS_PARAM = {
-        'Program_Category': 'Mechatronics', 'Required_CP': 6}
+        'Program_Category': 'Mechatronics', 'Required_ECTS': 6}
     PROG_SPEC_MATERIAL_PROPERTIES_TESTING_PARAM = {
-        'Program_Category': 'Materials Science', 'Required_CP': 6}
+        'Program_Category': 'Materials Science', 'Required_ECTS': 6}
     PROG_SPEC_MANUFACTURING_PARAM = {
-        'Program_Category': 'Manufacturing Porcesses', 'Required_CP': 6}
+        'Program_Category': 'Manufacturing Porcesses', 'Required_ECTS': 6}
     PROG_SPEC_MEASUREMENT_PARAM = {
-        'Program_Category': 'Measurement Technology', 'Required_CP': 6}
+        'Program_Category': 'Measurement Technology', 'Required_ECTS': 6}
     PROG_SPEC_THERMODYNAMICS_PARAM = {
-        'Program_Category': 'Thermodynamics', 'Required_CP': 6}
+        'Program_Category': 'Thermodynamics', 'Required_ECTS': 6}
     PROG_SPEC_COMPUTER_SCIENCE_PARAM = {
-        'Program_Category': 'Computer Science', 'Required_CP': 6}
+        'Program_Category': 'Computer Science', 'Required_ECTS': 6}
     PROG_SPEC_MECHANICAL_DESIGN_PARAM = {
-        'Program_Category': 'Mechanical Engineering Design', 'Required_CP': 12}
+        'Program_Category': 'Mechanical Engineering Design', 'Required_ECTS': 12}
     PROG_SPEC_ELECTRICAL_ENG_PARAM = {
-        'Program_Category': 'Electrical Engineering', 'Required_CP': 12}
+        'Program_Category': 'Electrical Engineering', 'Required_ECTS': 12}
     PROG_SPEC_OTHERS = {
-        'Program_Category': 'Others', 'Required_CP': 0}
+        'Program_Category': 'Others', 'Required_ECTS': 0}
 
     # This fixed to program course category.
     program_category = [
@@ -290,16 +290,16 @@ def UNI_HANNOVER_INTER_MECHATRONICS(transcript_sorted_group_map, df_transcript_a
 
     # Create transcript_sorted_group to program_category mapping
     PROG_SPEC_MATH_PARAM = {
-        'Program_Category': 'Mathematics', 'Required_CP': 15}
+        'Program_Category': 'Mathematics', 'Required_ECTS': 15}
     PROG_SPEC_ELECTRICAL_ENG_PARAM = {
-        'Program_Category': 'Electricl Engineering', 'Required_CP': 20}
+        'Program_Category': 'Electricl Engineering', 'Required_ECTS': 20}
     PROG_SPEC_MECHANICS_PARAM = {
-        'Program_Category': 'Technical Mechanics', 'Required_CP': 15}
+        'Program_Category': 'Technical Mechanics', 'Required_ECTS': 15}
     PROG_SPEC_CONTROL_MEASUREMENT_PARAM = {
-        'Program_Category': 'Control Engineeringv/ Measuring Technology', 'Required_CP': 10}
+        'Program_Category': 'Control Engineeringv/ Measuring Technology', 'Required_ECTS': 10}
 
     PROG_SPEC_OTHERS = {
-        'Program_Category': 'Others', 'Required_CP': 0}
+        'Program_Category': 'Others', 'Required_ECTS': 0}
 
     # This fixed to program course category.
     program_category = [
@@ -364,13 +364,13 @@ def TU_DORTMUND_MANUFAC_TECH(transcript_sorted_group_map, df_transcript_array, d
     # Create transcript_sorted_group to program_category mapping
 
     PROG_SPEC_ELECTRICAL_ENG_PARAM = {
-        'Program_Category': 'Electricl Engineering', 'Required_CP': 12}
+        'Program_Category': 'Electricl Engineering', 'Required_ECTS': 12}
     PROG_SPEC_MATH_PARAM = {
-        'Program_Category': 'Mathematics', 'Required_CP': 18}
+        'Program_Category': 'Mathematics', 'Required_ECTS': 18}
     PROG_SPEC_MANUFACTURE_PARAM = {
-        'Program_Category': 'Manufacturing Subjects', 'Required_CP': 20}  # materials engineering, production engineering, theory of de­sign, and/or metallurgy and feedback control
+        'Program_Category': 'Manufacturing Subjects', 'Required_ECTS': 20}  # materials engineering, production engineering, theory of de­sign, and/or metallurgy and feedback control
     PROG_SPEC_OTHERS = {
-        'Program_Category': 'Others', 'Required_CP': 0}
+        'Program_Category': 'Others', 'Required_ECTS': 0}
 
     # This fixed to program course category.
     program_category = [
@@ -434,24 +434,24 @@ def TU_CHEMNITZ_AD_MANUFAC(transcript_sorted_group_map, df_transcript_array, df_
     # Create transcript_sorted_group to program_category mapping
     # 1. special mathematical methods of engineering, totalling at least 18 ECTS and including the topics of Fourier transforms, regression calculation, probability and mathematical statistics,
     PROG_SPEC_MATH_PARAM = {
-        'Program_Category': 'Mathematics', 'Required_CP': 18}
+        'Program_Category': 'Mathematics', 'Required_ECTS': 18}
     # 2. scientific and engineering data processing, totalling at least 12 ECTS and including the topics CAD, CAS, numerical simulation and data acquisition as well as multiphysics simulation and practical experience,
     PROG_SPEC_CAD_PARAM = {
-        'Program_Category': 'CAD, CAS, numerical simulation', 'Required_CP': 12}
+        'Program_Category': 'CAD, CAS, numerical simulation', 'Required_ECTS': 12}
     # #3. metrology and control engineering, totalling at least 8 ECTS and including the topics of sensors, actuators and digital methods of manufacturing,
     PROG_SPEC_METROL_CONTROL_PARAM = {
-        'Program_Category': 'Metrology and Control Engineering', 'Required_CP': 8}
+        'Program_Category': 'Metrology and Control Engineering', 'Required_ECTS': 8}
     # 4. new materials for engineering, totalling at least 8 LP and including the topics of polymers, metals, composites, matrix systems and functional properties,
     PROG_SPEC_MATERIALS_PARAM = {
-        'Program_Category': 'Materials for Engineering', 'Required_CP': 8}
+        'Program_Category': 'Materials for Engineering', 'Required_ECTS': 8}
     # #5. in-depth theoretical basics of engineering, in a total of at least 12 ECTS and including the subjects of engineering mechanics, design, manufacturing and fluid dynamics,
     PROG_SPEC_MECH_MANU_PARAM = {
-        'Program_Category': 'Mechanics, Design, Manufacturing and Fluid dynamics', 'Required_CP': 12}
+        'Program_Category': 'Mechanics, Design, Manufacturing and Fluid dynamics', 'Required_ECTS': 12}
     # #6. resource-efficient manufacturing concepts, totalling at least 8 ECTS and including the topics of technical and natural cycles and networks, system optimization and energy concepts,
     PROG_SPEC_MANU_CONCE_PARAM = {
-        'Program_Category': 'Manufacturing Concepts', 'Required_CP': 8}
+        'Program_Category': 'Manufacturing Concepts', 'Required_ECTS': 8}
     PROG_SPEC_OTHERS = {
-        'Program_Category': 'Others', 'Required_CP': 0}
+        'Program_Category': 'Others', 'Required_ECTS': 0}
     # TODO:
     # This fixed to program course category.
     program_category = [
@@ -518,13 +518,13 @@ def TUM_COMP_MECH(transcript_sorted_group_map, df_transcript_array, df_category_
     # Create transcript_sorted_group to program_category mapping
 
     PROG_SPEC_MECHANICS_PARAM = {
-        'Program_Category': 'Mechanics', 'Required_CP': 40}
+        'Program_Category': 'Mechanics', 'Required_ECTS': 40}
     PROG_SPEC_INFO_PARAM = {
-        'Program_Category': 'Computer Science and Programming', 'Required_CP': 10}
+        'Program_Category': 'Computer Science and Programming', 'Required_ECTS': 10}
     PROG_SPEC_MATH_PARAM = {
-        'Program_Category': 'Mathematics', 'Required_CP': 10}
+        'Program_Category': 'Mathematics', 'Required_ECTS': 10}
     PROG_SPEC_OTHERS = {
-        'Program_Category': 'Others', 'Required_CP': 0}
+        'Program_Category': 'Others', 'Required_ECTS': 0}
 
     # This fixed to program course category.
     program_category = [
@@ -587,25 +587,25 @@ def TUBerlin_ME(transcript_sorted_group_map, df_transcript_array, df_category_co
 
     # Create transcript_sorted_group to program_category mapping
     PROG_SPEC_MATH_PARAM = {
-        'Program_Category': 'Mathematics', 'Required_CP': 21}
+        'Program_Category': 'Mathematics', 'Required_ECTS': 21}
     PROG_SPEC_MECHANICS_PARAM = {
-        'Program_Category': 'Mechanik', 'Required_CP': 18}
+        'Program_Category': 'Mechanik', 'Required_ECTS': 18}
     PROG_SPEC_FLUID_THERMODYNAMIK_PARAM = {
-        'Program_Category': 'Strömungslehre oder Thermodynamik', 'Required_CP': 6}
+        'Program_Category': 'Strömungslehre oder Thermodynamik', 'Required_ECTS': 6}
     PROG_SPEC_ELEKTROTECHNIK_PARAM = {
-        'Program_Category': 'Elektrotechnik', 'Required_CP': 6}
+        'Program_Category': 'Elektrotechnik', 'Required_ECTS': 6}
     PROG_SPEC_MESS_SENSORIK_REGELUNG_PARAM = {
-        'Program_Category': 'Mess-/Sensor/Regelungstechnik', 'Required_CP': 6}
+        'Program_Category': 'Mess-/Sensor/Regelungstechnik', 'Required_ECTS': 6}
     PROG_SPEC_KONSTRUKTIONSLEHRE_PARAM = {
-        'Program_Category': 'Konstruktionslehre', 'Required_CP': 16}
+        'Program_Category': 'Konstruktionslehre', 'Required_ECTS': 16}
     PROG_SPEC_INFORMATIONSTECHNIK_PARAM = {
-        'Program_Category': 'Informationstechnik', 'Required_CP': 6}
+        'Program_Category': 'Informationstechnik', 'Required_ECTS': 6}
     PROG_SPEC_WERKSTOFFKUNDE_PARAM = {
-        'Program_Category': 'Werkstoffkunde', 'Required_CP': 6}
+        'Program_Category': 'Werkstoffkunde', 'Required_ECTS': 6}
     PROG_SPEC_PRODUKTIONSTECHNIK_PARAM = {
-        'Program_Category': 'Produktionstechnik', 'Required_CP': 6}
+        'Program_Category': 'Produktionstechnik', 'Required_ECTS': 6}
     PROG_SPEC_OTHERS = {
-        'Program_Category': 'Others', 'Required_CP': 0}
+        'Program_Category': 'Others', 'Required_ECTS': 0}
 
     # This fixed to program course category.
     program_category = [
@@ -677,23 +677,23 @@ def RWTH_ME(transcript_sorted_group_map, df_transcript_array, df_category_course
     # Create transcript_sorted_group to program_category mapping
 
     PROG_SPEC_MECHANIK_PARAM = {
-        'Program_Category': 'Mechanik I/II/III', 'Required_CP': 18}
+        'Program_Category': 'Mechanik I/II/III', 'Required_ECTS': 18}
     PROG_SPEC_MASCHINENGESTALTUNG_PARAM = {
-        'Program_Category': 'CAD + Maschinengestaltung I/II/III', 'Required_CP': 13}
+        'Program_Category': 'CAD + Maschinengestaltung I/II/III', 'Required_ECTS': 13}
     PROG_SPEC_THERMODYNAMIK_PARAM = {
-        'Program_Category': 'Thermodynamik I + II', 'Required_CP': 7}
+        'Program_Category': 'Thermodynamik I + II', 'Required_ECTS': 7}
     PROG_SPEC_WARMSTOFFUBERTRAGUNG_PARAM = {
-        'Program_Category': 'Wärm_und_Stoffübertragung', 'Required_CP': 6}
+        'Program_Category': 'Wärm_und_Stoffübertragung', 'Required_ECTS': 6}
     PROG_SPEC_WERKSTOFFKUNDE_PARAM = {
-        'Program_Category': 'Werkstoffkunde I/II', 'Required_CP': 8}
+        'Program_Category': 'Werkstoffkunde I/II', 'Required_ECTS': 8}
     PROG_SPEC_CONTROL_TECHNIQUE_PARAM = {
-        'Program_Category': 'Regelungstechnik', 'Required_CP': 6}
+        'Program_Category': 'Regelungstechnik', 'Required_ECTS': 6}
     PROG_SPEC_STROEMUNGSMECHANIK_PARAM = {
-        'Program_Category': 'Strömungsmechanik I', 'Required_CP': 6}
+        'Program_Category': 'Strömungsmechanik I', 'Required_ECTS': 6}
     PROG_SPEC_MATH_PARAM = {
-        'Program_Category': 'Höhere Mathematik I/II/III', 'Required_CP': 17}
+        'Program_Category': 'Höhere Mathematik I/II/III', 'Required_ECTS': 17}
     PROG_SPEC_OTHERS = {
-        'Program_Category': 'Others', 'Required_CP': 0}
+        'Program_Category': 'Others', 'Required_ECTS': 0}
 
     # This fixed to program course category.
     program_category = [
@@ -763,22 +763,22 @@ def TUBraunschweig_ME(transcript_sorted_group_map, df_transcript_array, df_categ
     # Create transcript_sorted_group to program_category mapping
 
     PROG_SPEC_KONSTRUKTIONSLEHRE_PARAM = {
-        'Program_Category': 'CAD Konstruktionslehre', 'Required_CP': 6}
+        'Program_Category': 'CAD Konstruktionslehre', 'Required_ECTS': 6}
     PROG_SPEC_INFORMATIONSTECHNIK_PARAM = {
-        'Program_Category': 'Informationstechnik', 'Required_CP': 4}
+        'Program_Category': 'Informationstechnik', 'Required_ECTS': 4}
     PROG_SPEC_MATH_PARAM = {
-        'Program_Category': 'Höhere Mathematik', 'Required_CP': 12}
+        'Program_Category': 'Höhere Mathematik', 'Required_ECTS': 12}
     PROG_SPEC_CONTROL_TECHNIQUE_PARAM = {
-        'Program_Category': 'Regelungstechnik', 'Required_CP': 4}
+        'Program_Category': 'Regelungstechnik', 'Required_ECTS': 4}
     PROG_SPEC_TECHNISCHE_MECHANIK_PARAM = {
-        'Program_Category': 'Technische Mechanik', 'Required_CP': 12}
+        'Program_Category': 'Technische Mechanik', 'Required_ECTS': 12}
     PROG_SPEC_THERMODYNAMIK_PARAM = {
-        'Program_Category': 'Thermodynamik I + II', 'Required_CP': 4}
+        'Program_Category': 'Thermodynamik I + II', 'Required_ECTS': 4}
     PROG_SPEC_WERKSTOFFKUNDE_PARAM = {
-        'Program_Category': 'Werkstoffkunde I/II', 'Required_CP': 4}
+        'Program_Category': 'Werkstoffkunde I/II', 'Required_ECTS': 4}
 
     PROG_SPEC_OTHERS = {
-        'Program_Category': 'Others', 'Required_CP': 0}
+        'Program_Category': 'Others', 'Required_ECTS': 0}
 
     # This fixed to program course category.
     program_category = [
@@ -848,26 +848,26 @@ def KIT_ME(transcript_sorted_group_map, df_transcript_array, df_category_courses
 
     # Create transcript_sorted_group to program_category mapping
     PROG_SPEC_MATH_PARAM = {
-        'Program_Category': 'Höhere Mathematik I/II/III', 'Required_CP': 21}
+        'Program_Category': 'Höhere Mathematik I/II/III', 'Required_ECTS': 21}
     PROG_SPEC_MECHANIK_PARAM = {
-        'Program_Category': 'Technische Mechanik', 'Required_CP': 23}
+        'Program_Category': 'Technische Mechanik', 'Required_ECTS': 23}
     PROG_SPEC_MASCHINENKONSTRUKTIONSLEHRE_PARAM = {
-        'Program_Category': 'Maschinenkonstruktionslehre', 'Required_CP': 20}
+        'Program_Category': 'Maschinenkonstruktionslehre', 'Required_ECTS': 20}
     PROG_SPEC_WERKSTOFFKUNDE_PARAM = {
-        'Program_Category': 'Werkstoffkunde I/II + Internship/Project', 'Required_CP': 14}
+        'Program_Category': 'Werkstoffkunde I/II + Internship/Project', 'Required_ECTS': 14}
     PROG_SPEC_THERMODYNAMIK_UBERTRAGUNG_PARAM = {
-        'Program_Category': 'Thermodynamik I + II + Wärm_und_Stoffübertragung', 'Required_CP': 15}
+        'Program_Category': 'Thermodynamik I + II + Wärm_und_Stoffübertragung', 'Required_ECTS': 15}
     PROG_SPEC_STROEMUNGSMECHANIK_PARAM = {
-        'Program_Category': 'Strömungsmechanik I', 'Required_CP': 8}
+        'Program_Category': 'Strömungsmechanik I', 'Required_ECTS': 8}
     PROG_SPEC_ELEKTROTECHNIK_PARAM = {
-        'Program_Category': 'Elektrotechnik', 'Required_CP': 8}
+        'Program_Category': 'Elektrotechnik', 'Required_ECTS': 8}
     PROG_SPEC_MESS_REGELUNG_PARAM = {
-        'Program_Category': 'Mess-/Regelungstechnik', 'Required_CP': 7}
+        'Program_Category': 'Mess-/Regelungstechnik', 'Required_ECTS': 7}
     PROG_SPEC_INFORMATIK_PARAM = {
-        'Program_Category': 'Informatik', 'Required_CP': 6}
+        'Program_Category': 'Informatik', 'Required_ECTS': 6}
 
     PROG_SPEC_OTHERS = {
-        'Program_Category': 'Others', 'Required_CP': 0}
+        'Program_Category': 'Others', 'Required_ECTS': 0}
 
     # This fixed to program course category.
     program_category = [
@@ -938,11 +938,11 @@ def TU_DORTMUND_ROBOTICS(transcript_sorted_group_map, df_transcript_array, df_ca
 
     # Create transcript_sorted_group to program_category mapping
     PROG_SPEC_MATH_PARAM = {
-        'Program_Category': 'Mathematik', 'Required_CP': 18}
+        'Program_Category': 'Mathematik', 'Required_ECTS': 18}
     PROG_SPEC_INFORMATIK_PARAM = {
-        'Program_Category': 'Computer Science', 'Required_CP': 12}
+        'Program_Category': 'Computer Science', 'Required_ECTS': 12}
     PROG_SPEC_OTHERS = {
-        'Program_Category': 'Others', 'Required_CP': 0}
+        'Program_Category': 'Others', 'Required_ECTS': 0}
 
     # This fixed to program course category.
     program_category = [
@@ -1025,13 +1025,13 @@ def RWTH_ROBOTICS(transcript_sorted_group_map, df_transcript_array, df_category_
 
     # Create transcript_sorted_group to program_category mapping
     PROG_SPEC_MATH_PHY_PARAM = {
-        'Program_Category': 'Mathematics and Natural Science', 'Required_CP': 25}
+        'Program_Category': 'Mathematics and Natural Science', 'Required_ECTS': 25}
     PROG_SPEC_ENG_SCIENCE_PARAM = {
-        'Program_Category': 'Fundamentals of Engineering Sciences', 'Required_CP': 60}
+        'Program_Category': 'Fundamentals of Engineering Sciences', 'Required_ECTS': 60}
     PROG_SPEC_SYSTEM_SCIENCE_PARAM = {
-        'Program_Category': 'Fundamentals of System Sciences', 'Required_CP': 25}
+        'Program_Category': 'Fundamentals of System Sciences', 'Required_ECTS': 25}
     PROG_SPEC_OTHERS = {
-        'Program_Category': 'Others', 'Required_CP': 0}
+        'Program_Category': 'Others', 'Required_ECTS': 0}
 
     # This fixed to program course category.
     program_category = [

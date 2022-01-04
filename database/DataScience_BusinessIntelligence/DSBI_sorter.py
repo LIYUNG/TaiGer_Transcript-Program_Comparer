@@ -31,9 +31,9 @@ def MANNHEIM_DATA_SCIENCE(transcript_sorted_group_map, df_transcript_array, df_c
     # Create transcript_sorted_group to program_category mapping
 
     PROG_SPEC_EMPIRIAL_METHODE_PARAM = {
-        'Program_Category': 'Informatics, Math, Statistics, Empirical Research', 'Required_CP': 48}            # 10 Punkte
+        'Program_Category': 'Informatics, Math, Statistics, Empirical Research', 'Required_ECTS': 48}            # 10 Punkte
     PROG_SPEC_OTHERS = {
-        'Program_Category': 'Others', 'Required_CP': 0}
+        'Program_Category': 'Others', 'Required_ECTS': 0}
 
     # This fixed to program course category.
     program_category = [
@@ -43,7 +43,7 @@ def MANNHEIM_DATA_SCIENCE(transcript_sorted_group_map, df_transcript_array, df_c
 
     # Mapping table: same dimension as transcript_sorted_group/ The length depends on how fine the transcript is classified
     program_category_map = [
-        PROG_SPEC_OTHERS,  # 微積分
+        PROG_SPEC_EMPIRIAL_METHODE_PARAM,  # 微積分
         PROG_SPEC_EMPIRIAL_METHODE_PARAM,  # 數學
         PROG_SPEC_OTHERS,  # 經濟
         PROG_SPEC_OTHERS,  # 企業
@@ -92,15 +92,15 @@ def MANNHEIM_BUSINESS_INFORMATICS(transcript_sorted_group_map, df_transcript_arr
     # Create transcript_sorted_group to program_category mapping
     # Statistik, Empirische Forschungsmethoden, Quantitative Methoden, Mathematik
     PROG_SPEC_INFOMATICS_PARAM = {
-        'Program_Category': 'Computer Science', 'Required_CP': 30}  # 8 Punkte
+        'Program_Category': 'Computer Science', 'Required_ECTS': 30}  # 8 Punkte
     #  Bachelorarbeit, eines Projekts, eines wissenschaftlichen Aufsatzes
     PROG_SPEC_VWL_BA_BI_PARAM = {
-        'Program_Category': 'Economics/Business Administration or Business Informatics', 'Required_CP': 30}   # 30 Punkte
+        'Program_Category': 'Economics/Business Administration or Business Informatics', 'Required_ECTS': 30}   # 30 Punkte
     # quantitativen Entscheidungsunterstützung mit Methoden des Operations Research
     PROG_SPEC_MATH_PARAM = {
-        'Program_Category': 'Mathematics and Statistics', 'Required_CP': 18}              # 18 Punkte
+        'Program_Category': 'Mathematics and Statistics', 'Required_ECTS': 18}              # 18 Punkte
     PROG_SPEC_OTHERS = {
-        'Program_Category': 'Others', 'Required_CP': 0}
+        'Program_Category': 'Others', 'Required_ECTS': 0}
 
     # This fixed to program course category.
     program_category = [
@@ -117,7 +117,7 @@ def MANNHEIM_BUSINESS_INFORMATICS(transcript_sorted_group_map, df_transcript_arr
         PROG_SPEC_VWL_BA_BI_PARAM,  # 經濟
         PROG_SPEC_VWL_BA_BI_PARAM,  # 企業
         PROG_SPEC_VWL_BA_BI_PARAM,  # 管理
-        PROG_SPEC_OTHERS,  # 會計
+        PROG_SPEC_VWL_BA_BI_PARAM,  # 會計
         PROG_SPEC_MATH_PARAM,  # 統計
         PROG_SPEC_OTHERS,  # 金融
         PROG_SPEC_OTHERS,  # 行銷

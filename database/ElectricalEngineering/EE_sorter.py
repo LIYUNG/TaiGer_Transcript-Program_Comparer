@@ -39,21 +39,21 @@ def RWTH_EI(transcript_sorted_group_map, df_transcript_array, df_category_course
 
     # Create transcript_sorted_group to program_category mapping
     PROG_SPEC_MATH_PARAM = {
-        'Program_Category': 'Mathematics', 'Required_CP': 28}
+        'Program_Category': 'Mathematics', 'Required_ECTS': 28}
     PROG_SPEC_PHYSIK_PARAM = {
-        'Program_Category': 'Physics', 'Required_CP': 10}
+        'Program_Category': 'Physics', 'Required_ECTS': 10}
     PROG_SPEC_ELEKTROTECHNIK_SCHALTUNGSTECHNIK_PARAM = {
-        'Program_Category': 'Electronics and Circuits Module', 'Required_CP': 34}
+        'Program_Category': 'Electronics and Circuits Module', 'Required_ECTS': 34}
     PROG_SPEC_PROGRAMMIERUNG_PARAM = {
-        'Program_Category': 'Programming and Computer science', 'Required_CP': 12}
+        'Program_Category': 'Programming and Computer science', 'Required_ECTS': 12}
     PROG_SPEC_SYSTEM_THEORIE_PARAM = {
-        'Program_Category': 'System_Theory', 'Required_CP': 8}
-    PROG_SPEC_VERTIEFUNG_EI_PARAM = {
-        'Program_Category': 'Theoretical_Module_EECS', 'Required_CP': 8}
+        'Program_Category': 'System_Theory', 'Required_ECTS': 8}
+    PROG_SPEC_THEORETICAL_EECS_EI_PARAM = {
+        'Program_Category': 'Theoretical_Module_EECS', 'Required_ECTS': 8}
     PROG_SPEC_ANWENDUNG_MODULE_PARAM = {
-        'Program_Category': 'Application_Module_EECS', 'Required_CP': 20}
+        'Program_Category': 'Application_Module_EECS', 'Required_ECTS': 20}
     PROG_SPEC_OTHERS = {
-        'Program_Category': 'Others', 'Required_CP': 0}
+        'Program_Category': 'Others', 'Required_ECTS': 0}
 
     # This fixed to program course category.
     program_category = [
@@ -62,7 +62,7 @@ def RWTH_EI(transcript_sorted_group_map, df_transcript_array, df_category_course
         PROG_SPEC_PROGRAMMIERUNG_PARAM,  # 資訊
         PROG_SPEC_SYSTEM_THEORIE_PARAM,  # 控制系統
         PROG_SPEC_ELEKTROTECHNIK_SCHALTUNGSTECHNIK_PARAM,  # 電子電路電磁
-        PROG_SPEC_VERTIEFUNG_EI_PARAM,  # 電機專業選修
+        PROG_SPEC_THEORETICAL_EECS_EI_PARAM,  # 電機專業選修
         PROG_SPEC_ANWENDUNG_MODULE_PARAM,  # 應用科技
         PROG_SPEC_OTHERS  # 其他
     ]
@@ -85,8 +85,8 @@ def RWTH_EI(transcript_sorted_group_map, df_transcript_array, df_category_course
         PROG_SPEC_ANWENDUNG_MODULE_PARAM,  # 電力電子
         PROG_SPEC_ANWENDUNG_MODULE_PARAM,  # 通訊
         PROG_SPEC_OTHERS,  # 半導體
-        PROG_SPEC_VERTIEFUNG_EI_PARAM,  # 進階電磁理論
-        PROG_SPEC_VERTIEFUNG_EI_PARAM,  # 電機專業選修
+        PROG_SPEC_THEORETICAL_EECS_EI_PARAM,  # 進階電磁理論
+        PROG_SPEC_ANWENDUNG_MODULE_PARAM,  # 電機專業選修
         PROG_SPEC_ANWENDUNG_MODULE_PARAM,  # 應用科技
         PROG_SPEC_OTHERS,  # 力學,機械
         PROG_SPEC_OTHERS  # 其他
@@ -123,34 +123,34 @@ def STUTTGART_EI(transcript_sorted_group_map, df_transcript_array, df_category_c
 
     # Create transcript_sorted_group to program_category mapping
     PROG_SPEC_MATH_PARAM = {
-        'Program_Category': 'Mathematics', 'Required_CP': 24}
+        'Program_Category': 'Mathematics', 'Required_ECTS': 24}
     PROG_SPEC_PHY_EXP_PARAM = {
-        'Program_Category': 'Physics Experiment', 'Required_CP': 6}
+        'Program_Category': 'Physics Experiment', 'Required_ECTS': 6}
     PROG_SPEC_MICROELECTRONICS_PARAM = {
-        'Program_Category': 'Microelectronics', 'Required_CP': 9}
+        'Program_Category': 'Microelectronics', 'Required_ECTS': 9}
     PROG_SPEC_INTRO_ELECT_ENG_PROJ_PARAM = {
-        'Program_Category': 'Intro. Electrical Engineering and project', 'Required_CP': 9}
+        'Program_Category': 'Intro. Electrical Engineering and project', 'Required_ECTS': 9}
     PROG_SPEC_INTRO_PROGRAMMING_ENG_PARAM = {
-        'Program_Category': 'Intro. Programming and project', 'Required_CP': 6}
+        'Program_Category': 'Intro. Programming and project', 'Required_ECTS': 6}
     PROG_SPEC_INTRO_SOFTWARE_SYSTEM_PARAM = {
-        'Program_Category': 'Intro. Software System', 'Required_CP': 3}
+        'Program_Category': 'Intro. Software System', 'Required_ECTS': 3}
     PROG_SPEC_ENERGIETECHNIK_PARAM = {
-        'Program_Category': 'Energy Technique', 'Required_CP': 9}
+        'Program_Category': 'Energy Technique', 'Required_ECTS': 9}
     PROG_SPEC_SCHALTUNGSTECHNIK_PARAM = {
-        'Program_Category': 'Circuits Technology', 'Required_CP': 9}
+        'Program_Category': 'Circuits Technology', 'Required_ECTS': 9}
     PROG_SPEC_ELEKTRODYNAMIK_PARAM = {
-        'Program_Category': 'Electromagnetics', 'Required_CP': 9}
+        'Program_Category': 'Electromagnetics', 'Required_ECTS': 9}
     PROG_SPEC_NACHRICHTENTECHNIK_PARAM = {
-        'Program_Category': 'Communication Engineering', 'Required_CP': 9}
+        'Program_Category': 'Communication Engineering', 'Required_ECTS': 9}
     # Grundlagen der Informationsverarbeitung
     PROG_SPEC_INTRO_INFOR_VERARBEITUNG_PARAM = {
-        'Program_Category': 'Intro. Information processing', 'Required_CP': 6}
+        'Program_Category': 'Intro. Information processing', 'Required_ECTS': 6}
     PROG_SPEC_SIGNAL_SYSTEM_PARAM = {
-        'Program_Category': 'Signals and Systems', 'Required_CP': 6}
+        'Program_Category': 'Signals and Systems', 'Required_ECTS': 6}
     PROG_SPEC_SCHWERPUNKTE_PARAM = {        # 電力電子能源系統、自動化控制、通訊與訊號處理、Technische Informatik，微電子光電子、電驅動、感測器系統
-        'Program_Category': 'Advanced Modules', 'Required_CP': 6}
+        'Program_Category': 'Advanced Modules', 'Required_ECTS': 6}
     PROG_SPEC_OTHERS = {
-        'Program_Category': 'Others', 'Required_CP': 0}
+        'Program_Category': 'Others', 'Required_ECTS': 0}
 
     # This fixed to program course category.
     program_category = [
@@ -229,13 +229,13 @@ def TUM_MSCE(transcript_sorted_group_map, df_transcript_array, df_category_cours
 
     # Create transcript_sorted_group to program_category mapping
     PROG_SPEC_MATH_PARAM = {
-        'Program_Category': 'Höhere_Mathematik', 'Required_CP': 30}
+        'Program_Category': 'Höhere_Mathematik', 'Required_ECTS': 30}
     PROG_SPEC_GRUNDLAGE_ELEKTROTECHNIK_PARAM = {
-        'Program_Category': 'Grundlagen_Elektrotechnik', 'Required_CP': 66}
+        'Program_Category': 'Grundlagen_Elektrotechnik', 'Required_ECTS': 66}
     PROG_SPEC_GRUNDLAGE_KOMMUNIKATIONSTECHNIK_PARAM = {
-        'Program_Category': 'Grundlagen_Kommunikationstechnik', 'Required_CP': 30}
+        'Program_Category': 'Grundlagen_Kommunikationstechnik', 'Required_ECTS': 30}
     PROG_SPEC_OTHERS = {
-        'Program_Category': 'Others', 'Required_CP': 0}
+        'Program_Category': 'Others', 'Required_ECTS': 0}
 
     # This fixed to program course category.
     program_category = [
@@ -301,20 +301,20 @@ def TUM_MSPE(transcript_sorted_group_map, df_transcript_array, df_category_cours
 
     # Create transcript_sorted_group to program_category mapping
     PROG_SPEC_MATH_PARAM = {
-        'Program_Category': 'Höhere_Mathematik', 'Required_CP': 30}
+        'Program_Category': 'Höhere_Mathematik', 'Required_ECTS': 30}
     # Grundlagen der Elektrotechnik, Vertiefung Energietechnik
     # Schaltungstechnik, Elektrische Felder und Wellen,Festkörperphysik und
     # Bauelemente, Hochspannungstechnik und Energie-übertragungstechnik,
     # elektrische Maschinen, etc.
     PROG_SPEC_GRUNDLAGE_ELEKTROTECHNIK_PARAM = {
-        'Program_Category': 'Grundlagen_Elektrotechnik', 'Required_CP': 45}
+        'Program_Category': 'Grundlagen_Elektrotechnik', 'Required_ECTS': 45}
     # Grundlagen des Maschinenwesens, Vertiefung Energietechnik
     # (Technische Mechanik, Thermodynamik, Strömungsmechanik,
     # Wärme-und Stoffübertragung, Maschinendynamik, etc.)
     PROG_SPEC_GRUNDLAGE_MASCHINEN_PARAM = {
-        'Program_Category': 'Grundlagen_Maschinenwesen', 'Required_CP': 45}
+        'Program_Category': 'Grundlagen_Maschinenwesen', 'Required_ECTS': 45}
     PROG_SPEC_OTHERS = {
-        'Program_Category': 'Others', 'Required_CP': 0}
+        'Program_Category': 'Others', 'Required_ECTS': 0}
 
     # This fixed to program course category.
     program_category = [
@@ -383,15 +383,15 @@ def TUM_MSNE(transcript_sorted_group_map, df_transcript_array, df_category_cours
 
     # Create transcript_sorted_group to program_category mapping
     PROG_SPEC_MATH_PARAM = {
-        'Program_Category': 'Höhere_Mathematik', 'Required_CP': 32}
+        'Program_Category': 'Höhere_Mathematik', 'Required_ECTS': 32}
     # Naturwissenschaftliche Grundlagen (Physik, Biochemie, Neuroscience)
     PROG_SPEC_GRUNDLAGE_NATUR_PARAM = {
-        'Program_Category': 'Natural Science (Physics, Biochem., neuroscience', 'Required_CP': 45}
+        'Program_Category': 'Natural Science (Physics, Biochem., neuroscience', 'Required_ECTS': 45}
     # Bio-und Medizintechnische Ingenieurgrundlagen oder Psychologie
     PROG_SPEC_GRUNDLAGE_BIO_PARAM = {
-        'Program_Category': 'Bio and medical engineering', 'Required_CP': 40}
+        'Program_Category': 'Bio and medical engineering', 'Required_ECTS': 40}
     PROG_SPEC_OTHERS = {
-        'Program_Category': 'Others', 'Required_CP': 0}
+        'Program_Category': 'Others', 'Required_ECTS': 0}
 
     # This fixed to program course category.
     program_category = [
@@ -460,30 +460,30 @@ def TUHH_MICROELECTRONICS(transcript_sorted_group_map, df_transcript_array, df_c
 
     # Create transcript_sorted_group to program_category mapping
     PROG_SPEC_MATH_PARAM = {
-        'Program_Category': 'Mathematics', 'Required_CP': 30}
+        'Program_Category': 'Mathematics', 'Required_ECTS': 30}
     PROG_SPEC_COMPUTER_SCIENCE_ENG_PARAM = {
-        'Program_Category': 'Computer Science', 'Required_CP': 18}
+        'Program_Category': 'Computer Science', 'Required_ECTS': 18}
     PROG_SPEC_SYSTEM_THEORIE_PARAM = {
-        'Program_Category': 'Control Theory', 'Required_CP': 6}
+        'Program_Category': 'Control Theory', 'Required_ECTS': 6}
     PROG_SPEC_PHY_EXP_PARAM = {
-        'Program_Category': 'Physics', 'Required_CP': 6}
+        'Program_Category': 'Physics', 'Required_ECTS': 6}
     PROG_SPEC_EE_PARAM = {
         # direct/alternating current, electronics
-        'Program_Category': 'Electrical Engineering', 'Required_CP': 3}
+        'Program_Category': 'Electrical Engineering', 'Required_ECTS': 3}
     PROG_SPEC_METHOD_DATA_PROCESSING_PARAM = {
-        'Program_Category': 'Measurements: Methods and data processing', 'Required_CP': 3}
+        'Program_Category': 'Measurements: Methods and data processing', 'Required_ECTS': 3}
     PROG_SPEC_CIRCUIT_THEORY_PARAM = {
-        'Program_Category': 'Circuit theory', 'Required_CP': 6}
+        'Program_Category': 'Circuit theory', 'Required_ECTS': 6}
     PROG_SPEC_SIGNAL_SYSTEM_PARAM = {
-        'Program_Category': 'Signals and systems', 'Required_CP': 6}
+        'Program_Category': 'Signals and systems', 'Required_ECTS': 6}
     PROG_SPEC_THEORY_ELECTRICAL_ENG_PARAM = {
-        'Program_Category': 'Theoretical Electrical Engineering', 'Required_CP': 12}
+        'Program_Category': 'Theoretical Electrical Engineering', 'Required_ECTS': 12}
     PROG_SPEC_SEMICONDUCTOR_CIRCUIT_PARAM = {
-        'Program_Category': 'Semiconductor and electronics devices', 'Required_CP': 6}
+        'Program_Category': 'Semiconductor and electronics devices', 'Required_ECTS': 6}
     PROG_SPEC_ELECTRICAL_ENG_PARAM = {
-        'Program_Category': 'Fundamental Electrical Engineering', 'Required_CP': 21}
+        'Program_Category': 'Fundamental Electrical Engineering', 'Required_ECTS': 21}
     PROG_SPEC_OTHERS = {
-        'Program_Category': 'Others', 'Required_CP': 0}
+        'Program_Category': 'Others', 'Required_ECTS': 0}
 
     # This fixed to program course category.
     program_category = [

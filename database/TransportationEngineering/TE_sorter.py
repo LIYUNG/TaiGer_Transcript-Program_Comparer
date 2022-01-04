@@ -40,23 +40,23 @@ def RWTH_TransportationENgineering(transcript_sorted_group_map, df_transcript_ar
 
     # Create transcript_sorted_group to program_category mapping
     PROG_SPEC_MATH_PARAM = {
-        'Program_Category': 'Mathematics', 'Required_CP': 14}
+        'Program_Category': 'Mathematics', 'Required_ECTS': 14}
     PROG_SPEC_STAT_PARAM = {
-        'Program_Category': 'Statistics', 'Required_CP': 4}
+        'Program_Category': 'Statistics', 'Required_ECTS': 4}
     PROG_SPEC_MECH_PARAM = {
-        'Program_Category': 'Mechanics', 'Required_CP': 11}
+        'Program_Category': 'Mechanics', 'Required_ECTS': 11}
     PROG_SPEC_ELEKTROTECHNIK_PARAM = {
-        'Program_Category': 'Electrical Engineering', 'Required_CP': 5}
+        'Program_Category': 'Electrical Engineering', 'Required_ECTS': 5}
     PROG_SPEC_ENGINEERING_FUNDA_PARAM = {
-        'Program_Category': 'Fundamental Engineering', 'Required_CP': 10}
+        'Program_Category': 'Fundamental Engineering', 'Required_ECTS': 10}
     PROG_SPEC_ADAVANCED_SUBJ_VERKEHR_MODULE_PARAM = {  # Straßenwesen, Eisenbahnwesen, Flughafenwesen, Verkehrswirt-schaft
-        'Program_Category': 'Advanced Major Course', 'Required_CP': 13}
+        'Program_Category': 'Advanced Major Course', 'Required_ECTS': 13}
     PROG_SPEC_ADAVANCED_SUBJ_ME_MODULE_PARAM = {  # Maschinengestaltung, Fahrzeugtechnik, Verbrennungsma-schinen, Schienenfahrzeugtechnik, Luft- und Raumfahrttechnik
-        'Program_Category': 'Advanced Major Course', 'Required_CP': 13}
+        'Program_Category': 'Advanced Major Course', 'Required_ECTS': 13}
     PROG_SPEC_ADAVANCED_SUBJ_EI_MODULE_PARAM = {  # Elektrotechnik, Batteriespeichertechnik, elektrische Maschi-nen
-        'Program_Category': 'Advanced Major Course', 'Required_CP': 13}
+        'Program_Category': 'Advanced Major Course', 'Required_ECTS': 13}
     PROG_SPEC_OTHERS = {
-        'Program_Category': 'Others', 'Required_CP': 0}
+        'Program_Category': 'Others', 'Required_ECTS': 0}
 
     # This fixed to program course category.
     program_category = [

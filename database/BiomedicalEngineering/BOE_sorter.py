@@ -28,25 +28,25 @@ def RWTH_AUTO(transcript_sorted_group_map, df_transcript_array, df_category_cour
     # Create transcript_sorted_group to program_category mapping
     
     PROG_SPEC_MECHANIK_PARAM = {
-        'Program_Category': 'Mechanik', 'Required_CP': 18}
+        'Program_Category': 'Mechanik', 'Required_ECTS': 18}
     PROG_SPEC_MASCHINENGESTALTUNG_PARAM = {
-        'Program_Category': 'Maschinengestaltung', 'Required_CP': 13}
+        'Program_Category': 'Maschinengestaltung', 'Required_ECTS': 13}
     PROG_SPEC_THERMODYNAMIK_PARAM = {
-        'Program_Category': 'Thermodynamik', 'Required_CP': 7}
+        'Program_Category': 'Thermodynamik', 'Required_ECTS': 7}
     PROG_SPEC_WARMSTOFFUBERTRAGUNG_PARAM = {
-        'Program_Category': 'Wärm_und_Stoffübertragung', 'Required_CP': 6}
+        'Program_Category': 'Wärm_und_Stoffübertragung', 'Required_ECTS': 6}
     PROG_SPEC_WERKSTOFFKUNDE_PARAM = {
-        'Program_Category': 'Werkstoffkunde', 'Required_CP': 8}
+        'Program_Category': 'Werkstoffkunde', 'Required_ECTS': 8}
     PROG_SPEC_CONTROL_TECHNIQUE_PARAM = {
-        'Program_Category': 'Regelungstechnik', 'Required_CP': 6}
+        'Program_Category': 'Regelungstechnik', 'Required_ECTS': 6}
     PROG_SPEC_STROEMUNGSMECHANIK_PARAM = {
-        'Program_Category': 'Strömungsmechanik I', 'Required_CP': 6}
+        'Program_Category': 'Strömungsmechanik I', 'Required_ECTS': 6}
     PROG_SPEC_MATH_PARAM = {
-        'Program_Category': 'Höhere Mathematik', 'Required_CP': 17}
+        'Program_Category': 'Höhere Mathematik', 'Required_ECTS': 17}
     PROG_SPEC_FAHRZEUGTECHNIK_PARAM = {
-        'Program_Category': 'Fahrzeugtechnik', 'Required_CP': 22}
+        'Program_Category': 'Fahrzeugtechnik', 'Required_ECTS': 22}
     PROG_SPEC_OTHERS = {
-        'Program_Category': 'Others', 'Required_CP': 0}
+        'Program_Category': 'Others', 'Required_ECTS': 0}
 
     # This fixed to program course category.
     program_category = [
@@ -210,7 +210,7 @@ def ME_sorter(program_idx, file_path):
         # set the column length
         worksheet.set_column(i, i, column_len_array[i] * 2)
 
-    # Modify to column width for "Required_CP"
+    # Modify to column width for "Required_ECTS"
     column_len_array.append(6)
 
     for idx in program_idx:

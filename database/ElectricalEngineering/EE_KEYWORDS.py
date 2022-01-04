@@ -63,8 +63,8 @@ USELESS_COURSES_ANTI_KEY_WORDS = ['asdgladfj;l']
 # TODO: defining the keywords in proper way (iterative steps: generating, and see result, if mssing, then add keywords/anti_keywords)
 EE_CALCULUS_KEY_WORDS_EN = ['calculus']
 EE_CALCULUS_ANTI_KEY_WORDS_EN = ['asdgladfj;l']
-EE_MATH_KEY_WORDS_EN = ['mathe', 'algebra', 'differential', '函數',
-                        'probability', 'discrete', 'complex', 'numerical', 'vector analy']
+EE_MATH_KEY_WORDS_EN = ['mathe', 'algebra', 'differential', '函數', 'multivar',
+                        'probability', 'discrete math', 'complex', 'numerical', 'vector analy']
 EE_MATH_ANTI_KEY_WORDS_EN = ['asdgladfj;l']
 
 EE_INTRO_COMPUTER_SCIENCE_KEY_WORDS_EN = ['computer', 'algorithm', 'object', 'computing',
@@ -72,7 +72,7 @@ EE_INTRO_COMPUTER_SCIENCE_KEY_WORDS_EN = ['computer', 'algorithm', 'object', 'co
 EE_INTRO_COMPUTER_SCIENCE_ANTI_KEY_WORDS_EN = [
     '倫理', 'Python', 'machine learning']
 EE_PROGRAMMING_KEY_WORDS_EN = ['programming', 'program',
-                               'language', 'Python', 'C++', 'c language']
+                               'language', 'Python', 'c++', 'c language']
 EE_PROGRAMMING_ANTI_KEY_WORDS_EN = [
     'ethnic', 'Python', 'machine learning', 'vision']
 EE_SOFTWARE_SYSTEM_KEY_WORDS_EN = ['software engineering', ]
@@ -100,7 +100,7 @@ EE_POWER_ELECTRO_KEY_WORDS_EN = [
 EE_POWER_ELECTRO_ANTI_KEY_WORDS_EN = ['asdgladfj;l', '專題', '進階']
 EE_COMMUNICATION_KEY_WORDS_EN = ['microwave', 'crypto', 'security', 'radio frequ',
                                  'network', 'wireless', 'communication', '通訊', '電波']
-EE_COMMUNICATION_ANTI_KEY_WORDS_EN = ['asdgladfj;l', '專題', '進階']
+EE_COMMUNICATION_ANTI_KEY_WORDS_EN = ['asdgladfj;l', '專題', 'advanced', 'technical']
 EE_HF_RF_THEO_INFO_KEY_WORDS_EN = [
     'microwav', 'high frequen', 'electromagnetic wave' 'antenna', 'channel', 'information theory']
 EE_HF_RF_THEO_INFO_ANTI_KEY_WORDS_EN = ['asdgladfj;l', '專題', '進階']
@@ -112,7 +112,7 @@ EE_ADVANCED_ELECTRO_ANTI_KEY_WORDS_EN = ['ethnic', '素養']
 EE_APPLICATION_ORIENTED_KEY_WORDS_EN = ['生醫', 'neuro', '光機電', 'mems', 'iot', 'accoustics', 'solar',
                                         'image', 'deep learning', 'optoelectronics', '應用', 'green', 'cloud', 'medical', 'renewable']
 EE_APPLICATION_ORIENTED_ANTI_KEY_WORDS_EN = ['ethnic', '素養']
-EE_MACHINE_RELATED_KEY_WORDS_EN = ['mechanics', 'fluid', "statics", "dynamics",
+EE_MACHINE_RELATED_KEY_WORDS_EN = ['mechanics', 'fluid', 'statics', 'dynamics',
                                    'thermodyna', '傳導', 'conduction', 'machine', 'heat flux', '機動']
 EE_MACHINE_RELATED_ANTI_KEY_WORDS_EN = ['asdgladfj;l']
 USELESS_COURSES_KEY_WORDS_EN = ['asdgladfj;l']

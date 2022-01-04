@@ -31,15 +31,15 @@ def TUM_MMT(transcript_sorted_group_map, df_transcript_array, df_category_course
     # Create transcript_sorted_group to program_category mapping
 
     PROG_SPEC_BWL_PARAM = {
-        'Program_Category': 'Betriebswirtschaftliche Module', 'Required_CP': 25}  # 20 PUnkto
+        'Program_Category': 'Betriebswirtschaftliche Module', 'Required_ECTS': 25}  # 20 PUnkto
     PROG_SPEC_EMPIRIAL_METHODE_PARAM = {
-        'Program_Category': 'Empirische Methoden', 'Required_CP': 6}            # 10 Punkte
+        'Program_Category': 'Empirische Methoden', 'Required_ECTS': 6}            # 10 Punkte
     PROG_SPEC_OPERATION_RESEARCH_PARAM = {
-        'Program_Category': 'Operations Research', 'Required_CP': 6}            # 10 Punkte
+        'Program_Category': 'Operations Research', 'Required_ECTS': 6}            # 10 Punkte
     PROG_SPEC_VWL_PARAM = {
-        'Program_Category': 'Volkswirtschaftliche Module', 'Required_CP': 10}
+        'Program_Category': 'Volkswirtschaftliche Module', 'Required_ECTS': 10}
     PROG_SPEC_OTHERS = {
-        'Program_Category': 'Others', 'Required_CP': 0}
+        'Program_Category': 'Others', 'Required_ECTS': 0}
 
     # This fixed to program course category.
     program_category = [
@@ -99,18 +99,18 @@ def TUM_CONSUMER_SCIENCE(transcript_sorted_group_map, df_transcript_array, df_ca
     # Create transcript_sorted_group to program_category mapping
     # Statistik, Empirische Forschungsmethoden, Quantitative Methoden, Mathematik
     PROG_SPEC_EMPIRIAL_METHODE_PARAM={
-        'Program_Category': 'BWL, Quantitative Method, Mathematik', 'Required_CP': 15} # 10 PUnkto
+        'Program_Category': 'BWL, Quantitative Method, Mathematik', 'Required_ECTS': 15} # 10 PUnkto
     #  Bachelorarbeit, eines Projekts, eines wissenschaftlichen Aufsatzes
     PROG_SPEC_BACHELORARBEIT_PARAM = {
-        'Program_Category': 'Bachelor Thesis', 'Required_CP': 5}                # 10 Punkte
+        'Program_Category': 'Bachelor Thesis', 'Required_ECTS': 5}                # 10 Punkte
     # quantitativen Entscheidungsunterstützung mit Methoden des Operations Research 
     PROG_SPEC_BWL_PARAM = {
-        'Program_Category': 'BWL', 'Required_CP': 6}                           # 10 Punkte
+        'Program_Category': 'BWL', 'Required_ECTS': 6}                           # 10 Punkte
     # VWL mind. 5 Credits oder Module aus dem Bereich Consumer Behavior mind. 5 Credits
     PROG_SPEC_VWL_PARAM = {
-        'Program_Category': 'Volkswirtschaftliche Module', 'Required_CP': 10}   # 10 Punkte
+        'Program_Category': 'Volkswirtschaftliche Module', 'Required_ECTS': 10}   # 10 Punkte
     PROG_SPEC_OTHERS = {
-        'Program_Category': 'Others', 'Required_CP': 0}
+        'Program_Category': 'Others', 'Required_ECTS': 0}
 
     # This fixed to program course category.
     program_category = [
