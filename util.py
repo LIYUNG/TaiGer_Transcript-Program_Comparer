@@ -59,7 +59,7 @@ def isOutputEnglish(df_transcript):
         print("Output Chinese Version")
         return False  # output CHinese version
 
-    print("所修科目_英語 所修科目_中文 學分 和 成績 not matcj. Please make sure you fill the template correctly")
+    print("所修科目_英語 所修科目_中文 學分 和 成績 not match. Please make sure you fill the template correctly")
     sys.exit()
 
 
