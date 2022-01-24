@@ -85,6 +85,7 @@ def RWTH_EI(transcript_sorted_group_map, df_transcript_array, df_category_course
         PROG_SPEC_ANWENDUNG_MODULE_PARAM,  # 電力電子
         PROG_SPEC_ANWENDUNG_MODULE_PARAM,  # 通訊
         PROG_SPEC_OTHERS,  # 半導體
+        PROG_SPEC_OTHERS,  # 電子材料
         PROG_SPEC_THEORETICAL_EECS_EI_PARAM,  # 進階電磁理論
         PROG_SPEC_ANWENDUNG_MODULE_PARAM,  # 電機專業選修
         PROG_SPEC_ANWENDUNG_MODULE_PARAM,  # 應用科技
@@ -158,8 +159,9 @@ def STUTTGART_EI(transcript_sorted_group_map, df_transcript_array, df_category_c
         PROG_SPEC_PHY_EXP_PARAM,    # 物理實驗
         PROG_SPEC_MICROELECTRONICS_PARAM,  # 微電子
         PROG_SPEC_INTRO_ELECT_ENG_PROJ_PARAM,  # 基礎電子實驗
-        PROG_SPEC_INTRO_PROGRAMMING_ENG_PARAM,  # 基礎計算機概論 
-        PROG_SPEC_INTRO_SOFTWARE_SYSTEM_PARAM,  # 基礎軟體系統 Objektorientierung, Design pattern 軟體工程理論, UML
+        PROG_SPEC_INTRO_PROGRAMMING_ENG_PARAM,  # 基礎計算機概論
+        # 基礎軟體系統 Objektorientierung, Design pattern 軟體工程理論, UML
+        PROG_SPEC_INTRO_SOFTWARE_SYSTEM_PARAM,
         PROG_SPEC_ENERGIETECHNIK_PARAM,         # 能源工程
         PROG_SPEC_SCHALTUNGSTECHNIK_PARAM,      # 電路學
         PROG_SPEC_ELEKTRODYNAMIK_PARAM,         # 電磁學
@@ -188,6 +190,7 @@ def STUTTGART_EI(transcript_sorted_group_map, df_transcript_array, df_category_c
         PROG_SPEC_ENERGIETECHNIK_PARAM,  # 電力電子
         PROG_SPEC_NACHRICHTENTECHNIK_PARAM,  # 通訊
         PROG_SPEC_SCHWERPUNKTE_PARAM,  # 半導體
+        PROG_SPEC_OTHERS,  # 電子材料
         PROG_SPEC_ELEKTRODYNAMIK_PARAM,  # 進階電磁理論
         PROG_SPEC_SCHWERPUNKTE_PARAM,  # 電機專業選修
         PROG_SPEC_SCHWERPUNKTE_PARAM,  # 應用科技
@@ -209,7 +212,7 @@ def STUTTGART_EI(transcript_sorted_group_map, df_transcript_array, df_category_c
     WriteToExcel(writer, program_name, program_category, program_category_map,
                  transcript_sorted_group_map, df_transcript_array_temp, df_category_courses_sugesstion_data_temp, column_len_array)
 
-                 
+
 # FPSO: https://portal.mytum.de/archiv/kompendium_rechtsangelegenheiten/fachpruefungsordnungen/2018-56-Neufassung-FPSO-MA-CE-FINAL.pdf
 # https://www.ei.tum.de/fileadmin/tueifei/www/Studium_Satzungen_Modullisten_Studienfuehrer/BScEI_Stu_richt_empf.pdf
 # https://www.ei.tum.de/fileadmin/tueifei/www/Studium_Satzungen_Modullisten_Studienfuehrer/Modulliste_BSEI_PO20181.pdf
@@ -263,6 +266,7 @@ def TUM_MSCE(transcript_sorted_group_map, df_transcript_array, df_category_cours
         PROG_SPEC_GRUNDLAGE_ELEKTROTECHNIK_PARAM,  # 電力電子
         PROG_SPEC_GRUNDLAGE_KOMMUNIKATIONSTECHNIK_PARAM,  # 通訊
         PROG_SPEC_GRUNDLAGE_ELEKTROTECHNIK_PARAM,  # 半導體
+        PROG_SPEC_OTHERS,  # 電子材料
         PROG_SPEC_GRUNDLAGE_KOMMUNIKATIONSTECHNIK_PARAM,  # 進階電磁理論
         PROG_SPEC_GRUNDLAGE_KOMMUNIKATIONSTECHNIK_PARAM,  # 電機專業選修
         PROG_SPEC_OTHERS,  # 應用科技
@@ -342,6 +346,7 @@ def TUM_MSPE(transcript_sorted_group_map, df_transcript_array, df_category_cours
         PROG_SPEC_GRUNDLAGE_ELEKTROTECHNIK_PARAM,  # 電力電子
         PROG_SPEC_OTHERS,  # 通訊
         PROG_SPEC_GRUNDLAGE_ELEKTROTECHNIK_PARAM,  # 半導體
+        PROG_SPEC_OTHERS,  # 電子材料
         PROG_SPEC_GRUNDLAGE_ELEKTROTECHNIK_PARAM,  # 進階電磁理論
         PROG_SPEC_GRUNDLAGE_ELEKTROTECHNIK_PARAM,  # 電機專業選修
         PROG_SPEC_OTHERS,  # 應用科技
@@ -419,6 +424,7 @@ def TUM_MSNE(transcript_sorted_group_map, df_transcript_array, df_category_cours
         PROG_SPEC_OTHERS,  # 電力電子
         PROG_SPEC_OTHERS,  # 通訊
         PROG_SPEC_OTHERS,  # 半導體
+        PROG_SPEC_OTHERS,  # 電子材料
         PROG_SPEC_OTHERS,  # 進階電磁理論
         PROG_SPEC_OTHERS,  # 電機專業選修
         PROG_SPEC_OTHERS,  # 應用科技
@@ -467,21 +473,22 @@ def TUHH_MICROELECTRONICS(transcript_sorted_group_map, df_transcript_array, df_c
         'Program_Category': 'Control Theory', 'Required_ECTS': 6}
     PROG_SPEC_PHY_EXP_PARAM = {
         'Program_Category': 'Physics', 'Required_ECTS': 6}
-    PROG_SPEC_EE_PARAM = {
-        # direct/alternating current, electronics
-        'Program_Category': 'Electrical Engineering', 'Required_ECTS': 3}
+    PROG_SPEC_ELECTRICAL_ENG_PARAM = {  # Electrical engineering(direct/alternating current, electronics)
+        'Program_Category': 'Fundamental Electrical Engineering', 'Required_ECTS': 12}
+    PROG_SPEC_ELECTRICAL_MTL_PARAM = {  # Materials in electrical engineering,
+        'Program_Category': 'Materials in Electrical Engineering', 'Required_ECTS': 3}
     PROG_SPEC_METHOD_DATA_PROCESSING_PARAM = {
         'Program_Category': 'Measurements: Methods and data processing', 'Required_ECTS': 3}
     PROG_SPEC_CIRCUIT_THEORY_PARAM = {
         'Program_Category': 'Circuit theory', 'Required_ECTS': 6}
+    PROG_SPEC_TRANS_LINE_PARAM = {  # Transmission Line
+        'Program_Category': 'Transmission Line', 'Required_ECTS': 6}
     PROG_SPEC_SIGNAL_SYSTEM_PARAM = {
         'Program_Category': 'Signals and systems', 'Required_ECTS': 6}
     PROG_SPEC_THEORY_ELECTRICAL_ENG_PARAM = {
         'Program_Category': 'Theoretical Electrical Engineering', 'Required_ECTS': 12}
     PROG_SPEC_SEMICONDUCTOR_CIRCUIT_PARAM = {
         'Program_Category': 'Semiconductor and electronics devices', 'Required_ECTS': 6}
-    PROG_SPEC_ELECTRICAL_ENG_PARAM = {
-        'Program_Category': 'Fundamental Electrical Engineering', 'Required_ECTS': 21}
     PROG_SPEC_OTHERS = {
         'Program_Category': 'Others', 'Required_ECTS': 0}
 
@@ -491,13 +498,14 @@ def TUHH_MICROELECTRONICS(transcript_sorted_group_map, df_transcript_array, df_c
         PROG_SPEC_COMPUTER_SCIENCE_ENG_PARAM,  # 基礎資工
         PROG_SPEC_SYSTEM_THEORIE_PARAM,  # 控制理論
         PROG_SPEC_PHY_EXP_PARAM,           # 物理
-        PROG_SPEC_EE_PARAM,  # 基礎電機電子
+        PROG_SPEC_ELECTRICAL_ENG_PARAM,  # 基礎電機電子
+        PROG_SPEC_ELECTRICAL_MTL_PARAM,  # 電子材料
         PROG_SPEC_METHOD_DATA_PROCESSING_PARAM,  # 電子實驗
         PROG_SPEC_CIRCUIT_THEORY_PARAM,  # 電路學
+        PROG_SPEC_TRANS_LINE_PARAM,     # 傳輸線 微波
         PROG_SPEC_SIGNAL_SYSTEM_PARAM,  # 信號系統
         PROG_SPEC_THEORY_ELECTRICAL_ENG_PARAM,  # 電磁學
-        PROG_SPEC_SEMICONDUCTOR_CIRCUIT_PARAM,  # 半導體電路設計 電子元件 aka電子學 
-        PROG_SPEC_ELECTRICAL_ENG_PARAM,           # 基礎電機電子
+        PROG_SPEC_SEMICONDUCTOR_CIRCUIT_PARAM,  # 半導體電路設計 電子元件 aka電子學
         PROG_SPEC_OTHERS  # 其他
     ]
 
@@ -511,7 +519,7 @@ def TUHH_MICROELECTRONICS(transcript_sorted_group_map, df_transcript_array, df_c
         PROG_SPEC_COMPUTER_SCIENCE_ENG_PARAM,  # 程式
         PROG_SPEC_COMPUTER_SCIENCE_ENG_PARAM,  # 軟體工程
         PROG_SPEC_SYSTEM_THEORIE_PARAM,  # 控制系統
-        PROG_SPEC_EE_PARAM,  # 電子
+        PROG_SPEC_ELECTRICAL_ENG_PARAM,  # 電子
         PROG_SPEC_METHOD_DATA_PROCESSING_PARAM,  # 電子實驗
         PROG_SPEC_CIRCUIT_THEORY_PARAM,  # 電路
         PROG_SPEC_SIGNAL_SYSTEM_PARAM,  # 訊號系統
@@ -519,7 +527,8 @@ def TUHH_MICROELECTRONICS(transcript_sorted_group_map, df_transcript_array, df_c
         PROG_SPEC_ELECTRICAL_ENG_PARAM,  # 電力電子
         PROG_SPEC_ELECTRICAL_ENG_PARAM,  # 通訊
         PROG_SPEC_SEMICONDUCTOR_CIRCUIT_PARAM,  # 半導體
-        PROG_SPEC_THEORY_ELECTRICAL_ENG_PARAM,  # 進階電磁理論
+        PROG_SPEC_ELECTRICAL_MTL_PARAM,  # 電子材料
+        PROG_SPEC_TRANS_LINE_PARAM,  # 進階電磁理論
         PROG_SPEC_OTHERS,  # 電機專業選修
         PROG_SPEC_OTHERS,  # 應用科技
         PROG_SPEC_OTHERS,  # 力學,機械
@@ -539,7 +548,6 @@ def TUHH_MICROELECTRONICS(transcript_sorted_group_map, df_transcript_array, df_c
 
     WriteToExcel(writer, program_name, program_category, program_category_map,
                  transcript_sorted_group_map, df_transcript_array_temp, df_category_courses_sugesstion_data_temp, column_len_array)
-
 
 
 program_sort_function = [TUM_EI,
@@ -570,6 +578,7 @@ def EE_sorter(program_idx, file_path, abbrev):
         '電力電子': [EE_POWER_ELECTRO_KEY_WORDS_EN, EE_POWER_ELECTRO_ANTI_KEY_WORDS_EN, ['一', '二']],
         '通訊': [EE_COMMUNICATION_KEY_WORDS_EN, EE_COMMUNICATION_ANTI_KEY_WORDS_EN, ['一', '二']],
         '半導體': [EE_SEMICONDUCTOR_KEY_WORDS_EN, EE_SEMICONDUCTOR_ANTI_KEY_WORDS_EN],
+        '電子材料': [EE_ELEC_MATERIALS_KEY_WORDS_EN, EE_ELEC_MATERIALS_ANTI_KEY_WORDS_EN],
         '進階電磁理論': [EE_HF_RF_THEO_INFO_KEY_WORDS_EN, EE_HF_RF_THEO_INFO_ANTI_KEY_WORDS_EN],
         '電機專業選修': [EE_ADVANCED_ELECTRO_KEY_WORDS_EN, EE_ADVANCED_ELECTRO_ANTI_KEY_WORDS_EN],
         '專業應用課程': [EE_APPLICATION_ORIENTED_KEY_WORDS_EN, EE_APPLICATION_ORIENTED_ANTI_KEY_WORDS_EN],
@@ -593,6 +602,7 @@ def EE_sorter(program_idx, file_path, abbrev):
         '電力電子': [EE_POWER_ELECTRO_KEY_WORDS, EE_POWER_ELECTRO_ANTI_KEY_WORDS, ['一', '二']],
         '通訊': [EE_COMMUNICATION_KEY_WORDS, EE_COMMUNICATION_ANTI_KEY_WORDS, ['一', '二']],
         '半導體': [EE_SEMICONDUCTOR_KEY_WORDS, EE_SEMICONDUCTOR_ANTI_KEY_WORDS],
+        '電子材料': [EE_ELEC_MATERIALS_KEY_WORDS, EE_ELEC_MATERIALS_ANTI_KEY_WORDS],
         '進階電磁理論': [EE_HF_RF_THEO_INFO_KEY_WORDS, EE_HF_RF_THEO_INFO_ANTI_KEY_WORDS],
         '電機專業選修': [EE_ADVANCED_ELECTRO_KEY_WORDS, EE_ADVANCED_ELECTRO_ANTI_KEY_WORDS],
         '專業應用課程': [EE_APPLICATION_ORIENTED_KEY_WORDS, EE_APPLICATION_ORIENTED_ANTI_KEY_WORDS],

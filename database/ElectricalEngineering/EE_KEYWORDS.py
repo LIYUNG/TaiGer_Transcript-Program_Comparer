@@ -26,9 +26,9 @@ EE_PHYSICS_EXP_KEY_WORDS = ['物理']
 EE_PHYSICS_EXP_ANTI_KEY_WORDS = ['半導體', '元件']
 EE_ELECTRONICS_KEY_WORDS = ['電子']
 EE_ELECTRONICS_ANTI_KEY_WORDS = [
-    '實驗', '專題', '電力', '固態', '自動化', '倫理', '素養', '進階', '電路', '實驗']
+    '實驗', '專題', '電力', '固態', '自動化', '倫理', '素養', '進階', '電路', '實驗', '材料']
 EE_ELECTRONICS_EXP_KEY_WORDS = ['電子實驗', '電子']
-EE_ELECTRONICS_EXP_ANTI_KEY_WORDS = ['專題', '電力', '固態']
+EE_ELECTRONICS_EXP_ANTI_KEY_WORDS = ['專題', '電力', '固態', '材料']
 EE_ELECTRO_CIRCUIT_KEY_WORDS = ['電路', '數位邏輯', '邏輯設計']
 EE_ELECTRO_CIRCUIT_ANTI_KEY_WORDS = ['超大型', '專題', '倫理', '素養', '進階', '高頻']
 EE_SIGNAL_SYSTEM_KEY_WORDS = ['訊號與系統', '信號與系統', '訊號', '信號']
@@ -43,7 +43,9 @@ EE_COMMUNICATION_ANTI_KEY_WORDS = ['asdgladfj;l', '專題', '進階']
 EE_HF_RF_THEO_INFO_KEY_WORDS = ['微波', '高頻', '電磁波', '天線', '通道', '消息']
 EE_HF_RF_THEO_INFO_ANTI_KEY_WORDS = ['asdgladfj;l', '專題', '進階']
 EE_SEMICONDUCTOR_KEY_WORDS = ['半導體', '元件', '固態']
-EE_SEMICONDUCTOR_ANTI_KEY_WORDS = ['專題', '倫理', '素養']
+EE_SEMICONDUCTOR_ANTI_KEY_WORDS = ['專題', '倫理', '素養', '電子']
+EE_ELEC_MATERIALS_KEY_WORDS = ['電子', '材料']
+EE_ELEC_MATERIALS_ANTI_KEY_WORDS = ['專題', '倫理', '素養']
 EE_ADVANCED_ELECTRO_KEY_WORDS = ['積體電路', '自動化',  '藍芽', '晶片', '類比', '數位訊號', '數位信號',
                                  '微算機', '微處理', 'VLSI', '嵌入式', '人工智慧', '機器學習']
 EE_ADVANCED_ELECTRO_ANTI_KEY_WORDS = ['倫理', '素養']
@@ -87,7 +89,7 @@ EE_ELECTRONICS_KEY_WORDS_EN = ['electronic', 'electrical']
 EE_ELECTRONICS_ANTI_KEY_WORDS_EN = [
     '專題', 'power', 'solid', 'automation', 'ethnic', '素養', 'advanced', 'lab']
 EE_ELECTRONICS_EXP_KEY_WORDS_EN = ['lab', '電子']
-EE_ELECTRONICS_EXP_ANTI_KEY_WORDS_EN = ['physic', 'chemistry', 'general']
+EE_ELECTRONICS_EXP_ANTI_KEY_WORDS_EN = ['physic', 'chemistry', 'general', '材料']
 EE_ELECTRO_CIRCUIT_KEY_WORDS_EN = [
     'circuit', 'signal', '數位邏輯', 'logic']
 EE_ELECTRO_CIRCUIT_ANTI_KEY_WORDS_EN = ['超大型', '專題']
@@ -100,12 +102,15 @@ EE_POWER_ELECTRO_KEY_WORDS_EN = [
 EE_POWER_ELECTRO_ANTI_KEY_WORDS_EN = ['asdgladfj;l', '專題', '進階']
 EE_COMMUNICATION_KEY_WORDS_EN = ['microwave', 'crypto', 'security', 'radio frequ',
                                  'network', 'wireless', 'communication', '通訊', '電波']
-EE_COMMUNICATION_ANTI_KEY_WORDS_EN = ['asdgladfj;l', '專題', 'advanced', 'technical']
+EE_COMMUNICATION_ANTI_KEY_WORDS_EN = [
+    'asdgladfj;l', '專題', 'advanced', 'technical']
 EE_HF_RF_THEO_INFO_KEY_WORDS_EN = [
     'microwav', 'high frequen', 'electromagnetic wave' 'antenna', 'channel', 'information theory']
 EE_HF_RF_THEO_INFO_ANTI_KEY_WORDS_EN = ['asdgladfj;l', '專題', '進階']
 EE_SEMICONDUCTOR_KEY_WORDS_EN = ['semicondu', '元件', '固態']
 EE_SEMICONDUCTOR_ANTI_KEY_WORDS_EN = ['專題', 'ethnic', '素養']
+EE_ELEC_MATERIALS_KEY_WORDS_EN = ['電子材料']
+EE_ELEC_MATERIALS_ANTI_KEY_WORDS_EN = ['專題', 'ethnic', '素養']
 EE_ADVANCED_ELECTRO_KEY_WORDS_EN = ['integrated circuit', 'automation',  'bluetooth', 'chip', 'analog', 'digital', 'digital signal',
                                     'microprocessor', 'microcontroller', 'VLSI', 'embedded', 'artificial', 'machine learning']
 EE_ADVANCED_ELECTRO_ANTI_KEY_WORDS_EN = ['ethnic', '素養']

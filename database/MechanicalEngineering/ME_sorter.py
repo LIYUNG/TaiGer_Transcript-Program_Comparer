@@ -516,21 +516,20 @@ def TUM_COMP_MECH(transcript_sorted_group_map, df_transcript_array, df_category_
     #####################################################################
 
     # Create transcript_sorted_group to program_category mapping
-
     PROG_SPEC_MECHANICS_PARAM = {
-        'Program_Category': 'Mechanics', 'Required_ECTS': 40}
-    PROG_SPEC_INFO_PARAM = {
-        'Program_Category': 'Computer Science and Programming', 'Required_ECTS': 10}
+        'Program_Category': 'Mechanics', 'Required_ECTS': 50}
     PROG_SPEC_MATH_PARAM = {
-        'Program_Category': 'Mathematics', 'Required_ECTS': 10}
+        'Program_Category': 'Mathematics, Stockastics', 'Required_ECTS': 25}
+    PROG_SPEC_INFO_PARAM = {
+        'Program_Category': 'Computer Science and Programming', 'Required_ECTS': 15}
     PROG_SPEC_OTHERS = {
         'Program_Category': 'Others', 'Required_ECTS': 0}
 
     # This fixed to program course category.
     program_category = [
         PROG_SPEC_MECHANICS_PARAM,  # 力學
-        PROG_SPEC_INFO_PARAM,  # 基礎資工
         PROG_SPEC_MATH_PARAM,  # 數學
+        PROG_SPEC_INFO_PARAM,  # 基礎資工
         PROG_SPEC_OTHERS  # 其他
     ]
 
