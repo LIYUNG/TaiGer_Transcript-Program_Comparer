@@ -1,4 +1,25 @@
 # TaiGer_Transcript-Program_Comparer
+## Demo
+### Student transcript as input:
+![](screenshots/input.png)
+
+### Generated file as output:
+- According to the course category, the courses will be classified by keywords compared algorithms:
+
+![](screenshots/output1.png)
+
+
+### Generated file as output:
+- Depending on the University's course requirements for each course category, the pre-classified courses will be mapped to the corresponding categories by the requirements of the university:
+- For those who still pursuing their degree, a list of suggested courses are listed.
+
+![](screenshots/output2.png)
+
+### Generated file as output:
+- By hard-coded each rule from all the universities, the course analysis will be significantly faster.
+  
+![](screenshots/output3.png)
+
 ## Project structure:
 ```
 /
