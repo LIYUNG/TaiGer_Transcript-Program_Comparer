@@ -14,7 +14,7 @@ EE_MATH_ANTI_KEY_WORDS = ['asdgladfj;l']
 EE_INTRO_COMPUTER_SCIENCE_KEY_WORDS = ['計算機', '演算', '資料', '物件', '運算',
                                        '資電', '作業系統', '資料結構', '編譯器']
 EE_INTRO_COMPUTER_SCIENCE_ANTI_KEY_WORDS = ['倫理', 'Python', '機器學習', '傳輸']
-EE_PROGRAMMING_KEY_WORDS = ['程式設計', '程式語言', 'Python', 'C++', 'C語言']
+EE_PROGRAMMING_KEY_WORDS = ['程式設計', '程式語言', 'Python', 'C++', 'C語言', '組合語言']
 EE_PROGRAMMING_ANTI_KEY_WORDS = ['倫理', 'Python', '機器學習']
 EE_SOFTWARE_SYSTEM_KEY_WORDS = ['軟體工程', ]
 EE_SOFTWARE_SYSTEM_ANTI_KEY_WORDS = ['asdgladfj;l']
@@ -26,8 +26,8 @@ EE_PHYSICS_EXP_KEY_WORDS = ['物理']
 EE_PHYSICS_EXP_ANTI_KEY_WORDS = ['半導體', '元件']
 EE_ELECTRONICS_KEY_WORDS = ['電子']
 EE_ELECTRONICS_ANTI_KEY_WORDS = [
-    '實驗', '專題', '電力', '固態', '自動化', '倫理', '素養', '進階', '電路', '實驗', '材料']
-EE_ELECTRONICS_EXP_KEY_WORDS = ['電子實驗', '電子']
+    '實驗', '專題', '電力', '固態', '自動化', '倫理', '素養', '進階', '電路', '材料']
+EE_ELECTRONICS_EXP_KEY_WORDS = ['電子實驗', '電子', '電工實驗']
 EE_ELECTRONICS_EXP_ANTI_KEY_WORDS = ['專題', '電力', '固態', '材料']
 EE_ELECTRO_CIRCUIT_KEY_WORDS = ['電路', '數位邏輯', '邏輯設計']
 EE_ELECTRO_CIRCUIT_ANTI_KEY_WORDS = ['超大型', '專題', '倫理', '素養', '進階', '高頻']
@@ -39,7 +39,7 @@ EE_POWER_ELECTRO_KEY_WORDS = ['電力', '能源', '電動機', '電機', '高壓
 EE_POWER_ELECTRO_ANTI_KEY_WORDS = ['asdgladfj;l', '專題', '進階']
 EE_COMMUNICATION_KEY_WORDS = ['密碼學', '安全', '傳輸', '射頻',
                               '網路', '無線', '通信', '通訊', '電波', '無線網路']
-EE_COMMUNICATION_ANTI_KEY_WORDS = ['asdgladfj;l', '專題', '進階']
+EE_COMMUNICATION_ANTI_KEY_WORDS = ['asdgladfj;l', '專題', '進階', '金融', '神經']
 EE_HF_RF_THEO_INFO_KEY_WORDS = ['微波', '高頻', '電磁波', '天線', '通道', '消息']
 EE_HF_RF_THEO_INFO_ANTI_KEY_WORDS = ['asdgladfj;l', '專題', '進階']
 EE_SEMICONDUCTOR_KEY_WORDS = ['半導體', '元件', '固態']
@@ -51,7 +51,7 @@ EE_ADVANCED_ELECTRO_KEY_WORDS = ['積體電路', '自動化',  '藍芽', '晶片
 EE_ADVANCED_ELECTRO_ANTI_KEY_WORDS = ['倫理', '素養']
 EE_APPLICATION_ORIENTED_KEY_WORDS = ['生醫', '光機電', '電腦', '微系統', '物聯網', '聲學',
                                      '影像', '深度學習', '光電', '應用', '綠能', '雲端運算', '醫學工程', '再生能源']
-EE_APPLICATION_ORIENTED_ANTI_KEY_WORDS = ['倫理', '素養']
+EE_APPLICATION_ORIENTED_ANTI_KEY_WORDS = ['倫理', '素養', '入門', '經濟']
 EE_MACHINE_RELATED_KEY_WORDS = ['力學', '流體',
                                 '熱力', '傳導', '熱傳', '機械', '動力', '熱流', '機動']
 EE_MACHINE_RELATED_ANTI_KEY_WORDS = ['asdgladfj;l']

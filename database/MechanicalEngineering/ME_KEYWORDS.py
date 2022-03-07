@@ -33,7 +33,7 @@ ME_FLUIDDYN_KEY_WORDS = ['流體', '流力']
 ME_FLUIDDYN_ANTI_KEY_WORDS = ['asdgladfj;l']
 ME_MECHANIK_KEY_WORDS = ['力學', '動力', '機動', '振動', '震動', '運動學', '應力']
 ME_MECHANIK_ANTI_KEY_WORDS = ['熱力', '流體', '車輛', '氣動', '量子', '聲學', '廠']
-ME_ELECTRICAL_ENG_KEY_WORDS = ['電力電子', '電機', '電動機', '電磁', '電子', '電路', '電工']
+ME_ELECTRICAL_ENG_KEY_WORDS = ['電力電子', '電機', '電動機', '電磁', '電子', '電路', '電工','電力']
 ME_ELECTRICAL_ENG_ANTI_KEY_WORDS = [
     'asdgladfj;l', '邏輯', '自動化', '微電子', '商務', '實習']
 ME_MANUFACTURE_ENG_KEY_WORDS = ['製造']
