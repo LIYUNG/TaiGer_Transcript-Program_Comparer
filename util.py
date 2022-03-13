@@ -263,7 +263,7 @@ def WriteToExcel(writer, program_name, program_category, program_category_map, t
     print("Save to " + program_name)
 
 
-def Classifier(program_idx, file_path, abbrev, env_file_path, basic_classification_en, basic_classification_zh, column_len_array, program_sort_function):
+def Classifier(program_idx, file_path, abbrev, env_file_path, basic_classification_en, basic_classification_zh, column_len_array, program_sort_function, Generated_Version):
 
     program_idx, file_path, abbrev
     Database_Path = env_file_path + '/'
@@ -376,12 +376,23 @@ def Classifier(program_idx, file_path, abbrev, env_file_path, basic_classificati
     # Modify to column width for "Required_ECTS"
     column_len_array.append(6)
 
-    for idx in program_idx:
-        program_sort_function[idx](
-            transcript_sorted_group_map,
-            sorted_courses,
-            df_category_courses_sugesstion_data,
-            writer)
+    # TODO: Pre_Sales_Version
+    if Generated_Version == 1:
+        for idx, pid in enumerate(program_idx):
+            if idx < 2:
+                program_sort_function[pid](
+                    transcript_sorted_group_map,
+                    sorted_courses,
+                    df_category_courses_sugesstion_data,
+                    writer)
+    # Premium_Version
+    elif Generated_Version == 2:
+        for idx in program_idx:
+            program_sort_function[idx](
+                transcript_sorted_group_map,
+                sorted_courses,
+                df_category_courses_sugesstion_data,
+                writer)
 
     writer.save()
     print("output data at: " + Output_Path + output_file_name)

@@ -13,9 +13,17 @@ file_path = os.path.realpath(__file__)
 file_path = os.path.dirname(file_path)
 
 if __name__ == "__main__":
-
+    
+    Pre_Sales_Version = 1
+    Premium_Version = 2
+    Generated_Version = 0
     if(len(sys.argv) == 3):
-        print("arg: " + sys.argv[1])  # TODO use sys.argv[1] as filename.xlsx
+        print("premium version")
+        # print("arg: " + sys.argv[1])  # TODO use sys.argv[1] as filename.xlsx
+        Generated_Version = Premium_Version
+    elif(len(sys.argv) == 4):
+        print("pre-sales version")
+        Generated_Version = Pre_Sales_Version
     else:
         print("Error: Please select the transcript excel as argument")
         print("Please type: ")
@@ -62,16 +70,16 @@ if __name__ == "__main__":
             program_idx.append(idx)
             
     if sys.argv[2] == 'cs':
-        CS_sorter(program_idx, sys.argv[1], 'CS')
+        CS_sorter(program_idx, sys.argv[1], 'CS', Generated_Version)
     elif sys.argv[2] == 'ee':
-        EE_sorter(program_idx, sys.argv[1], 'EE')
+        EE_sorter(program_idx, sys.argv[1], 'EE', Generated_Version)
     elif sys.argv[2] == 'me':
-        ME_sorter(program_idx, sys.argv[1], 'ME')
+        ME_sorter(program_idx, sys.argv[1], 'ME', Generated_Version)
     elif sys.argv[2] == 'mgm':
-        MGM_sorter(program_idx, sys.argv[1], 'MGM')
+        MGM_sorter(program_idx, sys.argv[1], 'MGM', Generated_Version)
     elif sys.argv[2] == 'dsbi':
-        DSBI_sorter(program_idx, sys.argv[1], 'DSBI')
+        DSBI_sorter(program_idx, sys.argv[1], 'DSBI', Generated_Version)
     elif sys.argv[2] == 'mtl':
-        MTL_sorter(program_idx, sys.argv[1], 'MTL')
+        MTL_sorter(program_idx, sys.argv[1], 'MTL', Generated_Version)
     elif sys.argv[2] == 'te':
-        TE_sorter(program_idx, sys.argv[1], 'TE')
+        TE_sorter(program_idx, sys.argv[1], 'TE', Generated_Version)
