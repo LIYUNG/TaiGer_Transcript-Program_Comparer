@@ -4,6 +4,9 @@ from cell_formatter import red_out_failed_subject, red_out_insufficient_credit
 import gc
 import sys
 import os
+import boto3
+from botocore.exceptions import ClientError
+from tempfile import NamedTemporaryFile
 
 KEY_WORDS = 0
 ANTI_KEY_WORDS = 1
@@ -249,10 +252,6 @@ def WriteToExcel(writer, program_name, program_category, program_category_map, t
     red_out_failed_subject(workbook, worksheet, 1, start_row)
     # red_out_insufficient_credit(workbook, worksheet)
 
-    # print("writer")
-    # print(writer['A1'])
-    # print("worksheet")
-    # print(worksheet)
     for df in df_PROG_SPEC_CATES:
         # print(df)
         for i, col in enumerate(df.columns):
@@ -269,7 +268,12 @@ def Classifier(program_idx, file_path, abbrev, env_file_path, basic_classificati
     Database_Path = env_file_path + '/'
     Output_Path = os.path.split(file_path)
     Output_Path = Output_Path[0]
-    Output_Path = Output_Path + '/output/'
+    if os.getenv('MODE') in "development":
+        print('development')
+        Output_Path = Output_Path + '/output/'
+    elif os.getenv('MODE') in "production":
+        print('development')
+        Output_Path = Output_Path + '/tmp/'
     print("output file path " + Output_Path)
 
     if not os.path.exists(Output_Path):
@@ -344,6 +348,7 @@ def Classifier(program_idx, file_path, abbrev, env_file_path, basic_classificati
         df_category_data, transcript_sorted_group_map, df_category_courses_sugesstion_data)
 
     output_file_name = 'analyzed_' + input_file_name
+    # TODO: create file in buffer for AWS S3
     writer = pd.ExcelWriter(
         Output_Path+output_file_name, engine='xlsxwriter')
 
@@ -393,8 +398,45 @@ def Classifier(program_idx, file_path, abbrev, env_file_path, basic_classificati
                 sorted_courses,
                 df_category_courses_sugesstion_data,
                 writer)
+    # TODO: save file in AWS S3
+    # writer.save()
 
-    writer.save()
+    # s3_resource = boto3.resource('s3')
+    # dest_filename = output_file_name
+
+    # with NamedTemporaryFile() as tmp:
+    #     filename = '/tmp/{}'.format(dest_filename)
+    #     wb.save(filename)
+    #     s3_resource.Bucket(bucket_name).upload_file(
+    #     Filename=filename, Key=dest_filename)
+    #     # create downloadable URL (see other tutorial)
+    #     # https://danh-was-here.netlify.app/download-aws-s3-files
+    #     url = create_presigned_url(bucket_name, dest_filename)
+    #     # return {
+    #     #     'downloadurl': url
+    #     # }
+
+    
+    if os.getenv('MODE') in "development":
+        print('development')
+    ## TODO: tmp folder and generated file not deleted!
+    elif os.getenv('MODE') in "production":  # aws EC2 server
+        print('production')
+        with NamedTemporaryFile() as tmp:
+            client_s3 = boto3.client('s3', aws_access_key_id=os.getenv(
+                'ACCESS_KEY'), aws_secret_access_key=os.getenv('ACCESS_SECRET'))
+            try:
+                print("upload file")
+                print(os.path.join(Output_Path))
+                tmp = writer
+                tmp.save()
+                client_s3.upload_file(os.path.join(Output_Path, output_file_name), os.getenv(
+                    'BUCKET_NAME'), output_file_name)
+            except ClientError as e:
+                print('Credential is incorrect')
+                print(e)
+            except Exception as e:
+                print(e)
     print("output data at: " + Output_Path + output_file_name)
     print("Students' courses analysis and courses suggestion in " +
           abbrev + " area finished! ")

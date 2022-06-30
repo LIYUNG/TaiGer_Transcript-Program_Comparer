@@ -145,7 +145,148 @@ def MANNHEIM_BUSINESS_INFORMATICS(transcript_sorted_group_map, df_transcript_arr
                  transcript_sorted_group_map, df_transcript_array_temp, df_category_courses_sugesstion_data_temp, column_len_array)
 
 
-program_sort_function = [MANNHEIM_DATA_SCIENCE, MANNHEIM_BUSINESS_INFORMATICS]
+# Requirement: https://www.tum.de/fileadmin/user_upload_87/gi32rab/FPSO/Informations_Syst_Wirtschaftsinf_MA_LB_3._AES_7.9.21.pdf
+def TUM_BI(transcript_sorted_group_map, df_transcript_array, df_category_courses_sugesstion_data, writer):
+    program_name = 'TUM_BI'
+    print("Create " + program_name + " sheet")
+    df_transcript_array_temp = []
+    df_category_courses_sugesstion_data_temp = []
+    for idx, df in enumerate(df_transcript_array):
+        df_transcript_array_temp.append(df.copy())
+    for idx, df in enumerate(df_category_courses_sugesstion_data):
+        df_category_courses_sugesstion_data_temp.append(df.copy())
+    #####################################################################
+    ############## Program Specific Parameters ##########################
+    #####################################################################
+
+    # Create transcript_sorted_group to program_category mapping
+    # Statistik, Empirische Forschungsmethoden, Quantitative Methoden, Mathematik
+    PROG_SPEC_BUSINESS_INFOMATICS_PARAM = { #TODO: not classified correctly and the recommended courses
+        'Program_Category': 'Business Informatics', 'Required_ECTS': 16}  # 30 Punkte
+    #  Bachelorarbeit, eines Projekts, eines wissenschaftlichen Aufsatzes
+    PROG_SPEC_INFORMATICS_PARAM = {
+        'Program_Category': 'Fundamental CS', 'Required_ECTS': 36}   # 36 Punkte
+    # quantitativen Entscheidungsunterstützung mit Methoden des Operations Research
+    PROG_SPEC_WIRTSCHAFTSWISSENSCHAFTEN_PARAM = {
+        'Program_Category': 'Business Science', 'Required_ECTS': 18}    # (Buchfuehrung und Rechnungswesen, Kostenrechnung, Investitions-und Finanzmanagement) 18 Punkte
+    PROG_SPEC_MATH = {
+        'Program_Category': 'Mathematics and Statistics', 'Required_ECTS': 30}
+    PROG_SPEC_OTHERS = {
+        'Program_Category': 'Others', 'Required_ECTS': 0}
+
+    # This fixed to program course category.
+    program_category = [
+        PROG_SPEC_BUSINESS_INFOMATICS_PARAM,  # 
+        PROG_SPEC_INFORMATICS_PARAM,  # 基礎資工 經濟 管理 資料分析
+        PROG_SPEC_WIRTSCHAFTSWISSENSCHAFTEN_PARAM,  # 會計 財務 審計 投資學
+        PROG_SPEC_MATH,  # 數學
+        PROG_SPEC_OTHERS  # 其他
+    ]
+
+    # Mapping table: same dimension as transcript_sorted_group/ The length depends on how fine the transcript is classified
+    program_category_map = [
+        PROG_SPEC_MATH,  # 微積分
+        PROG_SPEC_MATH,  # 數學
+        PROG_SPEC_WIRTSCHAFTSWISSENSCHAFTEN_PARAM,  # 經濟
+        PROG_SPEC_WIRTSCHAFTSWISSENSCHAFTEN_PARAM,  # 企業
+        PROG_SPEC_WIRTSCHAFTSWISSENSCHAFTEN_PARAM,  # 管理
+        PROG_SPEC_WIRTSCHAFTSWISSENSCHAFTEN_PARAM,  # 會計
+        PROG_SPEC_MATH,  # 統計
+        PROG_SPEC_WIRTSCHAFTSWISSENSCHAFTEN_PARAM,  # 金融
+        PROG_SPEC_OTHERS,  # 行銷
+        PROG_SPEC_BUSINESS_INFOMATICS_PARAM,  # 作業研究
+        PROG_SPEC_BUSINESS_INFOMATICS_PARAM,  # 觀察研究
+        PROG_SPEC_INFORMATICS_PARAM,  # 資工
+        PROG_SPEC_INFORMATICS_PARAM,  # 程式
+        PROG_SPEC_BUSINESS_INFOMATICS_PARAM,  # 資料科學
+        PROG_SPEC_OTHERS,  # 論文
+        PROG_SPEC_OTHERS  # 其他
+    ]
+
+    # Development check
+    if len(program_category_map) != len(df_transcript_array):
+        print("program_category_map size: " + str(len(program_category_map)))
+        print("df_transcript_array size:  " + str(len(df_transcript_array)))
+        print("Please check the number of program_category_map again!")
+        sys.exit()
+
+    #####################################################################
+    ####################### End #########################################
+    #####################################################################
+
+    WriteToExcel(writer, program_name, program_category, program_category_map,
+                 transcript_sorted_group_map, df_transcript_array_temp, df_category_courses_sugesstion_data_temp, column_len_array)
+
+# https://uni-tuebingen.de/securedl/sdl-eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NDk3MDk1NTAsImV4cCI6MTY0OTc5OTU0NywidXNlciI6MCwiZ3JvdXBzIjpbMCwtMV0sImZpbGUiOiJmaWxlYWRtaW5cL1VuaV9UdWViaW5nZW5cL0Zha3VsdGFldGVuXC9NYXROYXRcL1N0dWRpdW1fTWF1dGUtTWljaGllbHNcL1NQT1wvUE9fZW5nbGlzY2hlX1VlYmVyc2V0enVuZ2VuXC9QT19NYWNoaW5lX0xlYXJuaW5nX01TY19CVF8yMDIxLTEwX2VuZy1VUy5wZGYiLCJwYWdlIjoxNTY5MzN9.SWTzanCr4QbYxI-g9WsOP-IJulrkpYckV2UXyug04xs/PO_Machine_Learning_MSc_BT_2021-10_eng-US.pdf?fbclid=IwAR1Yk4wMEen4V-jtRWXkOBYyLvvESNPHpxqnQKAM-BxMqvKJO34DtWKdytY
+
+
+def Tuebingen_ML(transcript_sorted_group_map, df_transcript_array, df_category_courses_sugesstion_data, writer):
+    program_name = 'Tuebingen_ML'
+    print("Create " + program_name + " sheet")
+    df_transcript_array_temp = []
+    df_category_courses_sugesstion_data_temp = []
+    for idx, df in enumerate(df_transcript_array):
+        df_transcript_array_temp.append(df.copy())
+    for idx, df in enumerate(df_category_courses_sugesstion_data):
+        df_category_courses_sugesstion_data_temp.append(df.copy())
+    #####################################################################
+    ############## Program Specific Parameters ##########################
+    #####################################################################
+
+    # Create transcript_sorted_group to program_category mapping
+    # Statistik, Empirische Forschungsmethoden, Quantitative Methoden, Mathematik
+    PROG_SPEC_BUSINESS_INFOMATICS_PARAM = {  # TODO: Find the requirements
+        'Program_Category': 'Business Informatics', 'Required_ECTS': 16}  # 30 Punkte
+    #  Bachelorarbeit, eines Projekts, eines wissenschaftlichen Aufsatzes
+    PROG_SPEC_INFORMATICS_PARAM = {
+        'Program_Category': 'Fundamental CS', 'Required_ECTS': 36}   # 36 Punkte
+    # quantitativen Entscheidungsunterstützung mit Methoden des Operations Research
+    PROG_SPEC_WIRTSCHAFTSWISSENSCHAFTEN_PARAM = {
+        'Program_Category': 'Business Science', 'Required_ECTS': 18}    # (Buchfuehrung und Rechnungswesen, Kostenrechnung, Investitions-und Finanzmanagement) 18 Punkte
+    PROG_SPEC_MATH = {
+        'Program_Category': 'Mathematics and Statistics', 'Required_ECTS': 30}
+    PROG_SPEC_OTHERS = {
+        'Program_Category': 'Others', 'Required_ECTS': 0}
+
+    # This fixed to program course category.
+    program_category = [
+        PROG_SPEC_BUSINESS_INFOMATICS_PARAM,  #
+        PROG_SPEC_INFORMATICS_PARAM,  # 基礎資工 經濟 管理 資料分析
+        PROG_SPEC_WIRTSCHAFTSWISSENSCHAFTEN_PARAM,  # 會計 財務 審計 投資學
+        PROG_SPEC_MATH,  # 數學
+        PROG_SPEC_OTHERS  # 其他
+    ]
+
+    # Mapping table: same dimension as transcript_sorted_group/ The length depends on how fine the transcript is classified
+    program_category_map = [
+        PROG_SPEC_MATH,  # 微積分
+        PROG_SPEC_MATH,  # 數學
+        PROG_SPEC_WIRTSCHAFTSWISSENSCHAFTEN_PARAM,  # 經濟
+        PROG_SPEC_WIRTSCHAFTSWISSENSCHAFTEN_PARAM,  # 企業
+        PROG_SPEC_WIRTSCHAFTSWISSENSCHAFTEN_PARAM,  # 管理
+        PROG_SPEC_WIRTSCHAFTSWISSENSCHAFTEN_PARAM,  # 會計
+        PROG_SPEC_MATH,  # 統計
+        PROG_SPEC_WIRTSCHAFTSWISSENSCHAFTEN_PARAM,  # 金融
+        PROG_SPEC_OTHERS,  # 行銷
+        PROG_SPEC_BUSINESS_INFOMATICS_PARAM,  # 作業研究
+        PROG_SPEC_BUSINESS_INFOMATICS_PARAM,  # 觀察研究
+        PROG_SPEC_INFORMATICS_PARAM,  # 資工
+        PROG_SPEC_INFORMATICS_PARAM,  # 程式
+        PROG_SPEC_BUSINESS_INFOMATICS_PARAM,  # 資料科學
+        PROG_SPEC_OTHERS,  # 論文
+        PROG_SPEC_OTHERS  # 其他
+    ]
+
+    # Development check
+    if len(program_category_map) != len(df_transcript_array):
+        print("program_category_map size: " + str(len(program_category_map)))
+        print("df_transcript_array size:  " + str(len(df_transcript_array)))
+        print("Please check the number of program_category_map again!")
+        sys.exit()
+
+
+program_sort_function = [MANNHEIM_DATA_SCIENCE,
+                         MANNHEIM_BUSINESS_INFORMATICS, TUM_BI, Tuebingen_ML]
 
 
 def DSBI_sorter(program_idx, file_path, abbrev, Generated_Version):

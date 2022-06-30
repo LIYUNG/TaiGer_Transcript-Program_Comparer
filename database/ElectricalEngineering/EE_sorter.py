@@ -560,6 +560,7 @@ program_sort_function = [TUM_EI,
 
 
 def EE_sorter(program_idx, file_path, abbrev, Generated_Version):
+    print('After load_dotenv()', os.getenv('MODE'))
 
     basic_classification_en = {
         '微積分': [EE_CALCULUS_KEY_WORDS_EN, EE_CALCULUS_ANTI_KEY_WORDS_EN, ['一', '二']],

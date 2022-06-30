@@ -1,4 +1,5 @@
 # import numpy as np
+from dotenv import load_dotenv
 import sys
 import os
 import pandas as pd
@@ -11,6 +12,14 @@ from database.DataScience_BusinessIntelligence.DSBI_sorter import *
 from database.TransportationEngineering.TE_sorter import *
 file_path = os.path.realpath(__file__)
 file_path = os.path.dirname(file_path)
+
+
+print('Before load_dotenv()', os.getenv('MODE'))
+
+load_dotenv()
+
+print('After load_dotenv()', os.getenv('MODE'))
+
 
 if __name__ == "__main__":
     
