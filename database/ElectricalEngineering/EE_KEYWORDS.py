@@ -11,23 +11,24 @@ EE_CALCULUS_KEY_WORDS = ['微積分']
 EE_CALCULUS_ANTI_KEY_WORDS = ['asdgladfj;l']
 EE_MATH_KEY_WORDS = ['數學', '代數', '微分', '函數', '機率', '離散', '複變', '數值', '向量']
 EE_MATH_ANTI_KEY_WORDS = ['asdgladfj;l']
-EE_INTRO_COMPUTER_SCIENCE_KEY_WORDS = ['計算機', '演算', '資料', '物件', '運算',
+EE_INTRO_COMPUTER_SCIENCE_KEY_WORDS = ['計算機', '演算', '資料', '運算', '數位系統',
                                        '資電', '作業系統', '資料結構', '編譯器']
 EE_INTRO_COMPUTER_SCIENCE_ANTI_KEY_WORDS = [
     '倫理', 'Python', '機器學習', '傳輸', '素人', '思考']
-EE_PROGRAMMING_KEY_WORDS = ['程式設計', '程式語言', 'Python', 'C++', 'C語言', '組合語言']
+EE_PROGRAMMING_KEY_WORDS = ['程式設計', '程式語言',
+                            '物件', 'Python', 'C++', 'C語言', '組合語言']
 EE_PROGRAMMING_ANTI_KEY_WORDS = ['倫理', 'Python', '機器學習']
 EE_SOFTWARE_SYSTEM_KEY_WORDS = ['軟體工程', ]
 EE_SOFTWARE_SYSTEM_ANTI_KEY_WORDS = ['asdgladfj;l']
 EE_CONTROL_THEORY_KEY_WORDS = ['控制', '線性系統', '非線性系統']
 EE_CONTROL_THEORY_ANTI_KEY_WORDS = ['asdgladfj;l']
 EE_PHYSICS_KEY_WORDS = ['物理']
-EE_PHYSICS_ANTI_KEY_WORDS = ['半導體', '元件', '實驗', '史', '服務']
+EE_PHYSICS_ANTI_KEY_WORDS = ['半導體', '元件', '實驗', '史', '服務', '冶金']
 EE_PHYSICS_EXP_KEY_WORDS = ['物理']
 EE_PHYSICS_EXP_ANTI_KEY_WORDS = ['半導體', '元件', '史', '服務']
-EE_ELECTRONICS_KEY_WORDS = ['電子']
+EE_ELECTRONICS_KEY_WORDS = ['電子', '電子電路']
 EE_ELECTRONICS_ANTI_KEY_WORDS = [
-    '實驗', '專題', '電力', '固態', '自動化', '倫理', '素養', '進階', '電路', '材料', '藝術', '視覺']
+    '實驗', '專題', '電力', '固態', '自動化', '倫理', '素養', '進階', '材料', '藝術', '視覺']
 EE_ELECTRONICS_EXP_KEY_WORDS = ['電子實驗', '電子', '電工實驗']
 EE_ELECTRONICS_EXP_ANTI_KEY_WORDS = ['專題', '電力', '固態', '藝術', '材料']
 EE_ELECTRO_CIRCUIT_KEY_WORDS = ['電路', '數位邏輯', '邏輯系統', '邏輯設計']
@@ -39,10 +40,12 @@ EE_ELECTRO_MAGNET_KEY_WORDS = ['電磁']
 EE_ELECTRO_MAGNET_ANTI_KEY_WORDS = ['asdgladfj;l', '專題', '進階']
 EE_POWER_ELECTRO_KEY_WORDS = ['電力', '能源', '電動機', '電機', '高壓電', '電傳輸', '配電']
 EE_POWER_ELECTRO_ANTI_KEY_WORDS = ['asdgladfj;l', '專題', '進階']
-EE_COMMUNICATION_KEY_WORDS = ['密碼學', '安全', '傳輸', '射頻',
+EE_COMMUNICATION_KEY_WORDS = ['密碼學', '安全', '傳輸', '射頻', '電信',
                               '網路', '無線', '通信', '通訊', '電波', '無線網路']
-EE_COMMUNICATION_ANTI_KEY_WORDS = ['asdgladfj;l', '專題', '進階', '金融', '神經', '微波']
-EE_HF_RF_THEO_INFO_KEY_WORDS = ['微波', '高頻', '電磁波', '天線', '通道', '消息']
+EE_COMMUNICATION_ANTI_KEY_WORDS = [
+    'asdgladfj;l', '專題', '進階', '金融', '神經', '微波', '日治']
+EE_HF_RF_THEO_INFO_KEY_WORDS = [
+    '微波', '高頻', '電磁波', '天線', '通道', '消息', '編碼', 'RF']
 EE_HF_RF_THEO_INFO_ANTI_KEY_WORDS = ['asdgladfj;l', '專題', '進階']
 EE_SEMICONDUCTOR_KEY_WORDS = ['半導體', '元件', '固態']
 EE_SEMICONDUCTOR_ANTI_KEY_WORDS = ['專題', '倫理', '素養', '藝術', '電子']

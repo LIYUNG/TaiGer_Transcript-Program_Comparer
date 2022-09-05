@@ -399,7 +399,8 @@ def Classifier(program_idx, file_path, abbrev, env_file_path, basic_classificati
                 df_category_courses_sugesstion_data,
                 writer)
     # TODO: save file in AWS S3
-    # writer.save()
+    if os.getenv('MODE') in "development":
+        writer.save()
 
     # s3_resource = boto3.resource('s3')
     # dest_filename = output_file_name
@@ -428,15 +429,16 @@ def Classifier(program_idx, file_path, abbrev, env_file_path, basic_classificati
             try:
                 print("upload file")
                 print(os.path.join(Output_Path))
-                tmp = writer
-                tmp.save()
+                # Output_Path = "tmp"
+                writer.save()
                 client_s3.upload_file(os.path.join(Output_Path, output_file_name), os.getenv(
-                    'BUCKET_NAME'), output_file_name)
+                    'BUCKET_NAME'), os.path.join(Output_Path, output_file_name))
             except ClientError as e:
                 print('Credential is incorrect')
                 print(e)
             except Exception as e:
                 print(e)
+
     print("output data at: " + Output_Path + output_file_name)
     print("Students' courses analysis and courses suggestion in " +
           abbrev + " area finished! ")
