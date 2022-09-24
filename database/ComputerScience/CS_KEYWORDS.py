@@ -33,7 +33,7 @@ CS_ALGO_DATA_STRUCT_ANTI_KEY_WORDS = ['asdgladfj']
 CS_FORMAL_METHOD_KEY_WORDS = ['正規', '常規', '形式系統']
 CS_FORMAL_METHOD_ANTI_KEY_WORDS = ['asdgladfj']
 CS_THEORY_COMP_KEY_WORDS = ['計算機理論', '原理', '可計算', '計算理論']
-CS_THEORY_COMP_ANTI_KEY_WORDS = ['asdgladfj', '經濟']
+CS_THEORY_COMP_ANTI_KEY_WORDS = ['asdgladfj', '經濟', '遊戲']
 CS_MATH_DISCRETE_KEY_WORDS = ['離散', '圖形', '圖論', '邏輯']
 CS_MATH_DISCRETE_ANTI_KEY_WORDS = ['asdgladfj;l', '管理']
 CS_MATH_LIN_ALGE_KEY_WORDS = ['線性代數', '代數', '幾何']
@@ -67,9 +67,9 @@ CS_INTRO_ELEKTROTECHNIK_KEY_WORDS_EN = [
     'logic design', 'electronics', 'electrical circuit', 'electric circuit']
 CS_INTRO_ELEKTROTECHNIK_ANTI_KEY_WORDS_EN = ['倫理', '組織', ]
 CS_PROGRAMMING_KEY_WORDS_EN = ['programming', 'c language', 'java']
-CS_PROGRAMMING_ANTI_KEY_WORDS_EN = ['倫理', 'web', '視窗', '組織',
+CS_PROGRAMMING_ANTI_KEY_WORDS_EN = ['web', '視窗', '組織',
                                     'architecture', '理論', '網路', 'matlab']
-CS_COMP_ARCH_KEY_WORDS_EN = ['電腦結構', 'computer architecture', 'computer organization', '軟硬', 'compile', 'digital system',
+CS_COMP_ARCH_KEY_WORDS_EN = ['computer architecture', 'computer organization', '軟硬', 'compile', 'digital system',
                              'assembly', 'microprocessor', 'digital circuit', 'hardware description', 'VHDL', 'Verilog']
 CS_COMP_ARCH_ANTI_KEY_WORDS_EN = ['asdgladfj', '專題']
 CS_SWE_KEY_WORDS_EN = ['software', 'systems design']

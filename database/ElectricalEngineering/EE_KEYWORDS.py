@@ -72,16 +72,16 @@ EE_CALCULUS_KEY_WORDS_EN = ['calculus']
 EE_CALCULUS_ANTI_KEY_WORDS_EN = ['asdgladfj;l']
 EE_MATH_KEY_WORDS_EN = ['mathe', 'algebra', 'differential', '函數', 'multivar',
                         'probability', 'discrete math', 'complex', 'numerical', 'vector analy']
-EE_MATH_ANTI_KEY_WORDS_EN = ['asdgladfj;l']
+EE_MATH_ANTI_KEY_WORDS_EN = ['asdgladfj;l', 'device']
 
 EE_INTRO_COMPUTER_SCIENCE_KEY_WORDS_EN = ['computer', 'algorithm', 'object', 'computing',
                                           '資電', 'operating system', 'data structure', 'software', 'compiler']
 EE_INTRO_COMPUTER_SCIENCE_ANTI_KEY_WORDS_EN = [
-    '倫理', 'Python', 'machine learning']
+    '倫理', 'Python', 'machine learning', 'circuit']
 EE_PROGRAMMING_KEY_WORDS_EN = ['programming', 'program',
                                'language', 'Python', 'c++', 'c language']
 EE_PROGRAMMING_ANTI_KEY_WORDS_EN = [
-    'ethnic', 'Python', 'machine learning', 'vision']
+    'ethnic', 'Python', 'machine learning', 'vision', 'chinese', 'english', 'german']
 EE_SOFTWARE_SYSTEM_KEY_WORDS_EN = ['software engineering', ]
 EE_SOFTWARE_SYSTEM_ANTI_KEY_WORDS_EN = ['asdgladfj;l']
 EE_CONTROL_THEORY_KEY_WORDS_EN = ['control', 'linear system', '非線性系統']
@@ -96,7 +96,7 @@ EE_ELECTRONICS_ANTI_KEY_WORDS_EN = [
 EE_ELECTRONICS_EXP_KEY_WORDS_EN = ['lab', '電子']
 EE_ELECTRONICS_EXP_ANTI_KEY_WORDS_EN = ['physic', 'chemistry', 'general', '材料']
 EE_ELECTRO_CIRCUIT_KEY_WORDS_EN = [
-    'circuit', 'signal', '數位邏輯', 'logic']
+    'circuit', 'signal', 'fpga', 'hdl', '數位邏輯', 'logic']
 EE_ELECTRO_CIRCUIT_ANTI_KEY_WORDS_EN = ['超大型', '專題']
 EE_SIGNAL_SYSTEM_KEY_WORDS_EN = ['signals and systems']
 EE_SIGNAL_SYSTEM_ANTI_KEY_WORDS_EN = ['asdgladfj;l', '超大型', '專題']
@@ -117,7 +117,7 @@ EE_SEMICONDUCTOR_ANTI_KEY_WORDS_EN = ['專題', 'ethnic', '素養']
 EE_ELEC_MATERIALS_KEY_WORDS_EN = ['電子材料']
 EE_ELEC_MATERIALS_ANTI_KEY_WORDS_EN = ['專題', 'ethnic', '素養']
 EE_ADVANCED_ELECTRO_KEY_WORDS_EN = ['integrated circuit', 'automation',  'bluetooth', 'chip', 'analog', 'digital', 'digital signal',
-                                    'microprocessor', 'microcontroller', 'VLSI', 'embedded', 'artificial', 'machine learning']
+                                    'microprocessor', 'microcontroller', 'vlsi', 'embedded', 'artificial', 'machine learning', 'ulsi']
 EE_ADVANCED_ELECTRO_ANTI_KEY_WORDS_EN = ['ethnic', '素養']
 EE_APPLICATION_ORIENTED_KEY_WORDS_EN = ['生醫', 'neuro', '光機電', 'mems', 'iot', 'accoustics', 'solar',
                                         'image', 'deep learning', 'optoelectronics', '應用', 'green', 'cloud', 'medical', 'renewable']
