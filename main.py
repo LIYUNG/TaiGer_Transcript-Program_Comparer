@@ -3,13 +3,13 @@ from dotenv import load_dotenv
 import sys
 import os
 import pandas as pd
-from database.ElectricalEngineering.EE_sorter import *
-from database.ComputerScience.CS_sorter import *
-from database.MechanicalEngineering.ME_sorter import *
-from database.MaterialsScience.MTL_sorter import *
-from database.Management.MGM_sorter import *
-from database.DataScience_BusinessIntelligence.DSBI_sorter import *
-from database.TransportationEngineering.TE_sorter import *
+from database.ElectricalEngineering.EE_sorter import EE_sorter
+from database.ComputerScience.CS_sorter import CS_sorter
+from database.MechanicalEngineering.ME_sorter import ME_sorter
+from database.MaterialsScience.MTL_sorter import MTL_sorter
+from database.Management.MGM_sorter import MGM_sorter
+from database.DataScience_BusinessIntelligence.DSBI_sorter import DSBI_sorter
+from database.TransportationEngineering.TE_sorter import TE_sorter
 file_path = os.path.realpath(__file__)
 file_path = os.path.dirname(file_path)
 

@@ -77,7 +77,7 @@ EE_MATH_ANTI_KEY_WORDS_EN = ['asdgladfj;l', 'device']
 EE_INTRO_COMPUTER_SCIENCE_KEY_WORDS_EN = ['computer', 'algorithm', 'object', 'computing',
                                           '資電', 'operating system', 'data structure', 'software', 'compiler']
 EE_INTRO_COMPUTER_SCIENCE_ANTI_KEY_WORDS_EN = [
-    '倫理', 'Python', 'machine learning', 'circuit']
+    '倫理', 'Python', 'machine learning', 'circuit', 'program']
 EE_PROGRAMMING_KEY_WORDS_EN = ['programming', 'program',
                                'language', 'Python', 'c++', 'c language']
 EE_PROGRAMMING_ANTI_KEY_WORDS_EN = [
@@ -87,14 +87,16 @@ EE_SOFTWARE_SYSTEM_ANTI_KEY_WORDS_EN = ['asdgladfj;l']
 EE_CONTROL_THEORY_KEY_WORDS_EN = ['control', 'linear system', '非線性系統']
 EE_CONTROL_THEORY_ANTI_KEY_WORDS_EN = ['asdgladfj;l']
 EE_PHYSICS_KEY_WORDS_EN = ['physics']
-EE_PHYSICS_ANTI_KEY_WORDS_EN = ['semicondu', 'device', 'experiment']
+EE_PHYSICS_ANTI_KEY_WORDS_EN = [
+    'semicondu', 'device', 'experiment', 'lab']
 EE_PHYSICS_EXP_KEY_WORDS_EN = ['physics']
 EE_PHYSICS_EXP_ANTI_KEY_WORDS_EN = ['semicondu', '元件']
 EE_ELECTRONICS_KEY_WORDS_EN = ['electronic', 'electrical']
 EE_ELECTRONICS_ANTI_KEY_WORDS_EN = [
-    '專題', 'power', 'solid', 'automation', 'ethnic', '素養', 'advanced', 'lab']
-EE_ELECTRONICS_EXP_KEY_WORDS_EN = ['lab', '電子']
-EE_ELECTRONICS_EXP_ANTI_KEY_WORDS_EN = ['physic', 'chemistry', 'general', '材料']
+    'project', 'power', 'solid', 'automation', 'ethnic', '素養', 'advanced', 'lab', 'experiment']
+EE_ELECTRONICS_EXP_KEY_WORDS_EN = ['lab', 'electroni']
+EE_ELECTRONICS_EXP_ANTI_KEY_WORDS_EN = [
+    'physic', 'chemistry', 'general', '材料', 'wave', 'digital', 'mechanic']
 EE_ELECTRO_CIRCUIT_KEY_WORDS_EN = [
     'circuit', 'signal', 'fpga', 'hdl', '數位邏輯', 'logic']
 EE_ELECTRO_CIRCUIT_ANTI_KEY_WORDS_EN = ['超大型', '專題']

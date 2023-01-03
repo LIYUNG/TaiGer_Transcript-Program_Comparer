@@ -40,7 +40,8 @@ ME_STATICS_ANTI_KEY_WORDS = ['asdgladfj']
 ME_DYNAMICS_KEY_WORDS = ['動力', '振動', '運動學', '震動']
 ME_DYNAMICS_ANTI_KEY_WORDS = ['asdgladfj']
 ME_MATERIALS_MECHANIK_KEY_WORDS = ['力學', '機動', '應力']
-ME_MATERIALS_MECHANIK_ANTI_KEY_WORDS = ['熱力', '流體', '車輛', '氣動', '量子', '聲學', '廠']
+ME_MATERIALS_MECHANIK_ANTI_KEY_WORDS = [
+    '熱力', '流體', '車輛', '氣動', '量子', '聲學', '廠']
 ME_ELECTRICAL_ENG_KEY_WORDS = [
     '電力電子', '電機', '電動機', '電磁', '電子', '電路', '電工', '電力']
 ME_ELECTRICAL_ENG_ANTI_KEY_WORDS = [
@@ -75,11 +76,11 @@ ME_MATH_KEY_WORDS_EN = ['math', 'linear algebra', 'differential', '函數', 'fin
 ME_MATH_ANTI_KEY_WORDS_EN = ['asdgladfj;l']
 ME_PHYSICS_KEY_WORDS_EN = ['physics']
 ME_PHYSICS_ANTI_KEY_WORDS_EN = [
-    'semiconductor', 'device', 'experi', '車輛', '通識']
+    'semiconductor', 'device', 'experi', 'lab', '車輛', '通識']
 ME_PHYSICS_EXP_KEY_WORDS_EN = ['物理']
 ME_PHYSICS_EXP_ANTI_KEY_WORDS_EN = ['semiconductor', 'device', '車輛']
 ME_MASCHINENGESTALTUNG_KEY_WORDS_EN = [
-    '繪圖', '製圖', 'computer aid', 'machine design', 'machine', '工程圖', 'cad']
+    'mechanical design', '製圖', 'computer aid', 'machine design', 'machine', 'graphic', 'cad']
 ME_MASCHINENGESTALTUNG_ANTI_KEY_WORDS_EN = ['asdgladfj;l', 'manufactur']
 ME_MASCHINEN_ELEMENTE_KEY_WORDS_EN = [
     '機構', '機械構']
@@ -100,7 +101,7 @@ ME_STATICS_ANTI_KEY_WORDS_EN = ['asdgladfj']
 ME_DYNAMICS_KEY_WORDS_EN = ['動力', '振動', '運動學', '震動']
 ME_DYNAMICS_ANTI_KEY_WORDS_EN = ['asdgladfj']
 ME_MATERIALS_MECHANIK_KEY_WORDS_EN = ['mechanics', 'statics',
-                            'dynamics', '機動', 'vibra', 'kine', '應力']
+                                      'dynamics', '機動', 'vibra', 'kine', '應力']
 ME_MATERIALS_MECHANIK_ANTI_KEY_WORDS_EN = [
     'thermodynam', 'fluid', 'automotive', 'quantum', 'accoustic']
 ME_ELECTRICAL_ENG_KEY_WORDS_EN = [
@@ -111,7 +112,7 @@ ME_MANUFACTURE_ENG_KEY_WORDS_EN = ['manufactur', 'fabrica', 'produc']
 ME_MANUFACTURE_ENG_ANTI_KEY_WORDS_EN = [
     'asdgladfj;l', 'logic', 'automation', 'microelectroni']
 ME_COMPUTER_SCIENCE_KEY_WORDS_EN = [
-    '計算機', 'programming', 'object', 'data structure', 'algorithm']
+    'computer science', 'programming', 'object', 'data structure', 'algorithm']
 ME_COMPUTER_SCIENCE_ANTI_KEY_WORDS_EN = [
     'asdgladfj;l', '應用', 'Matlab', "labview", "matlab"]
 ME_MECHATRONICS_KEY_WORDS_EN = ['mechantro', 'microcomputer']
