@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 import sys
 import os
 import pandas as pd
+from database.BiomedicalEngineering.BOE_sorter import BOE_sorter
 from database.ElectricalEngineering.EE_sorter import EE_sorter
 from database.ComputerScience.CS_sorter import CS_sorter
 from database.MechanicalEngineering.ME_sorter import ME_sorter
@@ -43,6 +44,9 @@ if __name__ == "__main__":
     program_selection_path = ''
     if sys.argv[2] == 'cs':
         program_selection_path = file_path + '/database/ComputerScience/CS_Programs.xlsx'
+    elif sys.argv[2] == 'boe':
+        program_selection_path = file_path + \
+            '/database/BiomedicalEngineering/BOE_Programs.xlsx'
     elif sys.argv[2] == 'ee':
         program_selection_path = file_path + \
             '/database/ElectricalEngineering/EE_Programs.xlsx'
@@ -80,6 +84,8 @@ if __name__ == "__main__":
             
     if sys.argv[2] == 'cs':
         CS_sorter(program_idx, sys.argv[1], 'CS', Generated_Version)
+    elif sys.argv[2] == 'boe':
+        BOE_sorter(program_idx, sys.argv[1], 'BOE', Generated_Version)
     elif sys.argv[2] == 'ee':
         EE_sorter(program_idx, sys.argv[1], 'EE', Generated_Version)
     elif sys.argv[2] == 'me':
