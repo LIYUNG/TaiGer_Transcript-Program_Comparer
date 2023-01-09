@@ -167,7 +167,7 @@ def CourseSorting(df_transcript, df_category_data, transcript_sorted_group_map, 
                 temp_string = str(df_transcript['成績'][idx])
                 # failed subject not count
                 if((isfloat(temp_string) and float(temp_string) < 60 and float(temp_string) and float(temp_string) > 4.5)
-                   or "Fail" in temp_string or "W" in temp_string or "F" in temp_string or "fail" in temp_string or "退選" in temp_string or "withdraw" in temp_string):
+                    or "Fail" in str(temp_string) or "W" in str(temp_string) or "F" in str(temp_string) or "fail" in str(temp_string) or "退選" in str(temp_string) or "withdraw" in str(temp_string)):
                     continue
                 temp = {cat: subj, '學分': df_transcript['學分'][idx],
                         '成績': df_transcript['成績'][idx]}
@@ -417,10 +417,9 @@ def Classifier(program_idx, file_path, abbrev, env_file_path, basic_classificati
     #     #     'downloadurl': url
     #     # }
 
-    
     if os.getenv('MODE') in "development":
         print('development')
-    ## TODO: tmp folder and generated file not deleted!
+    # TODO: tmp folder and generated file not deleted!
     elif os.getenv('MODE') in "production":  # aws EC2 server
         print('production')
         with NamedTemporaryFile() as tmp:
