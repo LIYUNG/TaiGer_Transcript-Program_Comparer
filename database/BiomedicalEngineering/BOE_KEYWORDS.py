@@ -60,7 +60,7 @@ BOE_ADVANCED_CHEMISTRY_ANTI_KEY_WORDS = [
 
 BOE_INORGANIC_CHEMISTRY_KEY_WORDS = ['無機化學', '無機化學實驗']
 BOE_INORGANIC_CHEMISTRY_ANTI_KEY_WORDS = [
-    'asdgladfj;l', '管理', '文明', '服務', '微積分']
+    'asdgladfj;l', '管理', '文明']
 
 BOE_ADVANCED_PHYSICS_KEY_WORDS = ['固態物理', '近代物理']
 BOE_ADVANCED_PHYSICS_ANTI_KEY_WORDS = [
