@@ -264,7 +264,6 @@ def WriteToExcel(writer, program_name, program_category, program_category_map, t
 
 def Classifier(program_idx, file_path, abbrev, env_file_path, basic_classification_en, basic_classification_zh, column_len_array, program_sort_function, Generated_Version):
 
-    program_idx, file_path, abbrev
     Database_Path = env_file_path + '/'
     Output_Path = os.path.split(file_path)
     Output_Path = Output_Path[0]
