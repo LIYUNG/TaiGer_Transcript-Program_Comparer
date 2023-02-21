@@ -71,9 +71,9 @@ def DataPreparation(df_database, df_transcript):
     if '所有科目_英語' in df_database.columns:
         df_database['所有科目_英語'] = df_database['所有科目_英語'].str.lower()
     # unify course naming convention
-    if 'course_chinese' in df_transcript.columns:
+    if '所修科目_中文' in df_transcript.columns:
         df_transcript = Naming_Convention_ZH(df_transcript)
-    if 'course_english' in df_transcript.columns:
+    if '所修科目_英語' in df_transcript.columns:
         df_transcript = Naming_Convention_EN(df_transcript)
     print("Prepared data successfully.")
     return df_database, df_transcript
