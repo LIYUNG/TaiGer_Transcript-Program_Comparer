@@ -82,6 +82,8 @@ def DataPreparation(df_database, df_transcript):
 def Naming_Convention_ZH(df_course):
     # modify data in the same
     df_course['所修科目_中文'] = df_course['所修科目_中文'].fillna('-')
+    # lowercase even for Chinese name!
+    df_course['所修科目_中文'] = df_course['所修科目_中文'].str.lower()
 
     df_course['所修科目_中文'] = df_course['所修科目_中文'].str.replace(
         '+', '＋', regex=False)
